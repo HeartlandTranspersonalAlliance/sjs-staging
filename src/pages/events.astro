@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+
+const eventTypes = [
+  {
+    title: "Integration circles",
+    text: "Small community gatherings for reflection, grounding skills, and peer connection after meaningful or difficult experiences."
+  },
+  {
+    title: "Harm-reduction trainings",
+    text: "Volunteer and community sessions covering consent-first support, de-escalation, Narcan response, and practical event care."
+  },
+  {
+    title: "Festival outreach",
+    text: "Sanctuary support, education, and on-site coordination with organizers, medical teams, security, and production staff."
+  }
+];
+---
+
+<BaseLayout title="Events" description="SJS event formats, recent field work, and calendar-ready information.">
+  <PageHero
+    eyebrow="Events"
+    title="Sanctuary support, trainings, and integration spaces across the Midwest."
+    text="SJS supports festivals, concerts, and community gatherings while building a volunteer education calendar between event deployments."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers standing together at an event"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="notice">
+        Upcoming 2026 dates are not yet published on this site. The 2025 workshop and festival language from the old site has been folded into these event formats so it does not appear as current schedule information.
+      </div>
+      <div class="card-grid event-grid">
+        {
+          eventTypes.map((event) => (
+            <article class="surface service-card">
+              <h2>{event.title}</h2>
+              <p>{event.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Calendar-ready</p>
+        <h2>Use this page for confirmed dates, registrations, and embeds.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          When SJS has a live calendar or registration hub, the embed or registration links can be added here without changing the rest of the site architecture.
+        </p>
+        <div class="button-row">
+          <a class="button button-amber" href={site.forms.volunteer}>Volunteer for Events</a>
+          <a class="button button-ghost" href="/organizers/">Bring SJS to an Event</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .event-grid {
+    margin-top: 24px;
+  }
+
+  .event-grid h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .event-grid p {
+    color: var(--muted);
+  }
+
+  .band .button-ghost {
+    background: rgb(255 255 255 / 0.08);
+    color: white;
+  }
+</style>

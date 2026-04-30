@@ -1,0 +1,114 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"news">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.image}>
+  <article class="post-hero">
+    <div class="container post-hero-grid">
+      <div>
+        <p class="eyebrow">{post.data.category}</p>
+        <h1>{post.data.title}</h1>
+        <p class="lede">{post.data.description}</p>
+        <p class="post-date">
+          {post.data.date.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+          })}
+        </p>
+      </div>
+      <img src={post.data.image} alt={post.data.imageAlt} loading="eager" decoding="async" />
+    </div>
+  </article>
+
+  <section class="section">
+    <div class="container post-shell">
+      <div class="prose">
+        <Content />
+      </div>
+      <aside class="surface post-aside">
+        <h2>Connect with SJS</h2>
+        <p>Interested in volunteering, event partnership, or bringing sanctuary support to a Midwest gathering?</p>
+        <a class="button button-primary" href="/contact/">Contact SJS</a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-hero {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    padding: 70px 0;
+  }
+
+  .post-hero-grid {
+    align-items: center;
+    display: grid;
+    gap: 42px;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.78fr);
+  }
+
+  .post-hero h1 {
+    margin: 10px 0 18px;
+  }
+
+  .post-date {
+    color: var(--moss);
+    font-weight: 850;
+    margin-top: 18px;
+  }
+
+  .post-hero img {
+    aspect-ratio: 3 / 2;
+    border: 1px solid rgb(255 242 220 / 0.16);
+    border-radius: 16px;
+    box-shadow:
+      0 20px 60px rgb(0 0 0 / 0.32),
+      0 0 0 8px rgb(169 112 221 / 0.08);
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .post-shell {
+    align-items: start;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
+  .post-aside {
+    padding: 22px;
+    position: sticky;
+    top: 98px;
+  }
+
+  .post-aside h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .post-aside p {
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 880px) {
+    .post-hero-grid,
+    .post-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .post-aside {
+      position: static;
+    }
+  }
+</style>

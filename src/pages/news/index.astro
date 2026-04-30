@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const posts = (await getCollection("news"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="News" description="News, field notes, event recaps, and educational updates from Safe Journey Sanctum.">
+  <PageHero
+    eyebrow="News and updates"
+    title="Field notes, launch updates, and educational writing."
+    text="Follow SJS as the volunteer community, training program, and event partnerships develop across the Midwest."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers at Getter"
+  />
+
+  <section class="section">
+    <div class="container card-grid news-grid">
+      {
+        posts.map((post) => (
+          <article class="surface post-card">
+            <img src={post.data.image} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+            <div class="post-card-body">
+              <p class="post-meta">
+                {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric"
+                })}
+              </p>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <a href={`/news/${post.id}/`}>Read update</a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-meta {
+    color: var(--moss);
+    font-size: 0.84rem;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+
+  .post-card h2 {
+    font-size: 1.22rem;
+    margin: 0;
+  }
+
+  .post-card p:not(.post-meta) {
+    color: var(--muted);
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 56rem;
+  }
+
+  @media (max-width: 760px) {
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

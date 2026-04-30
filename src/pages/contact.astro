@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+
+const contactPaths = [
+  {
+    title: "Event partnership",
+    text: "Share the event date, location, expected attendance, venue setup, medical/security plan, and support requested.",
+    href: site.forms.partnership,
+    label: "Partnership Form"
+  },
+  {
+    title: "General questions",
+    text: "Ask about SJS, volunteering, education, donations, resources, or community collaboration.",
+    href: site.forms.contact,
+    label: "Contact Form"
+  },
+  {
+    title: "Email",
+    text: "Use email for non-urgent questions, follow-up details, and coordination with the SJS team.",
+    href: `mailto:${site.email}`,
+    label: site.email
+  }
+];
+---
+
+<BaseLayout title="Contact" description="Contact SJS for event partnership, volunteer, donation, and general inquiries.">
+  <PageHero
+    eyebrow="Contact"
+    title="Reach SJS with partnership details, volunteer interest, or general questions."
+    text="For on-site emergencies, contact venue medical or security personnel immediately. For planning and non-urgent questions, use the paths below."
+  />
+
+  <section class="section">
+    <div class="container card-grid">
+      {
+        contactPaths.map((path) => (
+          <article class="surface service-card">
+            <h2>{path.title}</h2>
+            <p>{path.text}</p>
+            <a href={path.href}>{path.label}</a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container notice">
+      During festivals and events, the sanctuary team can be reached on site through venue staff, security, or production. If someone may be medically unsafe, seek medical support first.
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .service-card p {
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .service-card a {
+    overflow-wrap: anywhere;
+  }
+</style>

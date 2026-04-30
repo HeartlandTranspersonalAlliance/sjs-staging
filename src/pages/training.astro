@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site, trainingTopics } from "../data/site";
+
+const trainingFlow = [
+  {
+    title: "Onboarding",
+    text: "Mission, boundaries, confidentiality, volunteer expectations, and how SJS works with event teams."
+  },
+  {
+    title: "Practice",
+    text: "Role plays for consent-first communication, de-escalation, grounding, documentation, and handoff."
+  },
+  {
+    title: "Deployment",
+    text: "Event briefing, shift expectations, supplies, escalation pathways, and post-event debrief."
+  }
+];
+---
+
+<BaseLayout title="Training" description="SJS volunteer onboarding, Narcan/CPR education, de-escalation, consent-first support, and peer-support boundaries.">
+  <PageHero
+    eyebrow="Training"
+    title="Training turns good intentions into reliable support."
+    text="SJS prepares volunteers to offer compassionate presence while respecting consent, boundaries, and the limits of peer support."
+    image="/assets/sjs_home_background.png"
+    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+  />
+
+  <section class="section">
+    <div class="container card-grid">
+      {
+        trainingFlow.map((step) => (
+          <article class="surface service-card">
+            <h2>{step.title}</h2>
+            <p>{step.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight training-band">
+    <div class="container">
+      <p class="eyebrow">Curriculum areas</p>
+      <h2>Core topics</h2>
+      <div class="topic-grid">
+        {trainingTopics.map((topic) => <span>{topic}</span>)}
+      </div>
+      <div class="button-row">
+        <a class="button button-primary" href={site.forms.volunteer}>Apply to Volunteer</a>
+        <a class="button button-ghost" href="/events/">View Events</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .service-card p {
+    color: var(--muted);
+  }
+
+  .training-band {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  .training-band h2 {
+    margin: 8px 0 22px;
+  }
+
+  .topic-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 24px;
+  }
+
+  .topic-grid span {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font-weight: 800;
+    padding: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .topic-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

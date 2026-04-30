@@ -1,0 +1,122 @@
+---
+import { navItems, site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="/assets/sjslogo.png" alt="" width="56" height="56" />
+      <div>
+        <h2>{site.name}</h2>
+        <p>{site.description}</p>
+      </div>
+    </div>
+
+    <div class="footer-links" aria-label="Footer navigation">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="/donate/">Donate</a>
+      <a href="/organizers/">For Event Organizers</a>
+      <a href="/training/">Training</a>
+      <a href="/impact/">Impact</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>
+        <strong>Email</strong><br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+      <p>
+        <strong>Social</strong><br />
+        {site.social.map((link, index) => (
+          <>
+            <a href={link.url} rel="noreferrer">{link.label}</a>
+            {index < site.social.length - 1 ? " / " : ""}
+          </>
+        ))}
+      </p>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>
+      &copy; {new Date().getFullYear()} {site.name}. {site.nonprofit} Learn more about{" "}
+      <a href={site.parentOrg.url} rel="noreferrer">{site.parentOrg.name}</a>.
+    </p>
+    <p>
+      SJS provides education and peer support, not medical treatment, psychotherapy, legal advice, or endorsement of substance use. In an emergency, call 911 or contact on-site medical/security personnel.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background:
+      radial-gradient(circle at 12% 0%, rgb(168 121 216 / 0.16), transparent 24rem),
+      var(--sjs-bg);
+    color: white;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    padding: 56px 0 34px;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.7fr) minmax(220px, 0.7fr);
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-brand img {
+    background: rgb(255 255 255 / 0.08);
+    border-radius: 16px;
+    height: 56px;
+    padding: 6px;
+    width: 56px;
+  }
+
+  .footer-brand h2 {
+    color: var(--sjs-cream);
+    font-size: 1.35rem;
+    margin: 0 0 8px;
+  }
+
+  .footer-brand p,
+  .footer-contact p,
+  .footer-bottom p {
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: grid;
+    gap: 8px;
+  }
+
+  .site-footer a {
+    color: var(--sjs-text);
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    display: grid;
+    gap: 12px;
+    margin-top: 42px;
+    padding-top: 24px;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 72rem;
+  }
+
+  @media (max-width: 840px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

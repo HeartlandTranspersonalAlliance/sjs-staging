@@ -1,0 +1,486 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  carePrinciples,
+  primaryCtas,
+  resources,
+  site
+} from "../data/site";
+
+const posts = (await getCollection("news"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const actionPaths = [
+  {
+    title: "Need Event Support",
+    text: "Bring a sanctuary team, harm-reduction education, and a medical/security coordination plan to your event.",
+    href: "/organizers/",
+    label: "Plan Event Support"
+  },
+  {
+    title: "Train With Us",
+    text: "Prepare for grounded peer support through consent-first communication, de-escalation, Narcan response, and clear boundaries.",
+    href: "/training/",
+    label: "View Training"
+  },
+  {
+    title: "Join the Volunteer Community",
+    text: "Help staff sanctuary spaces, support outreach, move supplies, and build a practical culture of care at Midwest gatherings.",
+    href: site.forms.volunteer,
+    label: "Apply to Volunteer"
+  }
+];
+
+const heroFacts = [
+  {
+    title: "Sanctuary spaces",
+    text: "Quiet, low-stimulation care areas."
+  },
+  {
+    title: "Volunteer training",
+    text: "Consent-first onboarding and practice."
+  },
+  {
+    title: "Narcan education",
+    text: "Overdose response readiness."
+  },
+  {
+    title: "Event partnerships",
+    text: "Clear coordination with organizers."
+  }
+];
+---
+
+<BaseLayout title={site.name} description={site.description} image="/assets/sjs_home_background.png">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="hero-image" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wide-container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Midwest peer support and harm reduction</p>
+        <h1 id="home-title">Compassionate peer support for nonordinary states at Midwest events.</h1>
+        <p>
+          Safe Journey Sanctum creates grounded, consent-first spaces where trained volunteers offer calm presence, practical care, and clear connection to on-site medical or security teams when needed.
+        </p>
+        <div class="button-row hero-buttons">
+          {primaryCtas.map((cta, index) => (
+            <a class={`button ${index === 0 ? "button-amber" : index === 1 ? "button-primary" : "button-dark"}`} href={cta.href}>
+              {cta.label}
+            </a>
+          ))}
+        </div>
+        <div class="button-row secondary-buttons">
+          <a class="button button-ghost" href="/events/">View Events</a>
+          <a class="button button-ghost" href="/resources/">Read Resources</a>
+        </div>
+      </div>
+
+      <div class="hero-facts" aria-label="SJS focus areas">
+        {
+          heroFacts.map((fact) => (
+            <article>
+              <h3>{fact.title}</h3>
+              <p>{fact.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section action-section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Start here</p>
+        <h2>Choose the path that matches what you need.</h2>
+      </div>
+      <div class="card-grid">
+        {
+          actionPaths.map((path) => (
+            <article class="surface service-card">
+              <h3>{path.title}</h3>
+              <p>{path.text}</p>
+              <a href={path.href}>{path.label}</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section model-preview">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Model of care</p>
+        <h2>Calm space, consent, and clear escalation.</h2>
+        <p class="lede">
+          SJS volunteers are not therapists and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="/model/">Explore the Model</a>
+          <a class="button button-ghost" href="/faq/">Read FAQ</a>
+        </div>
+      </div>
+      <div class="principle-stack">
+        {
+          carePrinciples.map((principle) => (
+            <article class="principle">
+              <h3>{principle.title}</h3>
+              <p>{principle.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight band support-band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Donate / support</p>
+        <h2>Your gift turns intention into working sanctuary infrastructure.</h2>
+      </div>
+      <div>
+        <p>
+          Contributions help fund soft flooring, blankets, lighting, hydration supplies, Narcan education, volunteer training, signage, storage, transportation, and outreach materials.
+        </p>
+        <div class="button-row">
+          <a class="button button-amber" href="/donate/">Support SJS</a>
+          <a class="button button-ghost" href={site.forms.wishlist}>In-kind Supplies</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section resource-section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Practical resources</p>
+        <h2>Education that helps people plan, respond, and integrate.</h2>
+      </div>
+      <div class="card-grid">
+        {
+          resources.slice(0, 3).map((resource) => (
+            <article class="resource-card">
+              <h3>{resource.title}</h3>
+              <p>{resource.text}</p>
+              <a href={resource.href}>Read more</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section latest-section">
+    <div class="container">
+      <div class="section-heading inline-heading">
+        <div>
+          <p class="eyebrow">News and field notes</p>
+          <h2>Latest from SJS</h2>
+        </div>
+        <a href="/news/">View all news</a>
+      </div>
+      <div class="card-grid">
+        {
+          posts.map((post) => (
+            <article class="surface post-card">
+              <img src={post.data.image} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+              <div class="post-card-body">
+                <p class="post-meta">
+                  {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric"
+                  })}
+                </p>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <a href={`/news/${post.id}/`}>Read update</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight social-band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Stay connected</p>
+        <h2>Bring questions, partnership ideas, or volunteer interest.</h2>
+      </div>
+      <div class="button-row">
+        <a class="button button-primary" href="/contact/">Contact SJS</a>
+        <a class="button button-ghost" href={site.forms.volunteer}>Volunteer Form</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero {
+    min-height: 760px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-image {
+    background:
+      linear-gradient(to right, rgb(13 9 18 / 0.95), rgb(21 16 29 / 0.8), rgb(21 16 29 / 0.45)),
+      url("/assets/sjs_home_background.png");
+    background-position: center;
+    background-size: cover;
+    inset: 0;
+    position: absolute;
+  }
+
+  .hero-scrim {
+    background:
+      linear-gradient(180deg, transparent 78%, var(--paper) 100%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 96px);
+    inset: 0;
+    position: absolute;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    justify-content: center;
+    min-height: 760px;
+    padding-bottom: 64px;
+    padding-top: 96px;
+    position: relative;
+  }
+
+  .hero-copy {
+    align-self: center;
+    color: white;
+    margin-right: auto;
+    max-width: 56rem;
+  }
+
+  .hero-copy h1 {
+    color: white;
+    margin: 16px 0 22px;
+    max-width: 56rem;
+    font-size: 3.1rem;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .hero-copy p:not(.eyebrow) {
+    color: rgb(255 255 255 / 0.84);
+    font-size: 1.2rem;
+    line-height: 1.75;
+    max-width: 42rem;
+  }
+
+  .home-hero .eyebrow {
+    color: var(--amber);
+  }
+
+  .hero-buttons {
+    margin-top: 30px;
+  }
+
+  .secondary-buttons {
+    margin-top: 12px;
+  }
+
+  .hero-facts {
+    align-self: stretch;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: none;
+  }
+
+  .hero-facts article {
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    backdrop-filter: blur(14px);
+    color: var(--ink);
+    min-height: 112px;
+    padding: 18px;
+  }
+
+  .hero-facts h3 {
+    color: var(--sjs-text);
+    font-family: "Source Sans 3", Aptos, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 6px;
+  }
+
+  .hero-facts p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+    max-width: 52rem;
+  }
+
+  .section-heading h2 {
+    margin: 8px 0 0;
+  }
+
+  .inline-heading {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+    max-width: none;
+  }
+
+  .service-card h3,
+  .resource-card h3 {
+    margin: 0 0 12px;
+  }
+
+  .service-card p,
+  .resource-card p {
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .model-preview {
+    background: rgb(27 21 34 / 0.78);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .model-preview::before,
+  .social-band::before {
+    background: url("/assets/sjslogo.png") center / contain no-repeat;
+    content: "";
+    height: 32rem;
+    opacity: 0.03;
+    pointer-events: none;
+    position: absolute;
+    width: 32rem;
+  }
+
+  .model-preview::before {
+    bottom: -14rem;
+    left: -10rem;
+  }
+
+  .model-preview > .container,
+  .social-band > .container {
+    position: relative;
+  }
+
+  .model-preview .lede {
+    max-width: 42rem;
+    margin: 18px 0 24px;
+  }
+
+  .principle-stack {
+    display: grid;
+    gap: 12px;
+  }
+
+  .principle {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--shadow);
+    padding: 22px;
+  }
+
+  .principle h3 {
+    margin: 0 0 8px;
+  }
+
+  .principle p {
+    color: var(--muted);
+  }
+
+  .support-band .button-ghost {
+    background: rgb(255 255 255 / 0.08);
+    color: white;
+  }
+
+  .post-meta {
+    color: var(--moss);
+    font-size: 0.84rem;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+
+  .post-card h3 {
+    margin: 0;
+  }
+
+  .post-card p:not(.post-meta) {
+    color: var(--muted);
+  }
+
+  .social-band {
+    background: var(--linen);
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .social-band::before {
+    right: -12rem;
+    top: -14rem;
+  }
+
+  @media (max-width: 820px) {
+    .hero-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .inline-heading {
+      align-items: flex-start;
+      display: grid;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .home-hero {
+      min-height: auto;
+    }
+
+    .hero-inner {
+      min-height: 740px;
+      padding-bottom: 44px;
+      padding-top: 54px;
+    }
+
+    .hero-facts {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-copy h1 {
+      font-size: 4.55rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-copy h1 {
+      font-size: 5.25rem;
+    }
+
+    .action-section {
+      padding-top: 88px;
+    }
+  }
+</style>

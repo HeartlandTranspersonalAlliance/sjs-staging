@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { resources } from "../data/site";
+
+const supportLines = [
+  "In a medical emergency, call 911 or contact on-site medical/security personnel.",
+  "For mental health crisis support in the United States, call or text 988.",
+  "For peer support during or after a psychedelic experience, consider Fireside Project resources where available.",
+  "Learn local Narcan access options and carry naloxone when possible."
+];
+---
+
+<BaseLayout title="Resources" description="Practical harm-reduction resources for preparation, difficult experiences, integration, crisis support, and consent.">
+  <PageHero
+    eyebrow="Resources"
+    title="Practical education for preparation, support, and integration."
+    text="These resources are designed for guests, friends, volunteers, and organizers who want grounded harm-reduction basics without judgment or hype."
+    image="/assets/sjs_home_background.png"
+    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+  />
+
+  <section class="section" id="preparation">
+    <div class="container card-grid resources-grid">
+      {
+        resources.map((resource) => (
+          <article class="resource-card">
+            <h2>{resource.title}</h2>
+            <p>{resource.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight resource-band" id="difficult-experiences">
+    <div class="container two-grid">
+      <div class="prose">
+        <p class="eyebrow">During a difficult experience</p>
+        <h2>Lower stimulation and ask before acting.</h2>
+        <p>
+          Speak calmly, introduce yourself, ask what would feel supportive, and avoid crowding the person. Help them find water, shade, a quieter place, or a trusted friend when appropriate.
+        </p>
+      </div>
+      <div class="surface service-card">
+        <h3>Escalate when needed</h3>
+        <p>
+          If someone is unconscious, struggling to breathe, overheating, injured, confused in a dangerous way, or showing overdose symptoms, involve medical support immediately.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="integration">
+    <div class="container two-grid">
+      <div class="prose">
+        <p class="eyebrow">Integration</p>
+        <h2>Afterward, basic care matters.</h2>
+        <p>
+          Sleep, food, hydration, journaling, gentle movement, and a grounded conversation with someone trustworthy can help a person make sense of intense experiences over time.
+        </p>
+      </div>
+      <div class="prose" id="support-lines">
+        <p class="eyebrow">Crisis and overdose support</p>
+        <ul>
+          {supportLines.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight consent-strip">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Consent resources</p>
+        <h2>Support should protect agency.</h2>
+      </div>
+      <p>
+        Ask before touching, moving belongings, changing music or lighting, inviting another person into the interaction, or sharing details afterward. Consent is a practice, not a one-time phrase.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .resource-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .resource-card p {
+    color: var(--muted);
+  }
+
+  .resources-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resource-band,
+  .consent-strip {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  #support-lines ul {
+    color: var(--muted);
+    line-height: 1.75;
+    padding-left: 1.15rem;
+  }
+
+  #support-lines li + li {
+    margin-top: 0.55rem;
+  }
+
+  @media (max-width: 760px) {
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

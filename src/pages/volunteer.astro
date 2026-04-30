@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site, trainingTopics } from "../data/site";
+
+const roles = [
+  "Peer counselors",
+  "Harm-reduction educators",
+  "Event liaisons",
+  "Logistics coordinators",
+  "Outreach and fundraising helpers",
+  "Training support volunteers"
+];
+---
+
+<BaseLayout title="Volunteer" description="Volunteer roles, expectations, training topics, and application information for SJS.">
+  <PageHero
+    eyebrow="Volunteer"
+    title="Join the volunteer community that makes sanctuary possible."
+    text="You do not need to be a therapist or medical professional to get involved. Compassion, steadiness, and the willingness to listen are at the heart of SJS peer support."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers behind a booth"
+  />
+
+  <section class="section">
+    <div class="container two-grid">
+      <div class="prose">
+        <h2>What volunteers do</h2>
+        <p>
+          Volunteers staff comfortable, well-lit sanctuary spaces where guests can rest, talk, hydrate, draw, breathe, or sit quietly. SJS volunteers offer presence rather than advice and know when to involve medical personnel or security.
+        </p>
+        <p>
+          Between events, volunteers help with outreach, fundraising, training facilitation, supply prep, documentation, and logistics.
+        </p>
+        <a class="button button-primary" href={site.forms.volunteer}>Volunteer Application Form</a>
+      </div>
+      <div class="surface service-card">
+        <h3>Roles include</h3>
+        <ul class="roles-list">
+          {roles.map((role) => <li>{role}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight training-strip">
+    <div class="container">
+      <p class="eyebrow">Training topics</p>
+      <h2>Prepared volunteers make the space safer.</h2>
+      <div class="topic-list">
+        {trainingTopics.map((topic) => <span>{topic}</span>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .training-strip {
+    background: var(--linen);
+    border-top: 1px solid var(--line);
+  }
+
+  .training-strip h2 {
+    margin: 8px 0 22px;
+  }
+
+  .topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .topic-list span {
+    background: var(--surface);
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 999px;
+    color: var(--sjs-text);
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 9px 15px;
+  }
+
+  .roles-list {
+    display: grid;
+    gap: 8px 28px;
+    padding-left: 1.15rem;
+  }
+
+  .roles-list li + li {
+    margin-top: 0;
+  }
+
+  @media (min-width: 640px) {
+    .roles-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const impactAreas = [
+  {
+    title: "Events served",
+    text: "Public field notes currently include Getter at Warehouse on Broadway in Kansas City, with more recaps ready to add as SJS documents future deployments."
+  },
+  {
+    title: "Volunteers trained",
+    text: "The site is structured for verified training counts once SJS begins publishing annual or seasonal reporting."
+  },
+  {
+    title: "Supplies distributed",
+    text: "Narcan education, printed materials, comfort supplies, and sanctuary gear can be tracked here once reporting is available."
+  }
+];
+---
+
+<BaseLayout title="Impact" description="SJS impact storytelling, public field notes, and future reporting areas.">
+  <PageHero
+    eyebrow="Impact"
+    title="A place for field recaps, verified metrics, and guest stories when available."
+    text="SJS is early in its public reporting. This page avoids invented numbers and gives the team a clear structure for future impact updates."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers standing behind a booth"
+  />
+
+  <section class="section">
+    <div class="container card-grid">
+      {
+        impactAreas.map((area) => (
+          <article class="surface metric-card">
+            <h2>{area.title}</h2>
+            <p>{area.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Field recap</p>
+        <h2>Getter showed the value of practical presence.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          At SJS's second event, the team supported Getter at Warehouse on Broadway with more than 500 people in attendance. Read the recap for photos and acknowledgments.
+        </p>
+        <a class="button button-amber" href="/news/getter/">Read Getter Recap</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .metric-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .metric-card p {
+    color: var(--muted);
+  }
+</style>

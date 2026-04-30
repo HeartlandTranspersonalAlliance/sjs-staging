@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { eventServices, site } from "../data/site";
+
+const setupNeeds = [
+  "Quiet, visible location with clear access for medical/security teams",
+  "Power or battery plan for gentle lighting and operations",
+  "Shade, weather protection, and practical flooring",
+  "Production contact, radio/channel plan, and escalation protocol",
+  "Privacy-aware guest flow that does not isolate volunteers"
+];
+---
+
+<BaseLayout title="For Event Organizers" description="SJS services, staffing model, setup needs, coordination, and partnership inquiry information for event organizers.">
+  <PageHero
+    eyebrow="For event organizers"
+    title="Add a grounded peer-support layer to your event care plan."
+    text="SJS partners with organizers to design sanctuary spaces, staff peer support, coordinate with medical/security teams, and offer practical harm-reduction education."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers and table setup at an event"
+  />
+
+  <section class="section">
+    <div class="container two-grid">
+      <div class="surface service-card">
+        <h2>Services offered</h2>
+        <ul>
+          {eventServices.map((service) => <li>{service}</li>)}
+        </ul>
+      </div>
+      <div class="surface service-card">
+        <h2>Setup needs</h2>
+        <ul>
+          {setupNeeds.map((need) => <li>{need}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Staffing model</p>
+        <h2>Peer support works best when the whole care system is aligned.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          SJS scopes each deployment around event size, hours, risk profile, available space, and existing medical/security staffing. Volunteers complement professional responders; they do not replace them.
+        </p>
+        <a class="button button-amber" href={site.forms.partnership}>Partnership Inquiry</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 12px;
+  }
+
+  .service-card li + li {
+    margin-top: 8px;
+  }
+</style>

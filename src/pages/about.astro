@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="About"
+  description="Safe Journey Sanctum's mission, vision, and nonprofit relationship."
+  image="/assets/sjs_home_background.png"
+>
+  <PageHero
+    eyebrow="About SJS"
+    title="A peer-led sanctuary project rooted in harm reduction and dignity."
+    text="Safe Journey Sanctum provides trauma-informed, consent-based peer support to people navigating intense emotional or psychedelic experiences at festivals, concerts, and community events."
+    image="/assets/sjs_home_background.png"
+    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+  />
+
+  <section class="section">
+    <div class="container split-grid about-mission-grid">
+      <div class="prose">
+        <h2>Mission</h2>
+        <p>
+          SJS was founded to create supportive spaces where challenging experiences can become opportunities for learning, stabilization, and connection. Volunteers offer presence rather than advice, and every interaction begins with consent.
+        </p>
+        <p>
+          Our work draws inspiration from established psychedelic peer-support models such as the Zendo Project and Harmonia Sanctuary while adapting the approach to Midwest event culture and local community needs.
+        </p>
+      </div>
+      <div class="surface service-card">
+        <h3>What sanctuary looks like</h3>
+        <p>
+          Comfortable lighting, soft seating, blankets, grounding materials, art supplies, and volunteers who can listen without judgment. SJS also coordinates with medical, security, and production teams so guests can receive the right level of care.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Nonprofit relationship</p>
+        <h2>Organized through Heartland Transpersonal Alliance.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          {site.nonprofit}
+        </p>
+        <p>
+          This relationship helps SJS receive support, develop training, and collaborate with organizers while keeping the work accountable to a nonprofit mission.
+        </p>
+        <a class="button button-amber" href={site.parentOrg.url} rel="noreferrer">Visit HTA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-grid">
+      <article class="resource-card">
+        <h3>Vision</h3>
+        <p>
+          A Midwest event culture where harm-reduction education and peer support are easy to find, emotionally grounded, and trusted by guests, organizers, artists, and care teams.
+        </p>
+      </article>
+      <article class="resource-card">
+        <h3>How we grow</h3>
+        <p>
+          SJS offers volunteer training, event partnerships, educational resources, and post-event reflection so each deployment strengthens the next one.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-mission-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  @media (max-width: 900px) {
+    .about-mission-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

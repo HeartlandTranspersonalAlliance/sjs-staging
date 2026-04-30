@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { carePrinciples, eventServices } from "../data/site";
+---
+
+<BaseLayout
+  title="Our Model of Care"
+  description="The SJS approach to sanctuary setup, volunteer boundaries, escalation, and consent-first peer support."
+  image="/assets/sjs_home_background.png"
+>
+  <PageHero
+    eyebrow="Our model"
+    title="A practical care model for intense experiences at live events."
+    text="SJS combines comfortable sanctuary environments, trained peer presence, clear boundaries, and coordination with professional medical and security teams."
+    image="/assets/blog/getter-group.jpg"
+    imageAlt="SJS volunteers at an event booth"
+  />
+
+  <section class="section">
+    <div class="container card-grid model-principles">
+      {
+        carePrinciples.map((principle) => (
+          <article class="surface service-card">
+            <h2>{principle.title}</h2>
+            <p>{principle.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight model-band">
+    <div class="container split-grid">
+      <div class="prose">
+        <p class="eyebrow">Sanctuary setup</p>
+        <h2>Comfortable enough to settle, organized enough to operate.</h2>
+        <p>
+          SJS sanctuaries are designed to be inviting and useful: soft floors, pillows, cushions, blankets, gentle light, books, art supplies, and simple grounding objects. The goal is to lower stimulation while protecting privacy, dignity, and access to help.
+        </p>
+      </div>
+      <img class="model-image" src="/assets/blog/getter-poster.jpg" alt="Getter event poster used in SJS event history" loading="lazy" decoding="async" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-grid">
+      <div class="prose">
+        <p class="eyebrow">Volunteer boundaries</p>
+        <h2>Presence without directing the experience.</h2>
+        <p>
+          Volunteers are not therapists. They listen, ask permission, help reduce overwhelm, and avoid interpreting or steering what a guest is experiencing. If a situation requires medical, security, or crisis support, the volunteer's responsibility is to escalate clearly and quickly.
+        </p>
+      </div>
+      <div class="surface service-card">
+        <h3>Event coordination includes</h3>
+        <ul>
+          {eventServices.map((service) => <li>{service}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .model-band {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  .model-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .model-image {
+    aspect-ratio: 4 / 3;
+    border: 1px solid rgb(255 242 220 / 0.16);
+    border-radius: 16px;
+    box-shadow:
+      0 20px 60px rgb(0 0 0 / 0.32),
+      0 0 0 8px rgb(169 112 221 / 0.08);
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @media (max-width: 760px) {
+    .model-principles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

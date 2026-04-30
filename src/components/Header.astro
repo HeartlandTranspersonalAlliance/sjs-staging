@@ -1,0 +1,209 @@
+---
+import { navItems, primaryCtas, site } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="wide-container nav-shell" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <img src="/assets/sjslogo.png" alt="" width="42" height="42" />
+      <span>{site.name}</span>
+    </a>
+
+    <div class="desktop-links" aria-label="Main pages">
+      {
+        navItems.map((item) => (
+          <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a class="nav-donate" href="/donate/">Donate</a>
+
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation">Menu</summary>
+      <div class="mobile-panel">
+        {
+          navItems.map((item) => (
+            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+        <div class="mobile-ctas">
+          {primaryCtas.map((cta) => <a href={cta.href}>{cta.label}</a>)}
+        </div>
+      </div>
+    </details>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    backdrop-filter: blur(16px);
+    background: rgb(8 6 12 / 0.9);
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .skip-link {
+    background: var(--amber);
+    color: #160f17;
+    left: 16px;
+    padding: 8px 12px;
+    position: absolute;
+    top: -48px;
+    z-index: 50;
+  }
+
+  .skip-link:focus {
+    top: 12px;
+  }
+
+  .nav-shell {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    min-height: 64px;
+  }
+
+  .brand {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.04rem;
+    font-weight: 760;
+    line-height: 1;
+    min-width: 0;
+    text-decoration: none;
+  }
+
+  .brand img {
+    height: 42px;
+    width: 42px;
+  }
+
+  .desktop-links {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .desktop-links a {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 750;
+    padding: 8px 13px;
+    text-decoration: none;
+  }
+
+  .desktop-links a:hover,
+  .desktop-links a[aria-current="page"] {
+    background: rgb(169 112 221 / 0.15);
+    border-color: rgb(169 112 221 / 0.3);
+    color: var(--violet);
+  }
+
+  .nav-donate {
+    background: var(--amber);
+    border: 1px solid rgb(255 242 220 / 0.18);
+    border-radius: 999px;
+    color: #170f08;
+    font-weight: 850;
+    min-height: 44px;
+    padding: 9px 17px;
+    text-decoration: none;
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .nav-donate:hover {
+    background: #ffb967;
+    transform: translateY(-1px);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: relative;
+  }
+
+  .mobile-menu summary {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    list-style: none;
+    padding: 9px 14px;
+  }
+
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-panel {
+    background: var(--surface-strong);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 16px;
+    box-shadow: 0 24px 80px var(--shadow);
+    display: grid;
+    gap: 4px;
+    min-width: 240px;
+    padding: 12px;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 12px);
+  }
+
+  .mobile-panel a {
+    border-radius: 6px;
+    font-weight: 800;
+    padding: 10px 12px;
+    text-decoration: none;
+  }
+
+  .mobile-panel a:hover,
+  .mobile-panel a[aria-current="page"] {
+    background: rgb(211 139 66 / 0.18);
+  }
+
+  .mobile-ctas {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  @media (max-width: 980px) {
+    .desktop-links,
+    .nav-donate {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+      justify-self: end;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand span {
+      max-width: 160px;
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

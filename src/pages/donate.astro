@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { supportOptions } from "../data/site";
+---
+
+<BaseLayout title="Donate" description="Support SJS through donations, recurring gifts, supplies, sponsorship, and event partnerships.">
+  <PageHero
+    eyebrow="Donate / support"
+    title="Help turn compassionate intent into working sanctuary infrastructure."
+    text="SJS depends on community support for supplies, training, outreach, and the practical work of showing up prepared."
+    image="/assets/sjs_home_background.png"
+    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="notice">
+        The donation hub currently points to Heartland Transpersonal Alliance until a dedicated SJS donation URL is supplied. Update <code>src/data/site.ts</code> when the final payment link is available.
+      </div>
+      <div class="card-grid support-grid">
+        {
+          supportOptions.map((option) => (
+            <article class="surface service-card">
+              <h2>{option.title}</h2>
+              <p>{option.text}</p>
+              <a href={option.href}>{option.label}</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">What gifts fund</p>
+        <h2>Supplies, training, setup, and outreach.</h2>
+      </div>
+      <ul class="funding-list">
+        <li>Soft flooring, blankets, cushions, lighting, and signage</li>
+        <li>Narcan education materials and overdose response readiness</li>
+        <li>Volunteer training, meals, documentation, and debriefs</li>
+        <li>Storage, transportation, printing, and community outreach</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .support-grid {
+    margin-top: 26px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card h2 {
+    font-size: 1.22rem;
+    margin: 0 0 10px;
+  }
+
+  .service-card p {
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  code {
+    font-size: 0.92em;
+  }
+
+  .funding-list {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .funding-list li + li {
+    margin-top: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
