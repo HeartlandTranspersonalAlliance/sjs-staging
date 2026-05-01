@@ -1,41 +1,42 @@
 ---
 import { navItems, primaryCtas, site } from "../data/site";
+import { assetPath, withBase, withoutBase } from "../utils/paths";
 
-const currentPath = Astro.url.pathname;
+const currentPath = withoutBase(Astro.url.pathname);
 ---
 
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to content</a>
   <nav class="wide-container nav-shell" aria-label="Primary navigation">
-    <a class="brand" href="/" aria-label={`${site.name} home`}>
-      <img src="/assets/sjslogo.png" alt="" width="42" height="42" />
+    <a class="brand" href={withBase("/")} aria-label={`${site.name} home`}>
+      <img src={assetPath("/assets/sjslogo.png")} alt="" width="42" height="42" />
       <span>{site.name}</span>
     </a>
 
     <div class="desktop-links" aria-label="Main pages">
       {
         navItems.map((item) => (
-          <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+          <a href={withBase(item.href)} aria-current={currentPath === item.href ? "page" : undefined}>
             {item.label}
           </a>
         ))
       }
     </div>
 
-    <a class="nav-donate" href="/donate/">Donate</a>
+    <a class="nav-donate" href={withBase("/donate/")}>Donate</a>
 
     <details class="mobile-menu">
       <summary aria-label="Open navigation">Menu</summary>
       <div class="mobile-panel">
         {
           navItems.map((item) => (
-            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+            <a href={withBase(item.href)} aria-current={currentPath === item.href ? "page" : undefined}>
               {item.label}
             </a>
           ))
         }
         <div class="mobile-ctas">
-          {primaryCtas.map((cta) => <a href={cta.href}>{cta.label}</a>)}
+          {primaryCtas.map((cta) => <a href={withBase(cta.href)}>{cta.label}</a>)}
         </div>
       </div>
     </details>

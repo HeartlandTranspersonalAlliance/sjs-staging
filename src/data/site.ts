@@ -1,8 +1,8 @@
 export const site = {
   name: "Safe Journey Sanctum",
   shortName: "SJS",
-  domain: "safejourneysanctum.org",
-  url: "https://safejourneysanctum.org",
+  domain: "heartlandtranspersonalalliance.github.io/sjs-staging",
+  url: "https://heartlandtranspersonalalliance.github.io/sjs-staging/",
   email: "info@safejourneysanctum.org",
   description:
     "Compassionate, trauma-informed peer support for nonordinary states at Midwest events.",

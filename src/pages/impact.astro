@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { withBase } from "../utils/paths";
 
 const impactAreas = [
   {
@@ -50,7 +51,7 @@ const impactAreas = [
         <p>
           At SJS's second event, the team supported Getter at Warehouse on Broadway with more than 500 people in attendance. Read the recap for photos and acknowledgments.
         </p>
-        <a class="button button-amber" href="/news/getter/">Read Getter Recap</a>
+        <a class="button button-amber" href={withBase("/news/getter/")}>Read Getter Recap</a>
       </div>
     </div>
   </section>

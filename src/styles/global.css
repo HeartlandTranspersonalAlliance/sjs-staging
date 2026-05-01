@@ -385,7 +385,7 @@ p {
 }
 
 .band::before {
-  background: url("/assets/sjslogo.png") center / contain no-repeat;
+  background: var(--sjs-logo-url) center / contain no-repeat;
   content: "";
   height: 34rem;
   opacity: 0.035;

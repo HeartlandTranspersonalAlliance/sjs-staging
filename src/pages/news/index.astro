@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { assetPath, withBase } from "../../utils/paths";
 
 const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
@@ -22,7 +23,7 @@ const posts = (await getCollection("news"))
       {
         posts.map((post) => (
           <article class="surface post-card">
-            <img src={post.data.image} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+            <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
             <div class="post-card-body">
               <p class="post-meta">
                 {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
@@ -33,7 +34,7 @@ const posts = (await getCollection("news"))
               </p>
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
-              <a href={`/news/${post.id}/`}>Read update</a>
+              <a href={withBase(`/news/${post.id}/`)}>Read update</a>
             </div>
           </article>
         ))

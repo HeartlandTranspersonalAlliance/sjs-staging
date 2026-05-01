@@ -1,11 +1,12 @@
 ---
 import { navItems, site } from "../data/site";
+import { assetPath, withBase } from "../utils/paths";
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img src="/assets/sjslogo.png" alt="" width="56" height="56" />
+      <img src={assetPath("/assets/sjslogo.png")} alt="" width="56" height="56" />
       <div>
         <h2>{site.name}</h2>
         <p>{site.description}</p>
@@ -13,11 +14,11 @@ import { navItems, site } from "../data/site";
     </div>
 
     <div class="footer-links" aria-label="Footer navigation">
-      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
-      <a href="/donate/">Donate</a>
-      <a href="/organizers/">For Event Organizers</a>
-      <a href="/training/">Training</a>
-      <a href="/impact/">Impact</a>
+      {navItems.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      <a href={withBase("/donate/")}>Donate</a>
+      <a href={withBase("/organizers/")}>For Event Organizers</a>
+      <a href={withBase("/training/")}>Training</a>
+      <a href={withBase("/impact/")}>Impact</a>
     </div>
 
     <div class="footer-contact">

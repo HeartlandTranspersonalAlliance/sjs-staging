@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { carePrinciples, eventServices } from "../data/site";
+import { assetPath } from "../utils/paths";
 ---
 
 <BaseLayout
@@ -39,7 +40,7 @@ import { carePrinciples, eventServices } from "../data/site";
           SJS sanctuaries are designed to be inviting and useful: soft floors, pillows, cushions, blankets, gentle light, books, art supplies, and simple grounding objects. The goal is to lower stimulation while protecting privacy, dignity, and access to help.
         </p>
       </div>
-      <img class="model-image" src="/assets/blog/getter-poster.jpg" alt="Getter event poster used in SJS event history" loading="lazy" decoding="async" />
+      <img class="model-image" src={assetPath("/assets/blog/getter-poster.jpg")} alt="Getter event poster used in SJS event history" loading="lazy" decoding="async" />
     </div>
   </section>
 

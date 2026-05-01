@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
+import { withBase } from "../utils/paths";
 
 const eventTypes = [
   {
@@ -58,7 +59,7 @@ const eventTypes = [
         </p>
         <div class="button-row">
           <a class="button button-amber" href={site.forms.volunteer}>Volunteer for Events</a>
-          <a class="button button-ghost" href="/organizers/">Bring SJS to an Event</a>
+          <a class="button button-ghost" href={withBase("/organizers/")}>Bring SJS to an Event</a>
         </div>
       </div>
     </div>

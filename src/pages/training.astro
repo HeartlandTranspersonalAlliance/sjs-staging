@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { site, trainingTopics } from "../data/site";
+import { withBase } from "../utils/paths";
 
 const trainingFlow = [
   {
@@ -50,7 +51,7 @@ const trainingFlow = [
       </div>
       <div class="button-row">
         <a class="button button-primary" href={site.forms.volunteer}>Apply to Volunteer</a>
-        <a class="button button-ghost" href="/events/">View Events</a>
+        <a class="button button-ghost" href={withBase("/events/")}>View Events</a>
       </div>
     </div>
   </section>

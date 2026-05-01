@@ -1,4 +1,6 @@
 ---
+import { assetPath } from "../utils/paths";
+
 interface Props {
   eyebrow?: string;
   title: string;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const { eyebrow, title, text, image, imageAlt = "" } = Astro.props;
+const heroImage = image ? assetPath(image) : undefined;
 ---
 
 <section class="page-hero">
@@ -18,8 +21,8 @@ const { eyebrow, title, text, image, imageAlt = "" } = Astro.props;
       <p class="lede">{text}</p>
     </div>
     {
-      image && (
-        <img class="page-hero-image" src={image} alt={imageAlt} loading="eager" decoding="async" />
+      heroImage && (
+        <img class="page-hero-image" src={heroImage} alt={imageAlt} loading="eager" decoding="async" />
       )
     }
   </div>
@@ -38,7 +41,7 @@ const { eyebrow, title, text, image, imageAlt = "" } = Astro.props;
   }
 
   .page-hero::before {
-    background: url("/assets/sjslogo.png") center / contain no-repeat;
+    background: var(--sjs-logo-url) center / contain no-repeat;
     content: "";
     height: 30rem;
     opacity: 0.03;

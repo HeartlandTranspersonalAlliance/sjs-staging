@@ -7,6 +7,7 @@ import {
   resources,
   site
 } from "../data/site";
+import { assetPath, withBase } from "../utils/paths";
 
 const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
@@ -67,14 +68,14 @@ const heroFacts = [
         </p>
         <div class="button-row hero-buttons">
           {primaryCtas.map((cta, index) => (
-            <a class={`button ${index === 0 ? "button-amber" : index === 1 ? "button-primary" : "button-dark"}`} href={cta.href}>
+            <a class={`button ${index === 0 ? "button-amber" : index === 1 ? "button-primary" : "button-dark"}`} href={withBase(cta.href)}>
               {cta.label}
             </a>
           ))}
         </div>
         <div class="button-row secondary-buttons">
-          <a class="button button-ghost" href="/events/">View Events</a>
-          <a class="button button-ghost" href="/resources/">Read Resources</a>
+          <a class="button button-ghost" href={withBase("/events/")}>View Events</a>
+          <a class="button button-ghost" href={withBase("/resources/")}>Read Resources</a>
         </div>
       </div>
 
@@ -103,7 +104,7 @@ const heroFacts = [
             <article class="surface service-card">
               <h3>{path.title}</h3>
               <p>{path.text}</p>
-              <a href={path.href}>{path.label}</a>
+              <a href={withBase(path.href)}>{path.label}</a>
             </article>
           ))
         }
@@ -120,8 +121,8 @@ const heroFacts = [
           SJS volunteers are not therapists and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
         </p>
         <div class="button-row">
-          <a class="button button-primary" href="/model/">Explore the Model</a>
-          <a class="button button-ghost" href="/faq/">Read FAQ</a>
+          <a class="button button-primary" href={withBase("/model/")}>Explore the Model</a>
+          <a class="button button-ghost" href={withBase("/faq/")}>Read FAQ</a>
         </div>
       </div>
       <div class="principle-stack">
@@ -148,7 +149,7 @@ const heroFacts = [
           Contributions help fund soft flooring, blankets, lighting, hydration supplies, Narcan education, volunteer training, signage, storage, transportation, and outreach materials.
         </p>
         <div class="button-row">
-          <a class="button button-amber" href="/donate/">Support SJS</a>
+          <a class="button button-amber" href={withBase("/donate/")}>Support SJS</a>
           <a class="button button-ghost" href={site.forms.wishlist}>In-kind Supplies</a>
         </div>
       </div>
@@ -167,7 +168,7 @@ const heroFacts = [
             <article class="resource-card">
               <h3>{resource.title}</h3>
               <p>{resource.text}</p>
-              <a href={resource.href}>Read more</a>
+              <a href={withBase(resource.href)}>Read more</a>
             </article>
           ))
         }
@@ -182,13 +183,13 @@ const heroFacts = [
           <p class="eyebrow">News and field notes</p>
           <h2>Latest from SJS</h2>
         </div>
-        <a href="/news/">View all news</a>
+        <a href={withBase("/news/")}>View all news</a>
       </div>
       <div class="card-grid">
         {
           posts.map((post) => (
             <article class="surface post-card">
-              <img src={post.data.image} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+              <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
               <div class="post-card-body">
                 <p class="post-meta">
                   {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
@@ -199,7 +200,7 @@ const heroFacts = [
                 </p>
                 <h3>{post.data.title}</h3>
                 <p>{post.data.description}</p>
-                <a href={`/news/${post.id}/`}>Read update</a>
+                <a href={withBase(`/news/${post.id}/`)}>Read update</a>
               </div>
             </article>
           ))
@@ -215,7 +216,7 @@ const heroFacts = [
         <h2>Bring questions, partnership ideas, or volunteer interest.</h2>
       </div>
       <div class="button-row">
-        <a class="button button-primary" href="/contact/">Contact SJS</a>
+        <a class="button button-primary" href={withBase("/contact/")}>Contact SJS</a>
         <a class="button button-ghost" href={site.forms.volunteer}>Volunteer Form</a>
       </div>
     </div>
@@ -232,7 +233,7 @@ const heroFacts = [
   .hero-image {
     background:
       linear-gradient(to right, rgb(13 9 18 / 0.95), rgb(21 16 29 / 0.8), rgb(21 16 29 / 0.45)),
-      url("/assets/sjs_home_background.png");
+      var(--sjs-home-bg-url);
     background-position: center;
     background-size: cover;
     inset: 0;
@@ -363,7 +364,7 @@ const heroFacts = [
 
   .model-preview::before,
   .social-band::before {
-    background: url("/assets/sjslogo.png") center / contain no-repeat;
+    background: var(--sjs-logo-url) center / contain no-repeat;
     content: "";
     height: 32rem;
     opacity: 0.03;

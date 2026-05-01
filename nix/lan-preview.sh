@@ -22,7 +22,9 @@ Environment:
   ${env_prefix}_BUILD=1           Build before serving. Set to 0 to serve existing dist/.
   ${env_prefix}_SITE_ROOT=\$PWD    Site root. Defaults to the current directory.
   ${env_prefix}_DIST_DIR=dist     Static output directory, relative to site root unless absolute.
+  ${env_prefix}_BASE_PATH=         Optional URL base path, such as /sjs-staging.
   LAN_PREVIEW_PORT=$default_port  Shared override for the preview port.
+  LAN_PREVIEW_BASE_PATH=           Shared base path override.
 
 Examples:
   $command_name
@@ -67,12 +69,26 @@ port_var="${env_prefix}_PORT"
 build_var="${env_prefix}_BUILD"
 site_root_var="${env_prefix}_SITE_ROOT"
 dist_dir_var="${env_prefix}_DIST_DIR"
+base_path_var="${env_prefix}_BASE_PATH"
 
 site_root="$(cd "${LAN_PREVIEW_SITE_ROOT:-${!site_root_var:-$PWD}}" && pwd)"
 host="${LAN_PREVIEW_HOST:-${!host_var:-0.0.0.0}}"
 port="${LAN_PREVIEW_PORT:-${!port_var:-$default_port}}"
 build="${LAN_PREVIEW_BUILD:-${!build_var:-1}}"
 dist_setting="${LAN_PREVIEW_DIST_DIR:-${!dist_dir_var:-dist}}"
+base_path="${LAN_PREVIEW_BASE_PATH:-${!base_path_var:-}}"
+
+if [[ -n "$base_path" ]]; then
+  if [[ "$base_path" != /* ]]; then
+    base_path="/$base_path"
+  fi
+
+  base_path="${base_path%/}"
+
+  if [[ "$base_path" == "/" ]]; then
+    base_path=""
+  fi
+fi
 
 if [[ "$dist_setting" = /* ]]; then
   dist_dir="$dist_setting"
@@ -131,10 +147,12 @@ running_pid() {
 }
 
 print_urls() {
-  echo "  Local:  http://127.0.0.1:$port/"
+  local preview_path="${base_path:-}/"
+
+  echo "  Local:  http://127.0.0.1:$port$preview_path"
 
   if [[ "$host" != "0.0.0.0" && "$host" != "127.0.0.1" ]]; then
-    echo "  Host:   http://$host:$port/"
+    echo "  Host:   http://$host:$port$preview_path"
   fi
 
   if command -v ip >/dev/null 2>&1; then
@@ -144,7 +162,7 @@ print_urls() {
     )"
 
     while read -r address; do
-      [[ -n "$address" ]] && echo "  LAN:    http://$address:$port/"
+      [[ -n "$address" ]] && echo "  LAN:    http://$address:$port$preview_path"
     done <<< "$addresses"
   fi
 }
@@ -167,6 +185,32 @@ prepare_runtime() {
 write_config() {
   nginx_prefix="$(dirname "$(dirname "$(command -v nginx)")")"
   mime_types="$nginx_prefix/conf/mime.types"
+  base_locations=""
+
+  if [[ -n "$base_path" ]]; then
+    base_locations="$(cat <<EOF
+    location = / {
+      return 302 $base_path/;
+    }
+
+    location = $base_path {
+      return 302 $base_path/;
+    }
+
+    location ^~ $base_path/ {
+      rewrite ^$base_path/(.*)$ /\$1 break;
+      try_files \$uri \$uri/index.html \$uri.html /404.html;
+    }
+EOF
+)"
+  else
+    base_locations="$(cat <<'EOF'
+    location / {
+      try_files $uri $uri/index.html $uri.html /404.html;
+    }
+EOF
+)"
+  fi
 
   cat > "$conf_file" <<EOF
 worker_processes 1;
@@ -202,9 +246,7 @@ http {
     index index.html;
     absolute_redirect off;
 
-    location / {
-      try_files \$uri \$uri/index.html \$uri.html /404.html;
-    }
+$base_locations
 
     error_page 404 /404.html;
 
