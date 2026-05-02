@@ -1,18 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { withBase } from "../utils/paths";
 
 const impactAreas = [
   {
+    icon: "calendar",
     title: "Events served",
     text: "Public field notes currently include Getter at Warehouse on Broadway in Kansas City, with more recaps ready to add as SJS documents future deployments."
   },
   {
+    icon: "users",
     title: "Volunteers trained",
     text: "The site is structured for verified training counts once SJS begins publishing annual or seasonal reporting."
   },
   {
+    icon: "package",
     title: "Supplies distributed",
     text: "Narcan education, printed materials, comfort supplies, and sanctuary gear can be tracked here once reporting is available."
   }
@@ -26,6 +30,7 @@ const impactAreas = [
     text="SJS is early in its public reporting. This page avoids invented numbers and gives the team a clear structure for future impact updates."
     image="/assets/blog/getter-group.jpg"
     imageAlt="SJS volunteers standing behind a booth"
+    imagePosition="center 36%"
   />
 
   <section class="section">
@@ -33,6 +38,7 @@ const impactAreas = [
       {
         impactAreas.map((area) => (
           <article class="surface metric-card">
+            <span class="card-icon" aria-hidden="true"><Icon name={area.icon} /></span>
             <h2>{area.title}</h2>
             <p>{area.text}</p>
           </article>

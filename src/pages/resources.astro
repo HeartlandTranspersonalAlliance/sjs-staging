@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { resources } from "../data/site";
 
 const supportLines = [
@@ -16,8 +17,7 @@ const supportLines = [
     eyebrow="Resources"
     title="Practical education for preparation, support, and integration."
     text="These resources are designed for guests, friends, volunteers, and organizers who want grounded harm-reduction basics without judgment or hype."
-    image="/assets/sjs_home_background.png"
-    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+    art="resources"
   />
 
   <section class="section" id="preparation">
@@ -25,6 +25,7 @@ const supportLines = [
       {
         resources.map((resource) => (
           <article class="resource-card">
+            <span class="card-icon" aria-hidden="true"><Icon name={resource.icon} /></span>
             <h2>{resource.title}</h2>
             <p>{resource.text}</p>
           </article>
@@ -43,7 +44,8 @@ const supportLines = [
         </p>
       </div>
       <div class="surface service-card">
-        <h3>Escalate when needed</h3>
+        <span class="card-icon" aria-hidden="true"><Icon name="cross" /></span>
+        <h3>Know when to seek medical help</h3>
         <p>
           If someone is unconscious, struggling to breathe, overheating, injured, confused in a dangerous way, or showing overdose symptoms, involve medical support immediately.
         </p>

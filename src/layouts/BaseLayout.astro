@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
 import "../styles/global.css";
 import { site } from "../data/site";
 import { absoluteUrl, assetPath } from "../utils/paths";
@@ -33,6 +34,19 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={absoluteUrl(image, siteRoot)} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem("sjs-theme");
+
+          if (savedTheme === "light" || savedTheme === "dark") {
+            document.documentElement.dataset.theme = savedTheme;
+          }
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -46,5 +60,6 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
       <slot />
     </main>
     <Footer />
+    <BackToTop />
   </body>
 </html>

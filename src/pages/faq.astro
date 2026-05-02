@@ -56,6 +56,7 @@ const faqs = [
     eyebrow="FAQ"
     title="Questions organizers, volunteers, and guests ask first."
     text="Clear expectations make the sanctuary safer for everyone. These answers summarize what SJS does, what it does not do, and how to connect."
+    art="resources"
   />
 
   <section class="section">
@@ -82,7 +83,7 @@ const faqs = [
   details {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 0;
   }
 
@@ -93,6 +94,11 @@ const faqs = [
     font-weight: 850;
     list-style: none;
     padding: 20px 24px;
+  }
+
+  summary:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
   }
 
   summary::-webkit-details-marker {

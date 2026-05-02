@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
 import {
   carePrinciples,
   primaryCtas,
@@ -16,18 +17,21 @@ const posts = (await getCollection("news"))
 
 const actionPaths = [
   {
+    icon: "map",
     title: "Need Event Support",
     text: "Bring a sanctuary team, harm-reduction education, and a medical/security coordination plan to your event.",
     href: "/organizers/",
     label: "Plan Event Support"
   },
   {
+    icon: "clipboard",
     title: "Train With Us",
     text: "Prepare for grounded peer support through consent-first communication, de-escalation, Narcan response, and clear boundaries.",
     href: "/training/",
     label: "View Training"
   },
   {
+    icon: "users",
     title: "Join the Volunteer Community",
     text: "Help staff sanctuary spaces, support outreach, move supplies, and build a practical culture of care at Midwest gatherings.",
     href: site.forms.volunteer,
@@ -37,18 +41,22 @@ const actionPaths = [
 
 const heroFacts = [
   {
+    icon: "home",
     title: "Sanctuary spaces",
     text: "Quiet, low-stimulation care areas."
   },
   {
+    icon: "clipboard",
     title: "Volunteer training",
     text: "Consent-first onboarding and practice."
   },
   {
+    icon: "cross",
     title: "Narcan education",
     text: "Overdose response readiness."
   },
   {
+    icon: "handshake",
     title: "Event partnerships",
     text: "Clear coordination with organizers."
   }
@@ -68,7 +76,7 @@ const heroFacts = [
         </p>
         <div class="button-row hero-buttons">
           {primaryCtas.map((cta, index) => (
-            <a class={`button ${index === 0 ? "button-amber" : index === 1 ? "button-primary" : "button-dark"}`} href={withBase(cta.href)}>
+            <a class={`button ${cta.label === "Donate" ? "button-amber" : index === 0 ? "button-primary" : "button-ghost"}`} href={withBase(cta.href)}>
               {cta.label}
             </a>
           ))}
@@ -83,6 +91,7 @@ const heroFacts = [
         {
           heroFacts.map((fact) => (
             <article>
+              <span class="fact-icon" aria-hidden="true"><Icon name={fact.icon} /></span>
               <h3>{fact.title}</h3>
               <p>{fact.text}</p>
             </article>
@@ -102,6 +111,7 @@ const heroFacts = [
         {
           actionPaths.map((path) => (
             <article class="surface service-card">
+              <span class="card-icon" aria-hidden="true"><Icon name={path.icon} /></span>
               <h3>{path.title}</h3>
               <p>{path.text}</p>
               <a href={withBase(path.href)}>{path.label}</a>
@@ -129,6 +139,7 @@ const heroFacts = [
         {
           carePrinciples.map((principle) => (
             <article class="principle">
+              <span class="card-icon" aria-hidden="true"><Icon name={principle.icon} /></span>
               <h3>{principle.title}</h3>
               <p>{principle.text}</p>
             </article>
@@ -166,6 +177,7 @@ const heroFacts = [
         {
           resources.slice(0, 3).map((resource) => (
             <article class="resource-card">
+              <span class="card-icon" aria-hidden="true"><Icon name={resource.icon} /></span>
               <h3>{resource.title}</h3>
               <p>{resource.text}</p>
               <a href={withBase(resource.href)}>Read more</a>
@@ -305,11 +317,29 @@ const heroFacts = [
   .hero-facts article {
     background: rgb(255 255 255 / 0.05);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 8px;
     backdrop-filter: blur(14px);
     color: var(--ink);
     min-height: 112px;
     padding: 18px;
+  }
+
+  .fact-icon {
+    align-items: center;
+    background: rgb(242 160 68 / 0.14);
+    border: 1px solid rgb(242 160 68 / 0.26);
+    border-radius: 8px;
+    color: var(--amber);
+    display: inline-flex;
+    height: 34px;
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 34px;
+  }
+
+  .fact-icon :global(svg) {
+    height: 18px;
+    width: 18px;
   }
 
   .hero-facts h3 {
@@ -328,7 +358,7 @@ const heroFacts = [
   }
 
   .section-heading {
-    margin-bottom: 28px;
+    margin-bottom: 36px;
     max-width: 52rem;
   }
 
@@ -355,7 +385,7 @@ const heroFacts = [
   }
 
   .model-preview {
-    background: rgb(27 21 34 / 0.78);
+    background: var(--sjs-bg-soft);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
@@ -396,7 +426,7 @@ const heroFacts = [
   .principle {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 20px 60px var(--shadow);
     padding: 22px;
   }
@@ -410,8 +440,8 @@ const heroFacts = [
   }
 
   .support-band .button-ghost {
-    background: rgb(255 255 255 / 0.08);
-    color: white;
+    background: var(--button-ghost-bg);
+    color: var(--band-text);
   }
 
   .post-meta {
@@ -464,6 +494,11 @@ const heroFacts = [
       padding-top: 54px;
     }
 
+    .hero-copy h1 {
+      font-size: 2.4rem;
+      line-height: 1.04;
+    }
+
     .hero-facts {
       grid-template-columns: 1fr;
     }
@@ -471,13 +506,13 @@ const heroFacts = [
 
   @media (min-width: 768px) {
     .hero-copy h1 {
-      font-size: 4.55rem;
+      font-size: 4.25rem;
     }
   }
 
   @media (min-width: 1024px) {
     .hero-copy h1 {
-      font-size: 5.25rem;
+      font-size: 4.9rem;
     }
 
     .action-section {

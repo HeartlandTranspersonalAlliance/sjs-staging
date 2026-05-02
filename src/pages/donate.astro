@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { supportOptions } from "../data/site";
 ---
 
@@ -9,8 +10,7 @@ import { supportOptions } from "../data/site";
     eyebrow="Donate / support"
     title="Help turn compassionate intent into working sanctuary infrastructure."
     text="SJS depends on community support for supplies, training, outreach, and the practical work of showing up prepared."
-    image="/assets/sjs_home_background.png"
-    imageAlt="Dusk sanctuary scene with soft lantern light and lotus motif"
+    art="support"
   />
 
   <section class="section">
@@ -22,6 +22,7 @@ import { supportOptions } from "../data/site";
         {
           supportOptions.map((option) => (
             <article class="surface service-card">
+              <span class="card-icon" aria-hidden="true"><Icon name={option.icon} /></span>
               <h2>{option.title}</h2>
               <p>{option.text}</p>
               <a href={option.href}>{option.label}</a>

@@ -1,5 +1,6 @@
 ---
 import { assetPath } from "../utils/paths";
+import Icon from "./Icon.astro";
 
 interface Props {
   eyebrow?: string;
@@ -7,10 +8,20 @@ interface Props {
   text: string;
   image?: string;
   imageAlt?: string;
+  imagePosition?: string;
+  art?: "sanctuary" | "training" | "resources" | "support" | "contact";
 }
 
-const { eyebrow, title, text, image, imageAlt = "" } = Astro.props;
+const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
 const heroImage = image ? assetPath(image) : undefined;
+const hasVisual = Boolean(heroImage || art);
+const artIcon = {
+  sanctuary: "home",
+  training: "clipboard",
+  resources: "book",
+  support: "gift",
+  contact: "message"
+}[art ?? "resources"];
 ---
 
 <section class="page-hero">
@@ -21,8 +32,37 @@ const heroImage = image ? assetPath(image) : undefined;
       <p class="lede">{text}</p>
     </div>
     {
-      heroImage && (
-        <img class="page-hero-image" src={heroImage} alt={imageAlt} loading="eager" decoding="async" />
+      hasVisual && (
+        <div class="page-hero-visual">
+          {
+            heroImage ? (
+              <img
+                class="page-hero-image"
+                src={heroImage}
+                alt={imageAlt}
+                loading="eager"
+                decoding="async"
+                style={`object-position: ${imagePosition};`}
+              />
+            ) : (
+              <div class="page-hero-art" data-art={art} aria-hidden="true">
+                <div class="art-mark">
+                  <Icon name={artIcon} />
+                </div>
+                <div class="art-lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="art-steps">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            )
+          }
+        </div>
       )
     }
   </div>
@@ -31,8 +71,8 @@ const heroImage = image ? assetPath(image) : undefined;
 <style>
   .page-hero {
     background:
-      radial-gradient(circle at 12% 12%, rgb(169 112 221 / 0.18), transparent 30rem),
-      linear-gradient(135deg, rgb(242 160 68 / 0.06), transparent 54%),
+      radial-gradient(circle at 12% 12%, var(--body-halo-violet), transparent 30rem),
+      linear-gradient(135deg, var(--body-halo-amber), transparent 54%),
       var(--linen);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
@@ -44,7 +84,7 @@ const heroImage = image ? assetPath(image) : undefined;
     background: var(--sjs-logo-url) center / contain no-repeat;
     content: "";
     height: 30rem;
-    opacity: 0.03;
+    opacity: 0.025;
     pointer-events: none;
     position: absolute;
     right: -10rem;
@@ -66,21 +106,134 @@ const heroImage = image ? assetPath(image) : undefined;
   .page-hero h1 {
     margin: 12px 0 18px;
     max-width: 52rem;
+    text-wrap: balance;
   }
 
   .page-hero .lede {
     max-width: 42rem;
   }
 
-  .page-hero-image {
+  .page-hero-visual {
+    position: relative;
+  }
+
+  .page-hero-image,
+  .page-hero-art {
     aspect-ratio: 4 / 3;
-    border: 1px solid rgb(255 242 220 / 0.16);
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
     box-shadow:
-      0 20px 60px rgb(0 0 0 / 0.32),
-      0 0 0 8px rgb(169 112 221 / 0.08);
-    object-fit: cover;
+      0 20px 58px var(--shadow),
+      0 0 0 8px rgb(169 112 221 / 0.06);
     width: 100%;
+  }
+
+  .page-hero-image {
+    display: block;
+    object-fit: cover;
+  }
+
+  .page-hero-art {
+    --art-accent: var(--violet);
+    --art-line: rgb(255 255 255 / 0.15);
+    align-items: center;
+    background:
+      linear-gradient(90deg, var(--grid-line-x) 1px, transparent 1px),
+      linear-gradient(180deg, var(--grid-line-y) 1px, transparent 1px),
+      linear-gradient(135deg, color-mix(in srgb, var(--art-accent) 24%, transparent), transparent 54%),
+      var(--surface-strong);
+    background-size: 52px 52px, 52px 52px, auto, auto;
+    display: grid;
+    justify-items: center;
+    overflow: hidden;
+    padding: 28px;
+    position: relative;
+  }
+
+  .page-hero-art::before {
+    background: var(--sjs-logo-url) center / contain no-repeat;
+    content: "";
+    height: 20rem;
+    opacity: 0.05;
+    position: absolute;
+    right: -6rem;
+    top: -6rem;
+    width: 100%;
+  }
+
+  .page-hero-art[data-art="training"] {
+    --art-accent: var(--amber);
+  }
+
+  .page-hero-art[data-art="resources"] {
+    --art-accent: var(--sage);
+  }
+
+  .page-hero-art[data-art="support"] {
+    --art-accent: var(--rose);
+  }
+
+  .page-hero-art[data-art="contact"] {
+    --art-accent: var(--violet);
+  }
+
+  .art-mark {
+    align-items: center;
+    background: var(--icon-bg);
+    border: 1px solid var(--icon-border);
+    border-radius: 8px;
+    color: var(--art-accent);
+    display: inline-flex;
+    height: 84px;
+    justify-content: center;
+    position: relative;
+    width: 84px;
+    z-index: 1;
+  }
+
+  .art-mark :global(svg) {
+    height: 42px;
+    width: 42px;
+  }
+
+  .art-lines {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+    position: relative;
+    width: min(78%, 18rem);
+    z-index: 1;
+  }
+
+  .art-lines span {
+    background: var(--art-line);
+    border-radius: 999px;
+    height: 8px;
+  }
+
+  .art-lines span:nth-child(2) {
+    width: 72%;
+  }
+
+  .art-lines span:nth-child(3) {
+    width: 54%;
+  }
+
+  .art-steps {
+    bottom: 28px;
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 28px;
+    z-index: 1;
+  }
+
+  .art-steps span {
+    border: 1px solid var(--art-accent);
+    border-radius: 2px;
+    height: 8px;
+    opacity: 0.75;
+    width: 22px;
   }
 
   @media (min-width: 768px) {
@@ -102,6 +255,10 @@ const heroImage = image ? assetPath(image) : undefined;
 
     .page-hero::before {
       display: none;
+    }
+
+    .page-hero {
+      padding: 72px 0;
     }
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { eventServices, site } from "../data/site";
 
 const setupNeeds = [
@@ -19,17 +20,20 @@ const setupNeeds = [
     text="SJS partners with organizers to design sanctuary spaces, staff peer support, coordinate with medical/security teams, and offer practical harm-reduction education."
     image="/assets/blog/getter-group.jpg"
     imageAlt="SJS volunteers and table setup at an event"
+    imagePosition="center 36%"
   />
 
   <section class="section">
     <div class="container two-grid">
       <div class="surface service-card">
+        <span class="card-icon" aria-hidden="true"><Icon name="home" /></span>
         <h2>Services offered</h2>
         <ul>
           {eventServices.map((service) => <li>{service}</li>)}
         </ul>
       </div>
       <div class="surface service-card">
+        <span class="card-icon" aria-hidden="true"><Icon name="clipboard" /></span>
         <h2>Setup needs</h2>
         <ul>
           {setupNeeds.map((need) => <li>{need}</li>)}

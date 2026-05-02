@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { site, trainingTopics } from "../data/site";
 
 const roles = [
-  "Peer counselors",
-  "Harm-reduction educators",
-  "Event liaisons",
-  "Logistics coordinators",
-  "Outreach and fundraising helpers",
-  "Training support volunteers"
+  { icon: "heart", title: "Peer counselors" },
+  { icon: "book", title: "Harm-reduction educators" },
+  { icon: "handshake", title: "Event liaisons" },
+  { icon: "package", title: "Logistics coordinators" },
+  { icon: "gift", title: "Outreach and fundraising helpers" },
+  { icon: "clipboard", title: "Training support volunteers" }
 ];
 ---
 
@@ -20,6 +21,7 @@ const roles = [
     text="You do not need to be a therapist or medical professional to get involved. Compassion, steadiness, and the willingness to listen are at the heart of SJS peer support."
     image="/assets/blog/getter-group.jpg"
     imageAlt="SJS volunteers behind a booth"
+    imagePosition="center 36%"
   />
 
   <section class="section">
@@ -35,9 +37,15 @@ const roles = [
         <a class="button button-primary" href={site.forms.volunteer}>Volunteer Application Form</a>
       </div>
       <div class="surface service-card">
+        <span class="card-icon" aria-hidden="true"><Icon name="users" /></span>
         <h3>Roles include</h3>
         <ul class="roles-list">
-          {roles.map((role) => <li>{role}</li>)}
+          {roles.map((role) => (
+            <li>
+              <span aria-hidden="true"><Icon name={role.icon} /></span>
+              {role.title}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -72,9 +80,9 @@ const roles = [
 
   .topic-list span {
     background: var(--surface);
-    border: 1px solid rgb(255 255 255 / 0.15);
+    border: 1px solid var(--line);
     border-radius: 999px;
-    color: var(--sjs-text);
+    color: var(--ink);
     font-size: 0.9rem;
     font-weight: 800;
     padding: 9px 15px;
@@ -82,12 +90,37 @@ const roles = [
 
   .roles-list {
     display: grid;
-    gap: 8px 28px;
-    padding-left: 1.15rem;
+    gap: 12px;
+    list-style: none;
+    padding-left: 0;
   }
 
   .roles-list li + li {
     margin-top: 0;
+  }
+
+  .roles-list li {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+  }
+
+  .roles-list span {
+    align-items: center;
+    background: var(--icon-bg);
+    border: 1px solid var(--icon-border);
+    border-radius: 8px;
+    color: var(--icon-text);
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 32px;
+    justify-content: center;
+    width: 32px;
+  }
+
+  .roles-list span :global(svg) {
+    height: 17px;
+    width: 17px;
   }
 
   @media (min-width: 640px) {

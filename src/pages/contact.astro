@@ -1,22 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { site } from "../data/site";
 
 const contactPaths = [
   {
+    icon: "handshake",
     title: "Event partnership",
     text: "Share the event date, location, expected attendance, venue setup, medical/security plan, and support requested.",
     href: site.forms.partnership,
     label: "Partnership Form"
   },
   {
+    icon: "message",
     title: "General questions",
     text: "Ask about SJS, volunteering, education, donations, resources, or community collaboration.",
     href: site.forms.contact,
     label: "Contact Form"
   },
   {
+    icon: "mail",
     title: "Email",
     text: "Use email for non-urgent questions, follow-up details, and coordination with the SJS team.",
     href: `mailto:${site.email}`,
@@ -30,6 +34,7 @@ const contactPaths = [
     eyebrow="Contact"
     title="Reach SJS with partnership details, volunteer interest, or general questions."
     text="For on-site emergencies, contact venue medical or security personnel immediately. For planning and non-urgent questions, use the paths below."
+    art="contact"
   />
 
   <section class="section">
@@ -37,6 +42,7 @@ const contactPaths = [
       {
         contactPaths.map((path) => (
           <article class="surface service-card">
+            <span class="card-icon" aria-hidden="true"><Icon name={path.icon} /></span>
             <h2>{path.title}</h2>
             <p>{path.text}</p>
             <a href={path.href}>{path.label}</a>

@@ -52,10 +52,10 @@ import { assetPath, withBase } from "../utils/paths";
 <style>
   .site-footer {
     background:
-      radial-gradient(circle at 12% 0%, rgb(168 121 216 / 0.16), transparent 24rem),
-      var(--sjs-bg);
-    color: white;
-    border-top: 1px solid rgb(255 255 255 / 0.1);
+      radial-gradient(circle at 12% 0%, var(--body-halo-violet), transparent 24rem),
+      var(--band-bg);
+    color: var(--band-text);
+    border-top: 1px solid var(--line);
     padding: 56px 0 34px;
   }
 
@@ -72,15 +72,16 @@ import { assetPath, withBase } from "../utils/paths";
   }
 
   .footer-brand img {
-    background: rgb(255 255 255 / 0.08);
-    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
     height: 56px;
     padding: 6px;
     width: 56px;
   }
 
   .footer-brand h2 {
-    color: var(--sjs-cream);
+    color: var(--band-text);
     font-size: 1.35rem;
     margin: 0 0 8px;
   }
@@ -97,7 +98,7 @@ import { assetPath, withBase } from "../utils/paths";
   }
 
   .site-footer a {
-    color: var(--sjs-text);
+    color: var(--link-strong);
   }
 
   .site-footer a:hover {
@@ -105,7 +106,7 @@ import { assetPath, withBase } from "../utils/paths";
   }
 
   .footer-bottom {
-    border-top: 1px solid rgb(255 255 255 / 0.1);
+    border-top: 1px solid var(--line);
     display: grid;
     gap: 12px;
     margin-top: 42px;

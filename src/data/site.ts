@@ -45,18 +45,22 @@ export const primaryCtas = [
 
 export const carePrinciples = [
   {
+    icon: "heart",
     title: "Trauma-informed",
     text: "We prioritize predictability, choice, and emotional safety while recognizing that guests may arrive with different histories and thresholds."
   },
   {
+    icon: "handshake",
     title: "Consent-first",
     text: "Support starts with permission. Volunteers ask before engaging, touching belongings, changing the environment, or inviting any next step."
   },
   {
+    icon: "ear",
     title: "Non-directive presence",
     text: "SJS volunteers listen without judgment and do not guide, interpret, or steer a guest's experience."
   },
   {
+    icon: "shield",
     title: "Evidence-based safety response",
     text: "Training includes de-escalation, overdose awareness, Narcan administration, and clear escalation to medical or security teams."
   }
@@ -64,24 +68,28 @@ export const carePrinciples = [
 
 export const supportOptions = [
   {
+    icon: "gift",
     title: "One-time gifts",
     text: "Help fund sanctuary supplies, outreach materials, volunteer meals, printing, and event readiness.",
     href: site.forms.donation,
     label: "Give Through HTA"
   },
   {
+    icon: "heart",
     title: "Recurring support",
     text: "Sustain training, storage, replacement supplies, and a stable volunteer program between festival seasons.",
     href: site.forms.donation,
     label: "Start Monthly Giving"
   },
   {
+    icon: "package",
     title: "In-kind supplies",
     text: "Blankets, cushions, water, art materials, lighting, signage, and operations gear keep the space practical and welcoming.",
     href: site.forms.wishlist,
     label: "Ask About Wishlist"
   },
   {
+    icon: "handshake",
     title: "Sponsor or host",
     text: "Event partners can help bring peer support, education, and sanctuary infrastructure to their communities.",
     href: site.forms.partnership,
@@ -109,21 +117,25 @@ export const trainingTopics = [
 
 export const resources = [
   {
+    icon: "clipboard",
     title: "Preparation Checklist",
     text: "Plan transport, hydration, food, buddy check-ins, rest, and where to find first aid or harm-reduction services before the event begins.",
     href: "/resources/#preparation"
   },
   {
+    icon: "heart",
     title: "During a Difficult Experience",
     text: "Reduce stimulation, speak calmly, ask permission, stay present, and involve medical support when symptoms suggest physical danger.",
     href: "/resources/#difficult-experiences"
   },
   {
+    icon: "book",
     title: "Integration Afterward",
     text: "Sleep, food, journaling, trusted conversation, and professional support can help people make sense of intense experiences over time.",
     href: "/resources/#integration"
   },
   {
+    icon: "cross",
     title: "Crisis and Overdose Support",
     text: "Know when to call emergency services. Carry Narcan when possible and learn the signs of opioid overdose.",
     href: "/resources/#support-lines"

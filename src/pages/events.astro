@@ -1,19 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
 import { site } from "../data/site";
 import { withBase } from "../utils/paths";
 
 const eventTypes = [
   {
+    icon: "message",
     title: "Integration circles",
     text: "Small community gatherings for reflection, grounding skills, and peer connection after meaningful or difficult experiences."
   },
   {
+    icon: "clipboard",
     title: "Harm-reduction trainings",
     text: "Volunteer and community sessions covering consent-first support, de-escalation, Narcan response, and practical event care."
   },
   {
+    icon: "home",
     title: "Festival outreach",
     text: "Sanctuary support, education, and on-site coordination with organizers, medical teams, security, and production staff."
   }
@@ -27,17 +31,19 @@ const eventTypes = [
     text="SJS supports festivals, concerts, and community gatherings while building a volunteer education calendar between event deployments."
     image="/assets/blog/getter-group.jpg"
     imageAlt="SJS volunteers standing together at an event"
+    imagePosition="center 36%"
   />
 
   <section class="section">
     <div class="container">
       <div class="notice">
-        Upcoming 2026 dates are not yet published on this site. The 2025 workshop and festival language from the old site has been folded into these event formats so it does not appear as current schedule information.
+        Upcoming 2026 dates are not yet published on this site.<span class="notice-extra"> The 2025 workshop and festival language from the old site has been folded into these event formats so it does not appear as current schedule information.</span>
       </div>
       <div class="card-grid event-grid">
         {
           eventTypes.map((event) => (
             <article class="surface service-card">
+              <span class="card-icon" aria-hidden="true"><Icon name={event.icon} /></span>
               <h2>{event.title}</h2>
               <p>{event.text}</p>
             </article>
@@ -81,7 +87,13 @@ const eventTypes = [
   }
 
   .band .button-ghost {
-    background: rgb(255 255 255 / 0.08);
-    color: white;
+    background: var(--button-ghost-bg);
+    color: var(--band-text);
+  }
+
+  @media (max-width: 560px) {
+    .notice-extra {
+      display: none;
+    }
   }
 </style>
