@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import Icon from "../components/Icon.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import { site } from "../data/site";
 ---
 
@@ -30,13 +31,12 @@ import { site } from "../data/site";
           Our work draws inspiration from established psychedelic peer-support models such as the Zendo Project and Harmonia Sanctuary while adapting the approach to Midwest event culture and local community needs.
         </p>
       </div>
-      <div class="surface service-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="home" /></span>
+      <Card icon="home" class="service-card">
         <h3>What sanctuary looks like</h3>
         <p>
           Comfortable lighting, soft seating, blankets, grounding materials, art supplies, and volunteers who can listen without judgment. SJS also coordinates with medical, security, and production teams so guests can receive the right level of care.
         </p>
-      </div>
+      </Card>
     </div>
   </section>
 
@@ -44,7 +44,7 @@ import { site } from "../data/site";
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Nonprofit relationship</p>
-        <h2>Organized through Heartland Transpersonal Alliance.</h2>
+        <h2 class="nonprofit-heading">Organized through Heartland Transpersonal Alliance.</h2>
       </div>
       <div class="prose">
         <p>
@@ -53,34 +53,62 @@ import { site } from "../data/site";
         <p>
           This relationship helps SJS receive support, develop training, and collaborate with organizers while keeping the work accountable to a nonprofit mission.
         </p>
-        <a class="button button-ghost" href={site.parentOrg.url} rel="noreferrer">Visit HTA</a>
+        <Button variant="ghost" href={site.parentOrg.url} target="_blank">Visit HTA</Button>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container two-grid">
-      <article class="resource-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="compass" /></span>
+      <Card icon="compass" class="resource-card">
         <h3>Vision</h3>
         <p>
           A Midwest event culture where harm-reduction education and peer support are easy to find, emotionally grounded, and trusted by guests, organizers, artists, and care teams.
         </p>
-      </article>
-      <article class="resource-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="sparkles" /></span>
+      </Card>
+      <Card icon="sparkles" class="resource-card">
         <h3>How we grow</h3>
         <p>
           SJS offers volunteer training, event partnerships, educational resources, and post-event reflection so each deployment strengthens the next one.
         </p>
-      </article>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section-tight about-cta">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Take the next step</p>
+        <h2>Help turn this model into staffed sanctuary spaces.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          SJS grows through trained volunteers, event partnerships, and practical material support for calm, low-stimulation care spaces.
+        </p>
+        <div class="button-row">
+          <Button variant="primary" href={site.forms.volunteer}>Volunteer</Button>
+          <Button variant="amber" href="/donate/">Donate</Button>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .about-mission-grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .nonprofit-heading {
+    max-width: 12em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .about-cta {
+    background: var(--linen);
+    border-top: 1px solid var(--line);
   }
 
   @media (max-width: 900px) {

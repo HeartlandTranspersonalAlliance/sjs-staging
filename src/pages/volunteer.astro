@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import Icon from "../components/Icon.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import { site, trainingTopics } from "../data/site";
 
 const roles = [
@@ -32,10 +34,9 @@ const roles = [
         <p>
           Between events, volunteers help with outreach, fundraising, training facilitation, supply prep, documentation, and logistics.
         </p>
-        <a class="button button-primary" href={site.forms.volunteer}>Volunteer Application Form</a>
+        <Button variant="primary" href={site.forms.volunteer}>Volunteer Application Form</Button>
       </div>
-      <div class="surface service-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="users" /></span>
+      <Card icon="users" class="service-card">
         <h3>Roles include</h3>
         <ul class="roles-list">
           {roles.map((role) => (
@@ -45,7 +46,7 @@ const roles = [
             </li>
           ))}
         </ul>
-      </div>
+      </Card>
     </div>
   </section>
 
@@ -53,8 +54,26 @@ const roles = [
     <div class="container">
       <p class="eyebrow">Training topics</p>
       <h2>Prepared volunteers make the space safer.</h2>
-      <div class="topic-list">
-        {trainingTopics.map((topic) => <span>{topic}</span>)}
+      <ul class="topic-list">
+        {trainingTopics.map((topic) => <li>{topic}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-tight volunteer-cta">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Keep learning</p>
+        <h2>See how volunteer training is structured.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Training gives volunteers a shared baseline for consent-first support, practical escalation, and calm teamwork before stepping into an event environment.
+        </p>
+        <div class="button-row">
+          <Button variant="ghost" href="/training/">Learn about Training</Button>
+          <Button variant="ghost" href="/faq/">Read FAQ</Button>
+        </div>
       </div>
     </div>
   </section>
@@ -71,19 +90,35 @@ const roles = [
   }
 
   .topic-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .topic-list span {
-    background: var(--surface);
+  .topic-list li {
+    align-items: center;
+    background: var(--surface-strong);
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 8px;
     color: var(--ink);
+    display: flex;
     font-size: 0.9rem;
     font-weight: 800;
-    padding: 9px 15px;
+    gap: 10px;
+    min-height: 52px;
+    padding: 12px 14px;
+  }
+
+  .topic-list li::before {
+    background: var(--amber);
+    border-radius: 999px;
+    content: "";
+    flex: 0 0 auto;
+    height: 8px;
+    width: 8px;
   }
 
   .roles-list {
@@ -98,7 +133,7 @@ const roles = [
   }
 
   .roles-list li {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     gap: 10px;
   }
@@ -125,5 +160,9 @@ const roles = [
     .roles-list {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
+
+  .volunteer-cta {
+    border-top: 1px solid var(--line);
   }
 </style>

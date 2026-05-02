@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import Icon from "../components/Icon.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import { site } from "../data/site";
 
 const contactPaths = [
@@ -41,12 +42,11 @@ const contactPaths = [
     <div class="container card-grid">
       {
         contactPaths.map((path) => (
-          <article class="surface service-card">
-            <span class="card-icon" aria-hidden="true"><Icon name={path.icon} /></span>
+          <Card icon={path.icon} class="service-card">
             <h2>{path.title}</h2>
             <p>{path.text}</p>
-            <a href={path.href}>{path.label}</a>
-          </article>
+            <Button variant="ghost" size="sm" href={path.href} ariaLabel={`${path.label}: ${path.title}`}>{path.label}</Button>
+          </Card>
         ))
       }
     </div>
@@ -70,7 +70,9 @@ const contactPaths = [
     margin-bottom: 16px;
   }
 
-  .service-card a {
+  .service-card :global(.button) {
+    align-self: flex-start;
+    margin-top: auto;
     overflow-wrap: anywhere;
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 import { navItems, primaryCtas, site } from "../data/site";
+import Icon from "./Icon.astro";
 import { assetPath, withBase, withoutBase } from "../utils/paths";
 
 const currentPath = withoutBase(Astro.url.pathname);
@@ -44,7 +45,10 @@ function isCurrentPage(href: string): boolean {
       <a class="nav-donate" href={withBase("/donate/")}>Donate</a>
 
       <details class="mobile-menu">
-        <summary aria-label="Open navigation">Menu</summary>
+        <summary aria-label="Open navigation">
+          <Icon name="menu" />
+          <span class="sr-only">Menu</span>
+        </summary>
         <div class="mobile-panel">
           {
             navItems.map((item) => (
@@ -88,6 +92,14 @@ function isCurrentPage(href: string): boolean {
       // Preference persistence is non-critical.
     }
   });
+
+  const header = document.querySelector(".site-header");
+  const syncScrolledState = () => {
+    header?.toggleAttribute("data-scrolled", window.scrollY > 12);
+  };
+
+  syncScrolledState();
+  window.addEventListener("scroll", syncScrolledState, { passive: true });
 </script>
 
 <style>
@@ -97,7 +109,27 @@ function isCurrentPage(href: string): boolean {
     border-bottom: 1px solid var(--header-border);
     position: sticky;
     top: 0;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
     z-index: 45;
+  }
+
+  .site-header[data-scrolled] {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.18);
+  }
+
+  .sr-only {
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 
   .skip-link {
@@ -120,6 +152,11 @@ function isCurrentPage(href: string): boolean {
     gap: 24px;
     justify-content: space-between;
     min-height: 64px;
+    transition: min-height 180ms ease;
+  }
+
+  .site-header[data-scrolled] .nav-shell {
+    min-height: 56px;
   }
 
   .brand {
@@ -140,7 +177,15 @@ function isCurrentPage(href: string): boolean {
 
   .brand img {
     height: 42px;
+    transition:
+      height 180ms ease,
+      width 180ms ease;
     width: 42px;
+  }
+
+  .site-header[data-scrolled] .brand img {
+    height: 36px;
+    width: 36px;
   }
 
   .desktop-links {
@@ -170,6 +215,17 @@ function isCurrentPage(href: string): boolean {
     background: var(--nav-hover-bg);
     border-color: var(--nav-hover-border);
     color: var(--nav-hover-text);
+  }
+
+  .desktop-links a:focus-visible,
+  .theme-toggle:focus-visible,
+  .nav-donate:focus-visible,
+  .mobile-menu summary:focus-visible,
+  .mobile-panel a:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--paper),
+      0 0 0 5px var(--focus-ring);
   }
 
   .desktop-links a[aria-current="page"] {
@@ -202,6 +258,11 @@ function isCurrentPage(href: string): boolean {
       color 180ms ease,
       transform 180ms ease;
     width: 44px;
+  }
+
+  .site-header[data-scrolled] .theme-toggle {
+    height: 40px;
+    width: 40px;
   }
 
   .theme-toggle:hover {
@@ -238,11 +299,16 @@ function isCurrentPage(href: string): boolean {
     color: #170f08;
     font-weight: 850;
     min-height: 44px;
-    padding: 9px 17px;
+    padding: 9px 1.5rem;
     text-decoration: none;
     transition:
       background-color 180ms ease,
       transform 180ms ease;
+  }
+
+  .site-header[data-scrolled] .nav-donate {
+    min-height: 40px;
+    padding: 7px 1.35rem;
   }
 
   .nav-donate:hover {
@@ -259,11 +325,21 @@ function isCurrentPage(href: string): boolean {
     background: var(--control-bg);
     border: 1px solid var(--control-border);
     border-radius: 999px;
+    color: var(--ink);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 800;
     list-style: none;
     min-height: 44px;
-    padding: 8px 14px;
+    padding: 0;
+    width: 44px;
+  }
+
+  .mobile-menu summary :global(svg) {
+    height: 20px;
+    width: 20px;
   }
 
   .mobile-menu summary::-webkit-details-marker {
@@ -277,7 +353,7 @@ function isCurrentPage(href: string): boolean {
     box-shadow: 0 24px 80px var(--shadow);
     display: grid;
     gap: 4px;
-    min-width: 240px;
+    min-width: min(20rem, calc(100vw - 2rem));
     padding: 12px;
     position: absolute;
     right: 0;

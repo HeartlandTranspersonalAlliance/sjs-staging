@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import {
   carePrinciples,
   primaryCtas,
@@ -14,6 +16,10 @@ const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const usesPostPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
+const donateCta = primaryCtas.find((cta) => cta.label === "Donate");
+const secondaryHeroCtas = primaryCtas.filter((cta) => cta.label !== "Donate");
 
 const actionPaths = [
   {
@@ -74,16 +80,11 @@ const heroFacts = [
         <p>
           Safe Journey Sanctum creates grounded, consent-first spaces where trained volunteers offer calm presence, practical care, and clear connection to on-site medical or security teams when needed.
         </p>
-        <div class="button-row hero-buttons">
-          {primaryCtas.map((cta) => (
-            <a class={`button ${cta.label === "Donate" ? "button-amber" : "button-ghost"}`} href={withBase(cta.href)}>
-              {cta.label}
-            </a>
-          ))}
-        </div>
-        <div class="button-row secondary-buttons">
-          <a class="button button-ghost" href={withBase("/events/")}>View Events</a>
-          <a class="button button-ghost" href={withBase("/resources/")}>Read Resources</a>
+        <div class="button-row hero-buttons" aria-label="Primary actions">
+          {donateCta && <Button variant="amber" href={donateCta.href}>Donate</Button>}
+          {secondaryHeroCtas.map((cta) => <Button variant="ghost" href={cta.href}>{cta.label}</Button>)}
+          <Button variant="ghost" href="/events/">View Events</Button>
+          <Button variant="ghost" href="/resources/">Read Resources</Button>
         </div>
       </div>
 
@@ -110,12 +111,11 @@ const heroFacts = [
       <div class="card-grid">
         {
           actionPaths.map((path) => (
-            <article class="surface service-card">
-              <span class="card-icon" aria-hidden="true"><Icon name={path.icon} /></span>
+            <Card icon={path.icon} class="service-card">
               <h3>{path.title}</h3>
               <p>{path.text}</p>
               <a href={withBase(path.href)}>{path.label}</a>
-            </article>
+            </Card>
           ))
         }
       </div>
@@ -131,18 +131,17 @@ const heroFacts = [
           SJS volunteers are not therapists and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
         </p>
         <div class="button-row">
-          <a class="button button-ghost" href={withBase("/model/")}>Explore the Model</a>
-          <a class="button button-ghost" href={withBase("/faq/")}>Read FAQ</a>
+          <Button variant="ghost" href="/model/">Explore the Model</Button>
+          <Button variant="ghost" href="/faq/">Read FAQ</Button>
         </div>
       </div>
       <div class="principle-stack">
         {
           carePrinciples.map((principle) => (
-            <article class="principle">
-              <span class="card-icon" aria-hidden="true"><Icon name={principle.icon} /></span>
+            <Card icon={principle.icon} class="principle">
               <h3>{principle.title}</h3>
               <p>{principle.text}</p>
-            </article>
+            </Card>
           ))
         }
       </div>
@@ -160,8 +159,8 @@ const heroFacts = [
           Contributions help fund soft flooring, blankets, lighting, hydration supplies, Narcan education, volunteer training, signage, storage, transportation, and outreach materials.
         </p>
         <div class="button-row">
-          <a class="button button-amber" href={withBase("/donate/")}>Support SJS</a>
-          <a class="button button-ghost" href={site.forms.wishlist}>In-kind Supplies</a>
+          <Button variant="amber" href="/donate/">Support SJS</Button>
+          <Button variant="ghost" href={site.forms.wishlist}>In-kind Supplies</Button>
         </div>
       </div>
     </div>
@@ -176,12 +175,11 @@ const heroFacts = [
       <div class="card-grid">
         {
           resources.slice(0, 3).map((resource) => (
-            <article class="resource-card">
-              <span class="card-icon" aria-hidden="true"><Icon name={resource.icon} /></span>
+            <Card icon={resource.icon} class="resource-card">
               <h3>{resource.title}</h3>
               <p>{resource.text}</p>
               <a href={withBase(resource.href)}>Read more</a>
-            </article>
+            </Card>
           ))
         }
       </div>
@@ -201,7 +199,15 @@ const heroFacts = [
         {
           posts.map((post) => (
             <article class="surface post-card">
-              <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+              {
+                usesPostPlaceholder(post.data.image) ? (
+                  <div class="post-card-placeholder" aria-hidden="true">
+                    <Icon name="message" />
+                  </div>
+                ) : (
+                  <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+                )
+              }
               <div class="post-card-body">
                 <p class="post-meta">
                   {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
@@ -212,7 +218,7 @@ const heroFacts = [
                 </p>
                 <h3>{post.data.title}</h3>
                 <p>{post.data.description}</p>
-                <a href={withBase(`/news/${post.id}/`)}>Read update</a>
+                <a href={withBase(`/news/${post.id}/`)} aria-label={`Read update: ${post.data.title}`}>Read update</a>
               </div>
             </article>
           ))
@@ -228,8 +234,8 @@ const heroFacts = [
         <h2>Bring questions, partnership ideas, or volunteer interest.</h2>
       </div>
       <div class="button-row">
-        <a class="button button-ghost" href={withBase("/contact/")}>Contact SJS</a>
-        <a class="button button-ghost" href={site.forms.volunteer}>Volunteer Form</a>
+        <Button variant="ghost" href="/contact/">Contact SJS</Button>
+        <Button variant="ghost" href={site.forms.volunteer}>Volunteer Form</Button>
       </div>
     </div>
   </section>
@@ -275,15 +281,15 @@ const heroFacts = [
     align-self: center;
     color: white;
     margin-right: auto;
-    max-width: 56rem;
+    max-width: 48rem;
   }
 
   .hero-copy h1 {
     color: white;
     margin: 16px 0 22px;
-    max-width: 56rem;
-    font-size: 3.1rem;
-    line-height: 0.98;
+    max-width: min(100%, 13.5em);
+    font-size: clamp(2.65rem, 10vw, 4.9rem);
+    line-height: 1.01;
     text-wrap: balance;
   }
 
@@ -291,7 +297,7 @@ const heroFacts = [
     color: rgb(255 255 255 / 0.84);
     font-size: 1.2rem;
     line-height: 1.75;
-    max-width: 42rem;
+    max-width: 40rem;
   }
 
   .home-hero .eyebrow {
@@ -299,11 +305,8 @@ const heroFacts = [
   }
 
   .hero-buttons {
-    margin-top: 30px;
-  }
-
-  .secondary-buttons {
-    margin-top: 12px;
+    margin-top: 32px;
+    max-width: 48rem;
   }
 
   .hero-facts {
@@ -320,8 +323,22 @@ const heroFacts = [
     border-radius: 8px;
     backdrop-filter: blur(14px);
     color: var(--ink);
+    display: flex;
+    flex-direction: column;
     min-height: 112px;
     padding: 18px;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .hero-facts article:hover {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.24);
+    box-shadow: 0 18px 46px rgb(0 0 0 / 0.18);
+    transform: translateY(-2px);
   }
 
   .fact-icon {
@@ -424,10 +441,6 @@ const heroFacts = [
   }
 
   .principle {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 20px 60px var(--shadow);
     padding: 22px;
   }
 
@@ -495,7 +508,7 @@ const heroFacts = [
     }
 
     .hero-copy h1 {
-      font-size: 2.4rem;
+      font-size: clamp(2.35rem, 13vw, 3rem);
       line-height: 1.04;
     }
 
@@ -506,13 +519,13 @@ const heroFacts = [
 
   @media (min-width: 768px) {
     .hero-copy h1 {
-      font-size: 4.25rem;
+      font-size: clamp(3.5rem, 6.8vw, 4.55rem);
     }
   }
 
   @media (min-width: 1024px) {
     .hero-copy h1 {
-      font-size: 4.9rem;
+      font-size: clamp(4rem, 5.2vw, 4.9rem);
     }
 
     .action-section {

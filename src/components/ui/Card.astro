@@ -1,0 +1,15 @@
+---
+import IconBadge from "./IconBadge.astro";
+
+interface Props {
+  icon?: string;
+  class?: string;
+}
+
+const { icon, class: className = "" } = Astro.props;
+---
+
+<article class:list={["surface", "ui-card", className]}>
+  {icon && <IconBadge name={icon} />}
+  <slot />
+</article>

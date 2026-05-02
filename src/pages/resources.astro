@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import Icon from "../components/Icon.astro";
+import Card from "../components/ui/Card.astro";
 import { resources } from "../data/site";
+import { withBase } from "../utils/paths";
 
 const supportLines = [
   "In a medical emergency, call 911 or contact on-site medical/security personnel.",
@@ -24,11 +25,11 @@ const supportLines = [
     <div class="container card-grid resources-grid">
       {
         resources.map((resource) => (
-          <article class="resource-card">
-            <span class="card-icon" aria-hidden="true"><Icon name={resource.icon} /></span>
+          <Card icon={resource.icon} class="resource-card">
             <h2>{resource.title}</h2>
             <p>{resource.text}</p>
-          </article>
+            <a href={withBase(resource.href)} aria-label={`Read more: ${resource.title}`}>Read more</a>
+          </Card>
         ))
       }
     </div>
@@ -36,33 +37,32 @@ const supportLines = [
 
   <section class="section-tight resource-band" id="difficult-experiences">
     <div class="container two-grid">
-      <div class="prose">
+      <div class="prose break-avoid">
         <p class="eyebrow">During a difficult experience</p>
         <h2>Lower stimulation and ask before acting.</h2>
         <p>
           Speak calmly, introduce yourself, ask what would feel supportive, and avoid crowding the person. Help them find water, shade, a quieter place, or a trusted friend when appropriate.
         </p>
       </div>
-      <div class="surface service-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="cross" /></span>
+      <Card icon="cross" class="service-card break-avoid">
         <h3>Know when to seek medical help</h3>
         <p>
           If someone is unconscious, struggling to breathe, overheating, injured, confused in a dangerous way, or showing overdose symptoms, involve medical support immediately.
         </p>
-      </div>
+      </Card>
     </div>
   </section>
 
   <section class="section" id="integration">
     <div class="container two-grid">
-      <div class="prose">
+      <div class="prose break-avoid">
         <p class="eyebrow">Integration</p>
         <h2>Afterward, basic care matters.</h2>
         <p>
           Sleep, food, hydration, journaling, gentle movement, and a grounded conversation with someone trustworthy can help a person make sense of intense experiences over time.
         </p>
       </div>
-      <div class="prose" id="support-lines">
+      <div class="prose break-avoid" id="support-lines">
         <p class="eyebrow">Crisis and overdose support</p>
         <ul>
           {supportLines.map((line) => <li>{line}</li>)}

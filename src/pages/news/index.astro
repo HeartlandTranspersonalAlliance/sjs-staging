@@ -2,11 +2,14 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import Icon from "../../components/Icon.astro";
 import { assetPath, withBase } from "../../utils/paths";
 
 const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const usesPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
 ---
 
 <BaseLayout title="News" description="News, field notes, event recaps, and educational updates from Safe Journey Sanctum.">
@@ -22,7 +25,15 @@ const posts = (await getCollection("news"))
       {
         posts.map((post) => (
           <article class="surface post-card">
-            <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+            {
+              usesPlaceholder(post.data.image) ? (
+                <div class="post-card-placeholder" aria-hidden="true">
+                  <Icon name="message" />
+                </div>
+              ) : (
+                <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+              )
+            }
             <div class="post-card-body">
               <p class="post-meta">
                 {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
@@ -33,7 +44,7 @@ const posts = (await getCollection("news"))
               </p>
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
-              <a href={withBase(`/news/${post.id}/`)}>Read update</a>
+              <a href={withBase(`/news/${post.id}/`)} aria-label={`Read update: ${post.data.title}`}>Read update</a>
             </div>
           </article>
         ))

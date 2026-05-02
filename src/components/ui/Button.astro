@@ -1,0 +1,43 @@
+---
+import { withBase } from "../../utils/paths";
+
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "amber" | "ghost" | "dark";
+  size?: "sm" | "md";
+  type?: "button" | "submit" | "reset";
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  type = "button",
+  target,
+  rel,
+  ariaLabel,
+  class: className = ""
+} = Astro.props;
+
+const classes = ["button", `button-${variant}`, `button-${size}`, className].filter(Boolean).join(" ");
+const isExternal = href ? /^(https?:|mailto:|tel:|#)/.test(href) : false;
+const resolvedHref = href && !isExternal ? withBase(href) : href;
+const safeTarget = target ?? (href?.startsWith("http") ? "_blank" : undefined);
+const safeRel = safeTarget === "_blank" ? [rel, "noopener", "noreferrer"].filter(Boolean).join(" ") : rel;
+---
+
+{
+  resolvedHref ? (
+    <a class={classes} href={resolvedHref} target={safeTarget} rel={safeRel} aria-label={ariaLabel}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type={type} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}

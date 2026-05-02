@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import Icon from "../components/Icon.astro";
+import Card from "../components/ui/Card.astro";
+import IconBadge from "../components/ui/IconBadge.astro";
 import { carePrinciples, eventServices } from "../data/site";
 import { assetPath } from "../utils/paths";
 ---
@@ -24,11 +25,10 @@ import { assetPath } from "../utils/paths";
     <div class="container card-grid model-principles">
       {
         carePrinciples.map((principle) => (
-          <article class="surface service-card">
-            <span class="card-icon" aria-hidden="true"><Icon name={principle.icon} /></span>
+          <Card icon={principle.icon} class="service-card principle-card">
             <h2>{principle.title}</h2>
             <p>{principle.text}</p>
-          </article>
+          </Card>
         ))
       }
     </div>
@@ -50,19 +50,19 @@ import { assetPath } from "../utils/paths";
   <section class="section">
     <div class="container two-grid">
       <div class="prose">
+        <IconBadge name="ear" />
         <p class="eyebrow">Volunteer boundaries</p>
         <h2>Presence without directing the experience.</h2>
         <p>
           Volunteers are not therapists. They listen, ask permission, help reduce overwhelm, and avoid interpreting or steering what a guest is experiencing. If a situation requires medical, security, or crisis support, the volunteer's responsibility is to bring in the right help clearly and quickly.
         </p>
       </div>
-      <div class="surface service-card">
-        <span class="card-icon" aria-hidden="true"><Icon name="map" /></span>
+      <Card icon="map" class="service-card">
         <h3>Event coordination includes</h3>
         <ul>
           {eventServices.map((service) => <li>{service}</li>)}
         </ul>
-      </div>
+      </Card>
     </div>
   </section>
 </BaseLayout>
@@ -76,6 +76,10 @@ import { assetPath } from "../utils/paths";
 
   .model-principles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .principle-card {
+    min-height: 210px;
   }
 
   .model-image {

@@ -104,17 +104,19 @@ const artIcon = {
     align-items: center;
     display: grid;
     gap: 44px;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.72fr);
   }
 
   .page-hero h1 {
+    font-size: clamp(2.45rem, 7vw, 4.4rem);
+    line-height: 1.04;
     margin: 12px 0 18px;
-    max-width: 52rem;
+    max-width: min(100%, 14em);
     text-wrap: balance;
   }
 
   .page-hero .lede {
-    max-width: 42rem;
+    max-width: 39rem;
   }
 
   .page-hero-visual {
@@ -142,8 +144,8 @@ const artIcon = {
     --art-line: rgb(255 255 255 / 0.15);
     align-items: center;
     background:
-      linear-gradient(90deg, var(--grid-line-x) 1px, transparent 1px),
-      linear-gradient(180deg, var(--grid-line-y) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.018) 1px, transparent 1px),
+      linear-gradient(180deg, rgb(255 255 255 / 0.014) 1px, transparent 1px),
       linear-gradient(135deg, color-mix(in srgb, var(--art-accent) 24%, transparent), transparent 54%),
       var(--surface-strong);
     background-size: 52px 52px, 52px 52px, auto, auto;

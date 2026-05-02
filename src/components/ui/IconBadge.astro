@@ -1,0 +1,15 @@
+---
+import Icon from "../Icon.astro";
+
+interface Props {
+  name: string;
+  size?: "sm" | "md";
+  class?: string;
+}
+
+const { name, size = "md", class: className = "" } = Astro.props;
+---
+
+<span class:list={["card-icon", "icon-badge", `icon-badge-${size}`, className]} aria-hidden="true">
+  <Icon name={name} />
+</span>
