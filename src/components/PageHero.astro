@@ -9,7 +9,7 @@ interface Props {
   image?: string;
   imageAlt?: string;
   imagePosition?: string;
-  art?: "sanctuary" | "training" | "resources" | "support" | "contact";
+  art?: "sanctuary" | "training" | "resources" | "support" | "contact" | "events" | "organizers" | "impact" | "news";
 }
 
 const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
@@ -20,7 +20,11 @@ const artIcon = {
   training: "clipboard",
   resources: "book",
   support: "gift",
-  contact: "message"
+  contact: "message",
+  events: "calendar",
+  organizers: "map",
+  impact: "sparkles",
+  news: "message"
 }[art ?? "resources"];
 ---
 
@@ -174,6 +178,22 @@ const artIcon = {
   }
 
   .page-hero-art[data-art="contact"] {
+    --art-accent: var(--violet);
+  }
+
+  .page-hero-art[data-art="events"] {
+    --art-accent: var(--amber);
+  }
+
+  .page-hero-art[data-art="organizers"] {
+    --art-accent: var(--sage);
+  }
+
+  .page-hero-art[data-art="impact"] {
+    --art-accent: var(--rose);
+  }
+
+  .page-hero-art[data-art="news"] {
     --art-accent: var(--violet);
   }
 

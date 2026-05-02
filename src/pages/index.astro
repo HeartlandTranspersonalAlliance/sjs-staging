@@ -75,8 +75,8 @@ const heroFacts = [
           Safe Journey Sanctum creates grounded, consent-first spaces where trained volunteers offer calm presence, practical care, and clear connection to on-site medical or security teams when needed.
         </p>
         <div class="button-row hero-buttons">
-          {primaryCtas.map((cta, index) => (
-            <a class={`button ${cta.label === "Donate" ? "button-amber" : index === 0 ? "button-primary" : "button-ghost"}`} href={withBase(cta.href)}>
+          {primaryCtas.map((cta) => (
+            <a class={`button ${cta.label === "Donate" ? "button-amber" : "button-ghost"}`} href={withBase(cta.href)}>
               {cta.label}
             </a>
           ))}
@@ -131,7 +131,7 @@ const heroFacts = [
           SJS volunteers are not therapists and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
         </p>
         <div class="button-row">
-          <a class="button button-primary" href={withBase("/model/")}>Explore the Model</a>
+          <a class="button button-ghost" href={withBase("/model/")}>Explore the Model</a>
           <a class="button button-ghost" href={withBase("/faq/")}>Read FAQ</a>
         </div>
       </div>
@@ -228,7 +228,7 @@ const heroFacts = [
         <h2>Bring questions, partnership ideas, or volunteer interest.</h2>
       </div>
       <div class="button-row">
-        <a class="button button-primary" href={withBase("/contact/")}>Contact SJS</a>
+        <a class="button button-ghost" href={withBase("/contact/")}>Contact SJS</a>
         <a class="button button-ghost" href={site.forms.volunteer}>Volunteer Form</a>
       </div>
     </div>

@@ -3,6 +3,13 @@ import { navItems, primaryCtas, site } from "../data/site";
 import { assetPath, withBase, withoutBase } from "../utils/paths";
 
 const currentPath = withoutBase(Astro.url.pathname);
+
+function isCurrentPage(href: string): boolean {
+  const normalizedHref = href.endsWith("/") ? href : `${href}/`;
+  const normalizedPath = currentPath.endsWith("/") ? currentPath : `${currentPath}/`;
+
+  return normalizedPath === normalizedHref || normalizedPath.startsWith(normalizedHref);
+}
 ---
 
 <header class="site-header">
@@ -16,7 +23,7 @@ const currentPath = withoutBase(Astro.url.pathname);
     <div class="desktop-links" aria-label="Main pages">
       {
         navItems.map((item) => (
-          <a href={withBase(item.href)} aria-current={currentPath === item.href ? "page" : undefined}>
+          <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))
@@ -41,7 +48,7 @@ const currentPath = withoutBase(Astro.url.pathname);
         <div class="mobile-panel">
           {
             navItems.map((item) => (
-              <a href={withBase(item.href)} aria-current={currentPath === item.href ? "page" : undefined}>
+              <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
                 {item.label}
               </a>
             ))
