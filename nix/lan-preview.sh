@@ -160,11 +160,18 @@ print_urls() {
       ip -o -4 addr show scope global 2>/dev/null |
         awk '{ split($4, address, "/"); print address[1] }' || true
     )"
-
-    while read -r address; do
-      [[ -n "$address" ]] && echo "  LAN:    http://$address:$port$preview_path"
-    done <<< "$addresses"
+  elif [[ -x /sbin/ifconfig ]]; then
+    addresses="$(
+      /sbin/ifconfig 2>/dev/null |
+        awk '/^[[:space:]]*inet / && $2 != "127.0.0.1" { print $2 }' || true
+    )"
+  else
+    addresses=""
   fi
+
+  while read -r address; do
+    [[ -n "$address" ]] && echo "  LAN:    http://$address:$port$preview_path"
+  done <<< "$addresses"
 }
 
 print_logs() {
@@ -186,6 +193,7 @@ close_extra_fds() {
   local fd fd_dir fd_path
 
   fd_dir="/proc/$$/fd"
+  [[ -d "$fd_dir" ]] || return 0
 
   for fd_path in "$fd_dir"/*; do
     fd="${fd_path##*/}"
