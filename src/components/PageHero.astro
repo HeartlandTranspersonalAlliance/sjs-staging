@@ -13,7 +13,20 @@ interface Props {
 }
 
 const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
-const heroImage = image ? assetPath(image) : undefined;
+const placeholderByArt = {
+  sanctuary: "/assets/placeholders/sanctuary-support.png",
+  training: "/assets/placeholders/sanctuary-support.png",
+  resources: "/assets/placeholders/sanctuary-resources.png",
+  support: "/assets/placeholders/sanctuary-support.png",
+  contact: "/assets/placeholders/sanctuary-contact.png",
+  events: "/assets/placeholders/sanctuary-events.png",
+  organizers: "/assets/placeholders/sanctuary-organizers.png",
+  impact: "/assets/placeholders/sanctuary-impact.png",
+  news: "/assets/placeholders/sanctuary-contact.png"
+};
+const placeholderImage = art ? placeholderByArt[art] : undefined;
+const heroImage = image ? assetPath(image) : placeholderImage ? assetPath(placeholderImage) : undefined;
+const resolvedImageAlt = image ? imageAlt : "";
 const hasVisual = Boolean(heroImage || art);
 const artIcon = {
   sanctuary: "home",
@@ -43,7 +56,7 @@ const artIcon = {
               <img
                 class="page-hero-image"
                 src={heroImage}
-                alt={imageAlt}
+                alt={resolvedImageAlt}
                 loading="eager"
                 decoding="async"
                 style={`object-position: ${imagePosition};`}

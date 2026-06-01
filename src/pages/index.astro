@@ -374,6 +374,34 @@ const heroFacts = [
     line-height: 1.5;
   }
 
+  :global(html[data-theme="light"]) .hero-image {
+    background:
+      linear-gradient(to right, rgb(33 23 39 / 0.9), rgb(53 32 63 / 0.66), rgb(53 32 63 / 0.34)),
+      var(--sjs-home-bg-url);
+    background-position: center;
+    background-size: cover;
+  }
+
+  :global(html[data-theme="light"]) .hero-scrim {
+    background:
+      linear-gradient(180deg, transparent 70%, rgb(251 248 242 / 0.3) 88%, var(--paper) 100%),
+      repeating-linear-gradient(90deg, rgba(82, 62, 96, 0.05) 0 1px, transparent 1px 96px);
+  }
+
+  :global(html[data-theme="light"]) .hero-facts article {
+    background: rgb(255 253 249 / 0.88);
+    border-color: rgb(82 62 96 / 0.22);
+    box-shadow: 0 16px 44px rgb(55 41 67 / 0.16);
+  }
+
+  :global(html[data-theme="light"]) .hero-facts h3 {
+    color: var(--sjs-purple-dark);
+  }
+
+  :global(html[data-theme="light"]) .hero-facts p {
+    color: #463a4f;
+  }
+
   .section-heading {
     margin-bottom: 36px;
     max-width: 52rem;

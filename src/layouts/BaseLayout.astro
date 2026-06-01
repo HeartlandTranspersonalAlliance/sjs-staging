@@ -61,5 +61,57 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
     </main>
     <Footer />
     <BackToTop />
+    <script is:inline>
+      (() => {
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const selectors = [
+          "main > section",
+          ".page-hero-grid > *",
+          ".card-grid > *",
+          ".split-grid > *",
+          ".principle-stack > *",
+          ".post-card",
+          ".surface"
+        ];
+
+        const prepare = () => {
+          if (reduceMotion.matches) return;
+          document.querySelectorAll(selectors.join(",")).forEach((el) => {
+            if (!el.hasAttribute("data-reveal")) {
+              el.setAttribute("data-reveal", "");
+            }
+          });
+        };
+
+        const reveal = () => {
+          prepare();
+          const targets = document.querySelectorAll("[data-reveal]");
+          if (!("IntersectionObserver" in window)) {
+            targets.forEach((target) => target.removeAttribute("data-reveal"));
+            return;
+          }
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.setAttribute("data-revealed", "");
+                observer.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+          );
+          targets.forEach((target, index) => {
+            target.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 70}ms`);
+            observer.observe(target);
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", reveal, { once: true });
+        } else {
+          reveal();
+        }
+      })();
+    </script>
   </body>
 </html>
