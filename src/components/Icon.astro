@@ -1,201 +1,47 @@
 ---
+import { Icon as AstroIcon } from "astro-icon/components";
+
 interface Props {
   name?: string;
   title?: string;
 }
 
 const { name = "sparkles", title } = Astro.props;
+
+const icons: Record<string, string> = {
+  "arrow-up": "tabler:arrow-up",
+  book: "tabler:book-2",
+  calendar: "tabler:calendar",
+  clipboard: "tabler:clipboard-list",
+  compass: "tabler:compass",
+  cross: "tabler:first-aid-kit",
+  ear: "tabler:ear",
+  gift: "tabler:gift",
+  handshake: "tabler:heart-handshake",
+  heart: "tabler:heart",
+  home: "tabler:home",
+  mail: "tabler:mail",
+  map: "tabler:map",
+  menu: "tabler:menu-2",
+  message: "tabler:message",
+  package: "tabler:package",
+  shield: "tabler:shield-check",
+  sparkles: "tabler:sparkles",
+  users: "tabler:users-group",
+};
+
+const iconName = icons[name] ?? icons.sparkles;
 const labelled = Boolean(title);
 ---
 
-<svg
+<AstroIcon
+  name={iconName}
   class="icon"
   aria-hidden={labelled ? undefined : "true"}
   role={labelled ? "img" : undefined}
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="1.9"
-  stroke-linecap="round"
-  stroke-linejoin="round"
 >
   {title && <title>{title}</title>}
-  {
-    name === "heart" && (
-      <>
-        <path d="M12 20.5s-7.2-4.7-9.1-9.1c-1.1-2.6.2-5.5 2.9-6.2 1.8-.5 3.5.2 4.6 1.6C11.4 5.4 13.2 4.7 15 5.2c2.7.7 4 3.6 2.9 6.2C16 15.8 12 20.5 12 20.5Z" />
-        <path d="M8.4 10.4h7.2" />
-      </>
-    )
-  }
-  {
-    name === "handshake" && (
-      <>
-        <path d="m7.4 12.8 2.1 2.1a2.1 2.1 0 0 0 3 0l.5-.5" />
-        <path d="m11.2 8.1 1.2-1.2a2.4 2.4 0 0 1 3.4 0l4.1 4.1" />
-        <path d="m3.9 10.8 4.2-4.1a2.4 2.4 0 0 1 3.3 0l.7.7" />
-        <path d="m15 10.8 2.7 2.7a2 2 0 0 1-2.8 2.8l-.8-.8" />
-        <path d="m6.3 13.7-2.4-2.4" />
-        <path d="m17.7 13.7 2.4-2.4" />
-      </>
-    )
-  }
-  {
-    name === "ear" && (
-      <>
-        <path d="M6.7 10.5a5.3 5.3 0 1 1 10.6 0c0 4.4-3.9 4.8-3.9 7.6" />
-        <path d="M9.7 10.3a2.3 2.3 0 1 1 4.6 0c0 2.3-2.3 2.4-2.3 4.1" />
-        <path d="M13.4 20.5c-1.4 0-2.6-.7-3.2-1.9" />
-      </>
-    )
-  }
-  {
-    name === "shield" && (
-      <>
-        <path d="M12 21s7-3.3 7-9.4V5.8L12 3 5 5.8v5.8C5 17.7 12 21 12 21Z" />
-        <path d="M9.2 12.1 11 14l3.9-4.2" />
-      </>
-    )
-  }
-  {
-    name === "compass" && (
-      <>
-        <circle cx="12" cy="12" r="8.4" />
-        <path d="m15.4 8.6-1.7 5.1-5.1 1.7 1.7-5.1 5.1-1.7Z" />
-      </>
-    )
-  }
-  {
-    name === "book" && (
-      <>
-        <path d="M5 4.5h5.4c1 0 1.6.6 1.6 1.6v14.2c0-.9-.7-1.5-1.6-1.5H5V4.5Z" />
-        <path d="M19 4.5h-5.4c-1 0-1.6.6-1.6 1.6v14.2c0-.9.7-1.5 1.6-1.5H19V4.5Z" />
-      </>
-    )
-  }
-  {
-    name === "sparkles" && (
-      <>
-        <path d="m12 3 1.4 4.2L17.6 9l-4.2 1.8L12 15l-1.4-4.2L6.4 9l4.2-1.8L12 3Z" />
-        <path d="m5.5 13 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" />
-        <path d="m18.2 14.2.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6.6-1.7Z" />
-      </>
-    )
-  }
-  {
-    name === "calendar" && (
-      <>
-        <path d="M6 4v3" />
-        <path d="M18 4v3" />
-        <rect x="4" y="6" width="16" height="14" rx="2" />
-        <path d="M4 10h16" />
-        <path d="M8 14h3" />
-        <path d="M13 14h3" />
-      </>
-    )
-  }
-  {
-    name === "users" && (
-      <>
-        <path d="M16.5 19c0-2-1.9-3.6-4.5-3.6S7.5 17 7.5 19" />
-        <circle cx="12" cy="9" r="3" />
-        <path d="M20.5 18c0-1.5-1.2-2.7-3-3.2" />
-        <path d="M16.5 6.6a2.4 2.4 0 0 1 0 4.8" />
-        <path d="M3.5 18c0-1.5 1.2-2.7 3-3.2" />
-        <path d="M7.5 6.6a2.4 2.4 0 0 0 0 4.8" />
-      </>
-    )
-  }
-  {
-    name === "clipboard" && (
-      <>
-        <path d="M9 4h6l.8 2H18a2 2 0 0 1 2 2v10.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.2L9 4Z" />
-        <path d="M9 6h6" />
-        <path d="M8 12h8" />
-        <path d="M8 16h6" />
-      </>
-    )
-  }
-  {
-    name === "package" && (
-      <>
-        <path d="m4 7.5 8-4 8 4v9l-8 4-8-4v-9Z" />
-        <path d="m4 7.5 8 4 8-4" />
-        <path d="M12 11.5v9" />
-      </>
-    )
-  }
-  {
-    name === "gift" && (
-      <>
-        <path d="M4 10h16v10H4V10Z" />
-        <path d="M12 10v10" />
-        <path d="M3 7h18v3H3V7Z" />
-        <path d="M12 7c-1.8 0-3.5-1.3-3.5-2.7C8.5 3.5 9.2 3 10 3c1.4 0 2 1.4 2 4Z" />
-        <path d="M12 7c1.8 0 3.5-1.3 3.5-2.7 0-.8-.7-1.3-1.5-1.3-1.4 0-2 1.4-2 4Z" />
-      </>
-    )
-  }
-  {
-    name === "message" && (
-      <>
-        <path d="M5 6h14a2 2 0 0 1 2 2v7.2a2 2 0 0 1-2 2H9.2L5 20v-2.8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
-        <path d="M7.5 10h9" />
-        <path d="M7.5 13.5H13" />
-      </>
-    )
-  }
-  {
-    name === "mail" && (
-      <>
-        <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
-        <path d="m4.5 7 7.5 6 7.5-6" />
-      </>
-    )
-  }
-  {
-    name === "map" && (
-      <>
-        <path d="M9 18.5 4 21V6.5l5-2.5 6 2.5 5-2.5v14.5l-5 2.5-6-2.5Z" />
-        <path d="M9 4v14.5" />
-        <path d="M15 6.5V21" />
-      </>
-    )
-  }
-  {
-    name === "cross" && (
-      <>
-        <path d="M10 3.5h4v6h6v4h-6v6h-4v-6H4v-4h6v-6Z" />
-      </>
-    )
-  }
-  {
-    name === "home" && (
-      <>
-        <path d="m4 11 8-7 8 7" />
-        <path d="M6 10v10h12V10" />
-        <path d="M10 20v-6h4v6" />
-      </>
-    )
-  }
-  {
-    name === "arrow-up" && (
-      <>
-        <path d="M12 20V4" />
-        <path d="m6 10 6-6 6 6" />
-      </>
-    )
-  }
-  {
-    name === "menu" && (
-      <>
-        <path d="M4 6.5h16" />
-        <path d="M4 12h16" />
-        <path d="M4 17.5h16" />
-      </>
-    )
-  }
-</svg>
+</AstroIcon>
 
 <style>
   .icon {
