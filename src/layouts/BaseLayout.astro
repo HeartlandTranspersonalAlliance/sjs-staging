@@ -20,7 +20,7 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
 ---
 
 <!doctype html>
-<html lang="en" style={previewVars}>
+<html lang="en" data-theme="dark" style={previewVars}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,19 +34,6 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={absoluteUrl(image, siteRoot)} />
     <meta name="twitter:card" content="summary_large_image" />
-    <script is:inline>
-      (() => {
-        try {
-          const savedTheme = localStorage.getItem("sjs-theme");
-
-          if (savedTheme === "light" || savedTheme === "dark") {
-            document.documentElement.dataset.theme = savedTheme;
-          }
-        } catch {
-          document.documentElement.dataset.theme = "dark";
-        }
-      })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
