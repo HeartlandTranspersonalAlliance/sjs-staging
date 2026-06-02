@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import { site } from "../data/site";
 import { absoluteUrl, assetPath } from "../utils/paths";
@@ -17,6 +18,36 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const siteRoot = Astro.site ?? new URL(site.url);
 const canonical = absoluteUrl(Astro.url.pathname, siteRoot);
 const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}"); --sjs-home-bg-url: url("${assetPath("/assets/sjs_home_background.png")}");`;
+const pageTransition = {
+  forwards: {
+    old: {
+      name: "sjs-page-exit",
+      duration: "180ms",
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "sjs-page-enter",
+      duration: "210ms",
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fillMode: "both",
+    },
+  },
+  backwards: {
+    old: {
+      name: "sjs-page-exit",
+      duration: "180ms",
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "sjs-page-enter",
+      duration: "210ms",
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fillMode: "both",
+    },
+  },
+};
 ---
 
 <!doctype html>
@@ -40,8 +71,9 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..800&family=Source+Sans+3:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <ClientRouter fallback="animate" />
   </head>
-  <body>
+  <body transition:animate={pageTransition} transition:name="page">
     <Header />
     <main id="main">
       <slot />
@@ -70,14 +102,17 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
           });
         };
 
+        let observer;
+
         const reveal = () => {
+          observer?.disconnect();
           prepare();
           const targets = document.querySelectorAll("[data-reveal]");
           if (!("IntersectionObserver" in window)) {
             targets.forEach((target) => target.removeAttribute("data-reveal"));
             return;
           }
-          const observer = new IntersectionObserver(
+          observer = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
@@ -98,6 +133,7 @@ const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");
         } else {
           reveal();
         }
+        document.addEventListener("astro:page-load", reveal);
       })();
     </script>
   </body>
