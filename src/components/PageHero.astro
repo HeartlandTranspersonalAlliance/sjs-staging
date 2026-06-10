@@ -13,20 +13,27 @@ interface Props {
 }
 
 const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
-const placeholderByArt = {
+type Art = NonNullable<Props["art"]>;
+const placeholderByArt: Record<Art, string> = {
   sanctuary: "/assets/placeholders/sanctuary-support.jpg",
   training: "/assets/placeholders/sanctuary-support.jpg",
   resources: "/assets/placeholders/sanctuary-resources.jpg",
   support: "/assets/placeholders/sanctuary-support.jpg",
-  contact: "/assets/placeholders/sanctuary-contact.jpg",
-  events: "/assets/placeholders/sanctuary-events.jpg",
-  organizers: "/assets/placeholders/sanctuary-organizers.jpg",
+  contact: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
+  events: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
+  organizers: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
   impact: "/assets/placeholders/sanctuary-impact.jpg",
-  news: "/assets/placeholders/sanctuary-contact.jpg"
+  news: "/assets/events/getter-safe-journey-sanctum-2025.jpg"
+};
+const placeholderAltByArt: Partial<Record<Art, string>> = {
+  contact: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
+  events: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
+  organizers: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
+  news: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025"
 };
 const placeholderImage = art ? placeholderByArt[art] : undefined;
 const heroImage = image ? assetPath(image) : placeholderImage ? assetPath(placeholderImage) : undefined;
-const resolvedImageAlt = image ? imageAlt : "";
+const resolvedImageAlt = image ? imageAlt : art ? placeholderAltByArt[art] ?? "" : "";
 const hasVisual = Boolean(heroImage || art);
 const artIcon = {
   sanctuary: "home",

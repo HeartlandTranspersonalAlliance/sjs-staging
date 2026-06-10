@@ -93,12 +93,21 @@ const pageTransition = {
           ".surface"
         ];
 
+        const isInViewport = (target) => {
+          const rect = target.getBoundingClientRect();
+          return rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+        };
+
         const prepare = () => {
           if (reduceMotion.matches) return;
-          document.querySelectorAll(selectors.join(",")).forEach((el) => {
-            if (!el.hasAttribute("data-reveal")) {
-              el.setAttribute("data-reveal", "");
+          document.querySelectorAll(selectors.join(",")).forEach((el, index) => {
+            el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 100}ms`);
+            if (isInViewport(el)) {
+              el.setAttribute("data-revealed", "");
+            } else {
+              el.removeAttribute("data-revealed");
             }
+            el.setAttribute("data-reveal", "");
           });
         };
 
@@ -122,8 +131,7 @@ const pageTransition = {
             },
             { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
           );
-          targets.forEach((target, index) => {
-            target.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 100}ms`);
+          targets.forEach((target) => {
             observer.observe(target);
           });
         };

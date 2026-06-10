@@ -9,6 +9,7 @@ let
       pkgs.gawk
       pkgs.gnugrep
       pkgs.gnused
+      pkgs.lsof
       pkgs.nginx
       pkgs.nodejs_24
     ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
@@ -19,7 +20,7 @@ let
       export LAN_PREVIEW_COMMAND="sjs-lan-preview"
       export LAN_PREVIEW_ENV_PREFIX="SJS"
       export LAN_PREVIEW_DEFAULT_PORT="8082"
-      export LAN_PREVIEW_BASE_PATH="''${LAN_PREVIEW_BASE_PATH:-/sjs-staging}"
+      export LAN_PREVIEW_BASE_PATH="''${LAN_PREVIEW_BASE_PATH:-}"
     '' + builtins.readFile ./nix/lan-preview.sh;
   };
 in
@@ -28,6 +29,7 @@ in
 
   packages = [
     pkgs.nginx
+    pkgs.lsof
     pkgs.nodejs_24
     sjsLanPreview
   ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
@@ -45,7 +47,7 @@ in
   processes.preview.exec = "sjs-lan-preview";
 
   enterShell = ''
-    preview_port="''${LAN_PREVIEW_PORT:-''${SJS_PORT:-8082}}"
+    preview_port="''${SJS_PORT:-8082}"
     preview_auto="''${LAN_PREVIEW_AUTO:-''${SJS_AUTO_PREVIEW:-1}}"
     preview_build="''${LAN_PREVIEW_AUTO_BUILD:-''${SJS_AUTO_BUILD:-0}}"
     preview_root="''${LAN_PREVIEW_SITE_ROOT:-''${SJS_SITE_ROOT:-$PWD}}"
@@ -80,7 +82,7 @@ in
       echo "Safe Journey Sanctum LAN preview"
       echo "  Auto-start disabled by SJS_AUTO_PREVIEW=0 or LAN_PREVIEW_AUTO=0"
       echo "  Start:  sjs-lan-preview --daemon"
-      echo "  Local:  http://127.0.0.1:$preview_port/sjs-staging/"
+      echo "  Local:  http://127.0.0.1:$preview_port/"
     fi
   '';
 }
