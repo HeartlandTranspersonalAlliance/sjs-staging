@@ -1,83 +1,261 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Button from "../components/ui/Button.astro";
+import { site } from "../data/site";
 
-const faqs = [
+const faqGroups = [
   {
-    question: "What is Safe Journey Sanctum?",
-    answer:
-      "Safe Journey Sanctum provides trauma-informed, consent-based peer support to people experiencing intense emotional or psychedelic episodes at music festivals, concerts, and community events."
+    title: "Getting Support",
+    faqs: [
+      {
+        question: "What is Safe Journey Sanctum?",
+        answer:
+          "Safe Journey Sanctum provides calm, consent-based peer support for people who feel overwhelmed, distressed, overstimulated, emotionally activated, or disoriented at festivals, concerts, and community events."
+      },
+      {
+        question: "What is peer support?",
+        answer:
+          "Peer support means a grounded, nonjudgmental person can sit with you, listen, reduce stimulation, help you reconnect with trusted friends, or walk with you to another support resource when needed."
+      },
+      {
+        question: "Do I have to be on psychedelics or other substances to ask for support?",
+        answer:
+          "No. SJS is for anyone who needs a quieter place, steady presence, grounding, or help getting oriented. Substance use is not required, assumed, or judged."
+      },
+      {
+        question: "What might support look like at an event?",
+        answer:
+          "Support may include active listening, reassurance, grounding, a lower-stimulation space when available, harm-reduction education, hydration reminders, or a warm handoff to medical, security, friends, or other event support."
+      }
+    ]
   },
   {
-    question: "What services does SJS offer at events?",
-    answer:
-      "SJS offers peer support, sanctuary space, educational resources, Narcan availability, and coordination with medical, security, and production teams."
+    title: "Scope and Safety",
+    faqs: [
+      {
+        question: "What can SJS help with?",
+        answer:
+          "SJS can help with difficult nonordinary experiences, anxiety, panic, emotional distress, overstimulation, grounding, and finding the right next support step. Volunteers focus on calm presence, choice, and practical safety."
+      },
+      {
+        question: "What can SJS not provide?",
+        answer:
+          "SJS does not provide medical diagnosis or treatment, psychotherapy, medical clearance, substance sourcing, dosing advice, substance facilitation, security enforcement, or law-enforcement functions."
+      },
+      {
+        question: "When will SJS involve medical support?",
+        answer:
+          "SJS involves medical support immediately for concerns such as unconsciousness, abnormal breathing, suspected overdose, chest pain, seizure, serious injury, heat illness, severe vomiting, pregnancy-related concerns, suicidality, or any situation where medical risk is unclear."
+      },
+      {
+        question: "What happens if someone may be overdosing?",
+        answer:
+          "If opioid overdose is suspected, SJS calls medical or emergency response immediately and follows the event plan. Naloxone may be used by trained and authorized people when available, and the person should receive medical evaluation afterward."
+      },
+      {
+        question: "Does SJS work with event medical, security, and operations teams?",
+        answer:
+          "Yes. SJS is designed to integrate with event medical, security, ranger, venue, and operations teams so guests can receive the right help quickly and with less confusion."
+      }
+    ]
   },
   {
-    question: "Are there training or education opportunities?",
-    answer:
-      "Yes. SJS hosts volunteer onboarding and community education that can include Narcan, CPR, de-escalation, consent-first communication, and event-specific peer-support protocols."
+    title: "Consent, Privacy, and Boundaries",
+    faqs: [
+      {
+        question: "Will volunteers touch me?",
+        answer:
+          "The default is no touch. If touch might help, volunteers should ask clearly first, offer no-touch options, and keep any consented touch minimal, nonsexual, visible, and easy to stop."
+      },
+      {
+        question: "Can I say no to support?",
+        answer:
+          "Yes. SJS is consent-centered and aims to preserve autonomy whenever safe. Volunteers may still involve medical or safety support if there is immediate risk to you or others."
+      },
+      {
+        question: "Is what I share confidential?",
+        answer:
+          "SJS protects privacy where possible and avoids gossip, unnecessary details, photos, or recordings of people receiving support. Confidentiality may be limited by immediate safety concerns, legal obligations, mandatory reporting duties, event medical or security needs, or serious community risk."
+      },
+      {
+        question: "Can a friend stay with me?",
+        answer:
+          "Usually, if you want them there and they are calm, supportive, and safe. SJS may involve a shift lead, medical, or security if a friend appears intoxicated, coercive, unsafe, or connected to the distress."
+      }
+    ]
   },
   {
-    question: "How does SJS manage liability at events?",
-    answer:
-      "SJS works alongside on-site medical and security teams, uses trained volunteers, follows operational boundaries, and escalates promptly when a guest needs professional support."
+    title: "Integration and Aftercare",
+    faqs: [
+      {
+        question: "What is psychedelic integration?",
+        answer:
+          "Psychedelic integration is the process of making sense of a psychedelic or other nonordinary experience and bringing useful lessons into everyday life in a grounded way."
+      },
+      {
+        question: "What can integration look like?",
+        answer:
+          "Integration can include rest, journaling, art, time in nature, gentle movement, talking with a trusted person, joining an integration circle, or working with a therapist or integration-informed clinician."
+      },
+      {
+        question: "What is the goal of integration?",
+        answer:
+          "The goal is not to force meaning, make major decisions right away, or treat every insight as automatically true. It is to slow down and ask what is helpful, safe, and sustainable in real life."
+      },
+      {
+        question: "Where can I find ongoing integration support?",
+        answer:
+          "Kansas City readers can look for the Kansas City Integration Circle. St. Louis readers can contact the Psychedelic Society of St. Louis. The Global Psychedelic Society also maintains a worldwide directory of psychedelic societies and community resources."
+      }
+    ]
   },
   {
-    question: "Can anyone volunteer with SJS?",
-    answer:
-      "People who align with the mission are welcome to apply. Volunteers complete training and are expected to practice consent, confidentiality, grounded communication, and clear boundaries."
+    title: "Event Organizers",
+    faqs: [
+      {
+        question: "Can SJS support my event?",
+        answer:
+          "SJS may be able to support events that want a calm sanctuary space, peer support, harm-reduction education, overdose awareness, and clear coordination with existing safety teams."
+      },
+      {
+        question: "What does SJS need from an event?",
+        answer:
+          "Useful planning details include the event date, location, expected attendance, event type, hours of operation, existing medical and security contacts, venue layout, known risks, and the support being requested."
+      },
+      {
+        question: "What kind of space works best?",
+        answer:
+          "A useful SJS space is lower-stimulation, visible enough to find, private without being isolated, close to water and bathrooms when possible, and accessible to medical responders if escalation is needed."
+      },
+      {
+        question: "How does SJS reduce role confusion at events?",
+        answer:
+          "Before a deployment, SJS works best with a written event-specific plan that clarifies contacts, radio or phone channels, escalation pathways, handoff expectations, and the boundary between peer support, medical care, security, and operations."
+      }
+    ]
   },
   {
-    question: "How can my event partner with SJS?",
-    answer:
-      "Event organizers can use the contact or partnership form with the event date, location, expected attendance, existing medical/security plan, and the kind of support requested."
-  },
-  {
-    question: "What is a nonordinary state of consciousness?",
-    answer:
-      "A nonordinary state can include intense emotional, spiritual, dissociative, psychedelic, grief, panic, or overwhelm experiences. SJS focuses on support and safety rather than interpretation."
-  },
-  {
-    question: "What does harm reduction mean here?",
-    answer:
-      "Harm reduction means offering education, practical tools, and compassionate support to reduce avoidable harm without judgment or encouragement of substance use."
-  },
-  {
-    question: "How can I prepare for a festival or event experience?",
-    answer:
-      "Plan transport, hydration, food, rest, buddy check-ins, and where to find medical or harm-reduction services. Avoid mixing substances, start low if you choose to use, and seek help early if something feels wrong."
+    title: "Volunteering and Training",
+    faqs: [
+      {
+        question: "Can anyone volunteer with SJS?",
+        answer:
+          "People who align with the mission are welcome to apply. Volunteers complete onboarding and are expected to practice consent, confidentiality, grounded communication, clear boundaries, and scope-aware support."
+      },
+      {
+        question: "Do volunteers need to be therapists or medical professionals?",
+        answer:
+          "No. Those backgrounds can be helpful, but SJS peer support is not therapy or medical care. The core requirements are steadiness, humility, nonjudgmental presence, willingness to follow protocol, and knowing when to call for help."
+      },
+      {
+        question: "What does SJS training emphasize?",
+        answer:
+          "Training emphasizes role and scope, consent and touch boundaries, non-touch grounding, medical red flags, overdose response, warm handoffs, survivor-sensitive response, confidentiality limits, conflict-of-interest awareness, and incident documentation."
+      },
+      {
+        question: "What is expected of volunteers during a shift?",
+        answer:
+          "Volunteers are expected to be sober and fit for duty, know the escalation pathways, respect the code of conduct, know who the shift lead is, and ask for backup when a situation may exceed their role."
+      }
+    ]
   }
 ];
 ---
 
-<BaseLayout title="FAQ" description="Frequently asked questions about SJS services, training, volunteering, and event partnerships.">
+<BaseLayout title="FAQ" description="Frequently asked questions about SJS peer support, safety boundaries, integration, volunteering, and event partnerships.">
   <PageHero
     eyebrow="FAQ"
-    title="Questions organizers, volunteers, and guests ask first."
-    text="Clear expectations make the sanctuary safer for everyone. These answers summarize what SJS does, what it does not do, and how to connect."
+    title="Clear answers before support is needed."
+    text="These answers explain what SJS offers, where our boundaries are, and how guests, organizers, and volunteers can connect with support safely."
     art="resources"
   />
 
-  <section class="section">
-    <div class="container faq-list">
+  <section class="section faq-intro" aria-labelledby="faq-note-title">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Start here</p>
+        <h2 id="faq-note-title">SJS is support, not emergency care.</h2>
+      </div>
+      <p>
+        If there is immediate danger or a medical emergency, contact on-site medical/security personnel or call 911 first. SJS can help with grounding and warm handoffs, but emergency care comes first when safety is at risk.
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container faq-shell">
       {
-        faqs.map((item) => (
-          <details>
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
-          </details>
+        faqGroups.map((group) => (
+          <section class="faq-group" aria-labelledby={group.title.toLowerCase().replaceAll(" ", "-")}>
+            <h2 id={group.title.toLowerCase().replaceAll(" ", "-")}>{group.title}</h2>
+            <div class="faq-list">
+              {
+                group.faqs.map((item) => (
+                  <details>
+                    <summary>{item.question}</summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))
+              }
+            </div>
+          </section>
         ))
       }
+    </div>
+  </section>
+
+  <section class="section-tight faq-cta">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Next step</p>
+        <h2>Bring SJS a question, event request, or volunteer interest.</h2>
+      </div>
+      <div class="cta-actions">
+        <Button href={site.forms.partnership} variant="amber">Partner With SJS</Button>
+        <Button href={site.forms.volunteer} variant="ghost">Volunteer</Button>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .faq-intro,
+  .faq-cta {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  .faq-intro h2,
+  .faq-cta h2 {
+    margin: 0;
+  }
+
+  .faq-intro p,
+  .faq-cta p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .faq-section {
+    padding-top: 72px;
+  }
+
+  .faq-shell {
+    display: grid;
+    gap: 48px;
+    max-width: 960px;
+  }
+
+  .faq-group h2 {
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    margin: 0 0 18px;
+  }
+
   .faq-list {
     display: grid;
     gap: 12px;
-    max-width: 900px;
   }
 
   details {
@@ -121,5 +299,27 @@ const faqs = [
     border-top: 1px solid var(--line);
     color: var(--muted);
     padding: 18px 24px 22px;
+  }
+
+  .cta-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 760px) {
+    .faq-section {
+      padding-top: 56px;
+    }
+
+    .faq-shell {
+      gap: 36px;
+    }
+
+    .cta-actions {
+      justify-content: flex-start;
+    }
   }
 </style>
