@@ -107,13 +107,19 @@ const audienceNotes = [
     text: "Compare what different support models cover before choosing the event care partner that best reduces gaps and role confusion."
   }
 ];
+
+const holisticPillars = [
+  "Peer support and calm sanctuary space for people navigating difficult or intense experiences",
+  "Harm-reduction education, testing strips, earplugs, naloxone pathways, and other practical supplies when stocked",
+  "On-site reagent testing services when approved, plus pre-event coordination and post-event debriefs"
+];
 ---
 
 <BaseLayout title="Why SJS" description="Compare SJS with peer-support-only services and supply-only harm-reduction models.">
   <PageHero
     eyebrow="Why SJS"
-    title="One of the most comprehensive options in harm reduction today."
-    text="Whether you are an attendee, volunteer, or organizer, this comparison shows how SJS brings peer support, harm-reduction education, no-cost practical supplies, on-site reagent testing when approved, and event safety coordination into one model."
+    title="A holistic approach to live-event harm reduction."
+    text="Whether you are an attendee, volunteer, or organizer, this comparison shows how SJS brings peer support, harm-reduction education, no-cost practical supplies, on-site reagent testing when approved, and event safety coordination into one inclusive model."
     art="organizers"
   />
 
@@ -130,13 +136,30 @@ const audienceNotes = [
     </div>
   </section>
 
+  <section class="section-tight model-band">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Holistic harm reduction</p>
+        <h2>SJS is built for the full live-event care environment.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Event support is often treated as a choice between peer-support sanctuary services or harm-reduction supply providers. SJS takes a more expansive approach: we combine emotional support, practical education, supplies, testing services when approved, and clear coordination with the event safety system.
+        </p>
+        <ul class="pillar-list">
+          {holisticPillars.map((pillar) => <li>{pillar}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="section-tight comparison-band">
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">Side-by-side comparison</p>
-        <h2>SJS covers more of the event care stack.</h2>
+        <h2>One of the most comprehensive options in harm reduction today.</h2>
         <p>
-          Traditional peer-support teams and supply-only harm-reduction providers each solve part of the safety puzzle. SJS is designed to combine sanctuary support, harm-reduction education, no-cost supplies, testing services when approved, and event coordination in one deployment.
+          Traditional peer-support teams and supply-only harm-reduction providers each solve part of the safety puzzle. SJS is designed to close the gap between those models by offering a holistic, live-event harm-reduction service in one deployment.
         </p>
       </div>
 
@@ -218,12 +241,34 @@ const audienceNotes = [
     color: var(--muted);
   }
 
+  .model-band,
   .comparison-band,
   .why-cta {
     background: var(--linen);
     border-bottom: 1px solid var(--line);
     border-top: 1px solid var(--line);
     overflow-x: hidden;
+  }
+
+  .model-band {
+    background: var(--surface);
+  }
+
+  .pillar-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+  }
+
+  .pillar-list li {
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    font-weight: 760;
+    padding: 14px 0;
+  }
+
+  .pillar-list li:last-child {
+    border-bottom: 1px solid var(--line);
   }
 
   .comparison-band .section-heading {
