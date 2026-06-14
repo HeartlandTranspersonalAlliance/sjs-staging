@@ -11,25 +11,65 @@ const setupNeeds = [
   "Production contact, radio/channel plan, and escalation protocol",
   "Privacy-aware guest flow that does not isolate volunteers"
 ];
+
+const planningInputs = [
+  "Event date, venue, expected attendance, age policy, and event type",
+  "Existing medical, security, ranger, production, and venue contacts",
+  "SJS operating hours, location, nearby water/bathrooms, and emergency access",
+  "Known heat, weather, crowd, substance, accessibility, or venue-specific risks",
+  "Preferred radio, phone, or runner process for sensitive handoffs"
+];
+
+const boundaries = [
+  "SJS offers peer support, grounding, active listening, and warm handoffs.",
+  "SJS does not provide medical diagnosis, medical treatment, psychotherapy, dosing advice, substance facilitation, security enforcement, or law-enforcement functions.",
+  "If a guest may be medically unsafe, event medical or emergency response should be contacted first."
+];
+
 ---
 
 <BaseLayout title="For Event Organizers" description="SJS services, staffing model, setup needs, coordination, and partnership inquiry information for event organizers.">
   <PageHero
     eyebrow="For event organizers"
-    title="Add a grounded peer-support layer to your event care plan."
-    text="SJS partners with organizers to design sanctuary spaces, staff peer support, coordinate with medical/security teams, and offer practical harm-reduction education."
+    title="Add a grounded peer-support layer to your event safety plan."
+    text="SJS helps organizers create calm sanctuary spaces, staff consent-first peer support, and coordinate clearly with medical, security, ranger, venue, and operations teams."
     art="organizers"
   />
 
   <section class="section">
+    <div class="container organizer-intro">
+      <div class="prose">
+        <p class="eyebrow">Why organizers bring in SJS</p>
+        <h2>Role clarity prevents unsafe handoffs.</h2>
+        <p>
+          SJS works best when it is part of the event care system before doors open. A simple integration plan helps avoid delayed escalation, duplicated response, unclear communication, and confusion about what peer support can and cannot do.
+        </p>
+      </div>
+      <a class="button button-primary" href={site.forms.partnership}>Partnership Inquiry</a>
+    </div>
+  </section>
+
+  <section class="section-tight organizer-band">
     <div class="container two-grid">
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="home" /></span>
-        <h2>Services offered</h2>
+        <h2>What SJS can provide</h2>
         <ul>
           {eventServices.map((service) => <li>{service}</li>)}
         </ul>
       </div>
+      <div class="surface service-card">
+        <span class="card-icon" aria-hidden="true"><Icon name="shield" /></span>
+        <h2>Scope boundaries</h2>
+        <ul>
+          {boundaries.map((boundary) => <li>{boundary}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-grid">
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="clipboard" /></span>
         <h2>Setup needs</h2>
@@ -37,18 +77,40 @@ const setupNeeds = [
           {setupNeeds.map((need) => <li>{need}</li>)}
         </ul>
       </div>
+      <div class="surface service-card">
+        <span class="card-icon" aria-hidden="true"><Icon name="map" /></span>
+        <h2>Planning inputs</h2>
+        <ul>
+          {planningInputs.map((input) => <li>{input}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight battle-card">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Competitive positioning</p>
+        <h2>See why SJS is one of the most comprehensive options in harm reduction today.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          The full comparison is useful for attendees, volunteers, and organizers because it shows how SJS combines sanctuary peer support, harm-reduction education, no-cost practical supplies, reagent testing when approved, and event coordination.
+        </p>
+        <a class="button button-primary" href="/why-sjs/">Compare SJS</a>
+      </div>
     </div>
   </section>
 
   <section class="section-tight band">
     <div class="container split-grid">
       <div>
-        <p class="eyebrow">Staffing model</p>
-        <h2>Peer support works best when the whole care system is aligned.</h2>
+        <p class="eyebrow">Integration model</p>
+        <h2>Peer support complements the event care system.</h2>
       </div>
       <div class="prose">
         <p>
-          SJS scopes each deployment around event size, hours, risk profile, available space, and existing medical/security staffing. Volunteers complement professional responders; they do not replace them.
+          SJS scopes each deployment around event size, hours, risk profile, available space, and existing medical/security staffing. Volunteers complement professional responders; they do not replace them. When there is injury, abnormal breathing, overdose concern, heat illness, severe agitation, violence, suicidality, or uncertainty about medical risk, SJS escalates rather than trying to hold the situation internally.
         </p>
         <a class="button button-primary" href={site.forms.partnership}>Partnership Inquiry</a>
       </div>
@@ -62,7 +124,40 @@ const setupNeeds = [
     margin: 0 0 12px;
   }
 
+  .organizer-intro {
+    align-items: center;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .organizer-intro .button {
+    justify-self: end;
+  }
+
+  .organizer-band {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  .battle-card {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
   .service-card li + li {
     margin-top: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .organizer-intro {
+      grid-template-columns: 1fr;
+    }
+
+    .organizer-intro .button {
+      justify-self: start;
+    }
   }
 </style>

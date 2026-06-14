@@ -11,13 +11,41 @@ const supportLines = [
   "For peer support during or after a psychedelic experience, consider Fireside Project resources where available.",
   "Learn local Narcan access options and carry naloxone when possible."
 ];
+
+const preparationTips = [
+  "Know where medical, security, hydration, bathrooms, exits, and quieter spaces are located.",
+  "Plan transportation, rest, food, water, medications, and buddy check-ins before the event.",
+  "Ask for help early if you feel overwhelmed, disoriented, overheated, unsafe, or unable to settle."
+];
+
+const medicalRedFlags = [
+  "Unconsciousness, inability to wake, or abnormal/slow breathing",
+  "Blue or gray lips, choking, gurgling, or suspected opioid overdose",
+  "Chest pain, seizure, serious injury, head strike, or severe vomiting",
+  "Heat illness concern, collapse, severe agitation, suicidality, or credible threat"
+];
+
+const integrationLinks = [
+  {
+    label: "Kansas City Integration Circle",
+    href: "https://kc-psychedelic.com"
+  },
+  {
+    label: "Psychedelic Society of St. Louis",
+    href: "https://psychedelicstl.org/"
+  },
+  {
+    label: "Global Psychedelic Society directory",
+    href: "https://globalpsychedelic.org/"
+  }
+];
 ---
 
 <BaseLayout title="Resources" description="Practical harm-reduction resources for preparation, difficult experiences, integration, crisis support, and consent.">
   <PageHero
     eyebrow="Resources"
     title="Practical education for preparation, support, and integration."
-    text="These resources are designed for guests, friends, volunteers, and organizers who want grounded harm-reduction basics without judgment or hype."
+    text="These resources are designed for guests, friends, volunteers, and organizers who want clear peer-support basics without judgment, hype, or unsafe promises."
     art="resources"
   />
 
@@ -53,33 +81,75 @@ const supportLines = [
     </div>
   </section>
 
-  <section class="section" id="integration">
+  <section class="section" id="preparation-details">
+    <div class="container two-grid">
+      <div class="prose">
+        <p class="eyebrow">Preparation</p>
+        <h2>A little planning makes support easier to find.</h2>
+        <ul>
+          {preparationTips.map((tip) => <li>{tip}</li>)}
+        </ul>
+      </div>
+      <Card icon="heart" class="service-card">
+        <h3>Peer support is not punishment</h3>
+        <p>
+          SJS is not there to judge, shame, or get people in trouble. The goal is to help people feel safer, more oriented, and more supported while connecting them to the right help when needed.
+        </p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section-tight consent-strip" id="consent">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Consent and privacy</p>
+        <h2>Support should protect agency.</h2>
+      </div>
+      <p>
+        Ask before touching, moving belongings, changing music or lighting, inviting another person into the interaction, or sharing details afterward. SJS protects privacy where possible, but safety concerns, legal obligations, mandatory reporting, or medical/security needs can limit confidentiality.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="support-lines">
     <div class="container two-grid">
       <div class="prose break-avoid">
-        <p class="eyebrow">Integration</p>
-        <h2>Afterward, basic care matters.</h2>
-        <p>
-          Sleep, food, hydration, journaling, gentle movement, and a grounded conversation with someone trustworthy can help a person make sense of intense experiences over time.
-        </p>
-      </div>
-      <div class="prose break-avoid" id="support-lines">
         <p class="eyebrow">Crisis and overdose support</p>
+        <h2>When in doubt, bring in medical support.</h2>
+        <p>
+          SJS peer support should not hold a possibly medical situation internally. If someone may be medically unsafe, contact on-site medical/security personnel or emergency services first.
+        </p>
         <ul>
           {supportLines.map((line) => <li>{line}</li>)}
         </ul>
       </div>
+      <Card icon="cross" class="service-card break-avoid">
+        <h3>Immediate red flags</h3>
+        <ul>
+          {medicalRedFlags.map((flag) => <li>{flag}</li>)}
+        </ul>
+      </Card>
     </div>
   </section>
 
-  <section class="section-tight consent-strip">
-    <div class="container split-grid">
-      <div>
-        <p class="eyebrow">Consent resources</p>
-        <h2>Support should protect agency.</h2>
+  <section class="section-tight resource-band" id="integration">
+    <div class="container two-grid">
+      <div class="prose break-avoid">
+        <p class="eyebrow">Integration</p>
+        <h2>Afterward, slow down before making meaning.</h2>
+        <p>
+          Psychedelic integration is the process of making sense of a psychedelic or other nonordinary experience and bringing useful lessons into everyday life in a grounded way. The goal is not to force a meaning, make big decisions right away, or treat every insight as automatically true.
+        </p>
       </div>
-      <p>
-        Ask before touching, moving belongings, changing music or lighting, inviting another person into the interaction, or sharing details afterward. Consent is a practice, not a one-time phrase.
-      </p>
+      <div class="prose break-avoid">
+        <p class="eyebrow">Ongoing support</p>
+        <p>
+          Integration can include rest, journaling, art, time in nature, gentle movement, trusted conversation, integration circles, or therapy with an integration-informed clinician.
+        </p>
+        <div class="resource-links">
+          {integrationLinks.map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -105,14 +175,35 @@ const supportLines = [
     border-top: 1px solid var(--line);
   }
 
+  .prose ul,
   #support-lines ul {
     color: var(--muted);
     line-height: 1.75;
     padding-left: 1.15rem;
   }
 
+  .prose li + li,
   #support-lines li + li {
     margin-top: 0.55rem;
+  }
+
+  .resource-links {
+    display: grid;
+    gap: 10px;
+  }
+
+  .resource-links a {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--link-strong);
+    font-weight: 850;
+    padding: 12px 14px;
+    text-decoration: none;
+  }
+
+  .resource-links a:hover {
+    border-color: var(--control-border-hover);
   }
 
   @media (max-width: 760px) {

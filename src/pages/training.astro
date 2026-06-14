@@ -9,12 +9,12 @@ const trainingFlow = [
   {
     icon: "clipboard",
     title: "Onboarding",
-    text: "Mission, boundaries, confidentiality, volunteer expectations, and how SJS works with event teams."
+    text: "Mission, role boundaries, confidentiality limits, volunteer expectations, and how SJS works with event teams."
   },
   {
     icon: "message",
     title: "Practice",
-    text: "Role plays for consent-first communication, de-escalation, grounding, documentation, and handoff."
+    text: "Role plays for consent-first communication, non-touch grounding, de-escalation, documentation, and warm handoff."
   },
   {
     icon: "map",
@@ -24,13 +24,13 @@ const trainingFlow = [
 ];
 ---
 
-<BaseLayout title="Training" description="SJS volunteer onboarding, Narcan/CPR education, de-escalation, consent-first support, and peer-support boundaries.">
+<BaseLayout title="Training" description="SJS volunteer onboarding, consent-first support, de-escalation, peer-support boundaries, and escalation readiness.">
   <PageHero
     eyebrow="Training"
     title="Training turns good intentions into reliable support."
     text="SJS prepares volunteers to offer compassionate presence while respecting consent, boundaries, and the limits of peer support."
     image="/assets/blog/dale-patrick.jpg"
-    imageAlt="SJS outreach moment with Narcan education"
+    imageAlt="SJS outreach moment with harm-reduction education"
     imagePosition="center 35%"
   />
 
@@ -57,7 +57,7 @@ const trainingFlow = [
       </div>
       <div class="button-row">
         <a class="button button-primary" href={site.forms.volunteer}>Apply to Volunteer</a>
-        <a class="button button-ghost" href={withBase("/events/")}>View Events</a>
+        <a class="button button-ghost" href={withBase("/volunteer/")}>Volunteer Details</a>
       </div>
     </div>
   </section>

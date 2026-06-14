@@ -6,7 +6,6 @@ import Button from "../components/ui/Button.astro";
 import Card from "../components/ui/Card.astro";
 import {
   carePrinciples,
-  primaryCtas,
   resources,
   site
 } from "../data/site";
@@ -18,30 +17,28 @@ const posts = (await getCollection("news"))
   .slice(0, 3);
 
 const usesPostPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
-const donateCta = primaryCtas.find((cta) => cta.label === "Donate");
-const secondaryHeroCtas = primaryCtas.filter((cta) => cta.label !== "Donate");
 
 const actionPaths = [
   {
     icon: "map",
-    title: "Need Event Support",
-    text: "Bring a sanctuary team, harm-reduction education, and a medical/security coordination plan to your event.",
+    title: "Planning an Event",
+    text: "Bring a calm peer-support layer, harm-reduction education, and clear medical/security coordination to your care plan.",
     href: "/organizers/",
-    label: "Plan Event Support"
-  },
-  {
-    icon: "clipboard",
-    title: "Train With Us",
-    text: "Prepare for grounded peer support through consent-first communication, de-escalation, Narcan response, and clear boundaries.",
-    href: "/training/",
-    label: "View Training"
+    label: "For Organizers"
   },
   {
     icon: "users",
-    title: "Join the Volunteer Community",
-    text: "Help staff sanctuary spaces, support outreach, move supplies, and build a practical culture of care at Midwest gatherings.",
-    href: site.forms.volunteer,
-    label: "Apply to Volunteer"
+    title: "Interested in Volunteering",
+    text: "Learn the role, training expectations, boundaries, and application path for joining SJS.",
+    href: "/volunteer/",
+    label: "Volunteer With SJS"
+  },
+  {
+    icon: "book",
+    title: "Need Support or Resources",
+    text: "Understand peer support, preparation, difficult experiences, consent, crisis boundaries, and integration.",
+    href: "/resources/",
+    label: "Read Resources"
   }
 ];
 
@@ -58,7 +55,7 @@ const heroFacts = [
   },
   {
     icon: "cross",
-    title: "Narcan education",
+    title: "Overdose awareness",
     text: "Overdose response readiness."
   },
   {
@@ -78,13 +75,12 @@ const heroFacts = [
         <p class="eyebrow">Midwest peer support and harm reduction</p>
         <h1 id="home-title">Compassionate peer support for nonordinary states at Midwest events.</h1>
         <p>
-          Safe Journey Sanctum creates grounded, consent-first spaces where trained volunteers offer calm presence, practical care, and clear connection to on-site medical or security teams when needed.
+          Safe Journey Sanctum helps event organizers add grounded, consent-first peer support to their safety plan, with trained volunteers, low-stimulation spaces, and clear handoffs to on-site medical or security teams when needed.
         </p>
         <div class="button-row hero-buttons" aria-label="Primary actions">
-          {donateCta && <Button variant="amber" href={donateCta.href}>Donate</Button>}
-          {secondaryHeroCtas.map((cta) => <Button variant="ghost" href={cta.href}>{cta.label}</Button>)}
-          <Button variant="ghost" href="/events/">View Events</Button>
-          <Button variant="ghost" href="/resources/">Read Resources</Button>
+          <Button variant="amber" href={site.forms.partnership}>Partner With SJS</Button>
+          <Button variant="ghost" href="/organizers/">For Organizers</Button>
+          <Button variant="ghost" href="/volunteer/">Volunteer</Button>
         </div>
       </div>
 
@@ -128,7 +124,7 @@ const heroFacts = [
         <p class="eyebrow">Model of care</p>
         <h2>Calm space, consent, and clear escalation.</h2>
         <p class="lede">
-          SJS volunteers are not therapists and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
+          SJS volunteers are not therapists or medical providers and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
         </p>
         <div class="button-row">
           <Button variant="ghost" href="/model/">Explore the Model</Button>
@@ -156,7 +152,7 @@ const heroFacts = [
       </div>
       <div>
         <p>
-          Contributions help fund soft flooring, blankets, lighting, hydration supplies, Narcan education, volunteer training, signage, storage, transportation, and outreach materials.
+          Contributions help fund soft flooring, blankets, lighting, hydration supplies, overdose education, volunteer training, signage, storage, transportation, and outreach materials.
         </p>
         <div class="button-row">
           <Button variant="amber" href="/donate/">Support SJS</Button>
@@ -174,7 +170,7 @@ const heroFacts = [
       </div>
       <div class="card-grid">
         {
-          resources.slice(0, 3).map((resource) => (
+          resources.slice(0, 4).map((resource) => (
             <Card icon={resource.icon} class="resource-card">
               <h3>{resource.title}</h3>
               <p>{resource.text}</p>

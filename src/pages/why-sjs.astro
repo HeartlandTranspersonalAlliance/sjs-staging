@@ -1,0 +1,347 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/ui/Button.astro";
+import { site } from "../data/site";
+
+type ComparisonKey = "peer" | "suppliers" | "sjs";
+type ComparisonRow = {
+  feature: string;
+  peer: boolean;
+  suppliers: boolean;
+  sjs: boolean;
+};
+
+const comparisonRows: ComparisonRow[] = [
+  {
+    feature: "Staffed sanctuary / decompression space",
+    peer: true,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "One-on-one peer support for difficult experiences",
+    peer: true,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Harm-reduction education",
+    peer: false,
+    suppliers: true,
+    sjs: true
+  },
+  {
+    feature: "Testing kits or testing strip access",
+    peer: false,
+    suppliers: true,
+    sjs: true
+  },
+  {
+    feature: "Testing strips at no cost when stocked",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Earplugs at no cost when stocked",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Naloxone / overdose education and supply pathway",
+    peer: false,
+    suppliers: true,
+    sjs: true
+  },
+  {
+    feature: "On-site reagent testing services when approved",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Warm handoffs to medical, security, or event staff",
+    peer: true,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Pre-event safety integration plan",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "Post-event debrief and improvement notes",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  },
+  {
+    feature: "One integrated partner for sanctuary, supplies, education, and testing",
+    peer: false,
+    suppliers: false,
+    sjs: true
+  }
+];
+
+const comparisonColumns: { key: ComparisonKey; label: string }[] = [
+  { key: "peer", label: "Peer support services" },
+  { key: "suppliers", label: "RaveSafe / supply-only harm reduction" },
+  { key: "sjs", label: "SJS integrated model" }
+];
+
+const audienceNotes = [
+  {
+    title: "For attendees",
+    text: "Know where to find calm support, practical harm-reduction education, supplies, and warm handoffs when an experience becomes difficult."
+  },
+  {
+    title: "For volunteers",
+    text: "Understand how SJS combines sanctuary skills with scope-aware escalation, education, supplies, and coordinated event operations."
+  },
+  {
+    title: "For organizers",
+    text: "Compare what different support models cover before choosing the event care partner that best reduces gaps and role confusion."
+  }
+];
+---
+
+<BaseLayout title="Why SJS" description="Compare SJS with peer-support-only services and supply-only harm-reduction models.">
+  <PageHero
+    eyebrow="Why SJS"
+    title="One of the most comprehensive options in harm reduction today."
+    text="Whether you are an attendee, volunteer, or organizer, this comparison shows how SJS brings peer support, harm-reduction education, no-cost practical supplies, on-site reagent testing when approved, and event safety coordination into one model."
+    art="organizers"
+  />
+
+  <section class="section">
+    <div class="container card-grid audience-grid">
+      {
+        audienceNotes.map((note) => (
+          <article class="surface audience-card">
+            <h2>{note.title}</h2>
+            <p>{note.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section-tight comparison-band">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Side-by-side comparison</p>
+        <h2>SJS covers more of the event care stack.</h2>
+        <p>
+          Traditional peer-support teams and supply-only harm-reduction providers each solve part of the safety puzzle. SJS is designed to combine sanctuary support, harm-reduction education, no-cost supplies, testing services when approved, and event coordination in one deployment.
+        </p>
+      </div>
+
+      <div class="comparison-scroll" tabindex="0" aria-label="Side-by-side comparison of harm-reduction and peer-support models">
+        <table class="comparison-table">
+          <caption>
+            RaveSafe-style supply-only harm reduction may provide education, naloxone, and kit access, but does not provide peer support or on-site reagent testing services and charges for earplugs. SJS service details depend on event approval, inventory, and local rules.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              {comparisonColumns.map((column) => <th scope="col">{column.label}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              comparisonRows.map((row) => (
+                <tr>
+                  <th scope="row">{row.feature}</th>
+                  {
+                    comparisonColumns.map((column) => {
+                      const hasFeature = row[column.key];
+                      return (
+                        <td class:list={[hasFeature ? "has-feature" : "missing-feature", column.key === "sjs" && "sjs-column"]}>
+                          <span aria-hidden="true">{hasFeature ? "✓" : "×"}</span>
+                          <span class="sr-only">{hasFeature ? "Included" : "Not typically offered"}</span>
+                        </td>
+                      );
+                    })
+                  }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight why-cta">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Next step</p>
+        <h2>Bring SJS into your event care plan.</h2>
+      </div>
+      <div class="button-row">
+        <Button href={site.forms.partnership} variant="amber">Partner With SJS</Button>
+        <Button href="/organizers/" variant="ghost">For Organizers</Button>
+        <Button href="/volunteer/" variant="ghost">Volunteer</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sr-only {
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .audience-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .audience-card h2 {
+    font-size: 1.18rem;
+    margin: 0 0 10px;
+  }
+
+  .audience-card p,
+  .comparison-band .section-heading p:last-child {
+    color: var(--muted);
+  }
+
+  .comparison-band,
+  .why-cta {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    overflow-x: hidden;
+  }
+
+  .comparison-band .section-heading {
+    max-width: 820px;
+  }
+
+  .comparison-scroll {
+    border-radius: 8px;
+    box-shadow: 0 20px 52px var(--shadow);
+    contain: inline-size;
+    margin-top: 28px;
+    max-width: 100%;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .comparison-scroll:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+  }
+
+  .comparison-table {
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .comparison-table caption {
+    caption-side: bottom;
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding: 14px 16px 0;
+    text-align: left;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    border: 1px solid var(--line);
+    padding: 16px;
+    vertical-align: middle;
+  }
+
+  .comparison-table thead th {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Source Sans 3", Aptos, "Segoe UI", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .comparison-table thead th:first-child,
+  .comparison-table tbody th {
+    text-align: left;
+  }
+
+  .comparison-table tbody th {
+    color: var(--ink);
+    font-family: "Source Sans 3", Aptos, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    font-weight: 820;
+    line-height: 1.35;
+    width: 40%;
+  }
+
+  .comparison-table td {
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .comparison-table .has-feature {
+    color: var(--sage);
+  }
+
+  .comparison-table .missing-feature {
+    color: var(--rose);
+  }
+
+  .comparison-table .sjs-column {
+    background: color-mix(in srgb, var(--sage) 12%, transparent);
+  }
+
+  .comparison-table thead th:last-child {
+    background: color-mix(in srgb, var(--sage) 18%, var(--surface));
+    color: var(--band-heading);
+  }
+
+  @media (max-width: 900px) {
+    .audience-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 8px;
+    }
+
+    .comparison-table thead th {
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .comparison-table tbody th {
+      font-size: 0.88rem;
+      width: 46%;
+    }
+
+    .comparison-table td {
+      font-size: 1.35rem;
+    }
+  }
+</style>

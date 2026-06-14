@@ -14,13 +14,39 @@ const roles = [
   { icon: "gift", title: "Outreach and fundraising helpers" },
   { icon: "clipboard", title: "Training support volunteers" }
 ];
+
+const expectations = [
+  "Be sober and fit for duty during SJS shifts.",
+  "Know who the shift lead is and ask for backup early.",
+  "Use consent-first support and default to no touch.",
+  "Stay within peer-support scope and escalate medical or safety concerns promptly.",
+  "Protect privacy and document significant incidents factually after the situation is stable."
+];
+
+const trainingFlow = [
+  {
+    icon: "clipboard",
+    title: "Onboarding",
+    text: "Mission, role boundaries, confidentiality limits, volunteer expectations, and how SJS integrates with event care teams."
+  },
+  {
+    icon: "message",
+    title: "Practice",
+    text: "Scenario practice for consent-first communication, non-touch grounding, de-escalation, documentation, and warm handoffs."
+  },
+  {
+    icon: "map",
+    title: "Deployment",
+    text: "Event briefing, shift expectations, supplies, escalation pathways, breaks, and post-event debrief."
+  }
+];
 ---
 
 <BaseLayout title="Volunteer" description="Volunteer roles, expectations, training topics, and application information for SJS.">
   <PageHero
     eyebrow="Volunteer"
     title="Join the volunteer community that makes sanctuary possible."
-    text="You do not need to be a therapist or medical professional to get involved. Compassion, steadiness, and the willingness to listen are at the heart of SJS peer support."
+    text="You do not need to be a therapist or medical professional to get involved. SJS needs steady people who can listen, follow protocol, respect boundaries, and ask for help early."
     art="training"
   />
 
@@ -29,7 +55,7 @@ const roles = [
       <div class="prose">
         <h2>What volunteers do</h2>
         <p>
-          Volunteers staff comfortable, well-lit sanctuary spaces where guests can rest, talk, hydrate, draw, breathe, or sit quietly. SJS volunteers offer presence rather than advice and know when to involve medical personnel or security.
+          Volunteers staff comfortable, low-stimulation sanctuary spaces where guests can rest, talk, hydrate, draw, breathe, or sit quietly. SJS volunteers offer calm presence rather than advice and know when to involve medical personnel or security.
         </p>
         <p>
           Between events, volunteers help with outreach, fundraising, training facilitation, supply prep, documentation, and logistics.
@@ -52,10 +78,36 @@ const roles = [
 
   <section class="section-tight training-strip">
     <div class="container">
-      <p class="eyebrow">Training topics</p>
-      <h2>Prepared volunteers make the space safer.</h2>
+      <div class="section-heading">
+        <p class="eyebrow">Training expectations</p>
+        <h2>Prepared volunteers make the space safer.</h2>
+      </div>
+      <div class="card-grid training-flow-grid">
+        {
+          trainingFlow.map((step) => (
+            <article class="surface service-card">
+              <span class="card-icon" aria-hidden="true"><Icon name={step.icon} /></span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <h3 class="topic-heading">Core topics</h3>
       <ul class="topic-list">
         {trainingTopics.map((topic) => <li>{topic}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow">Shift expectations</p>
+        <h2>Good support is calm, bounded, and team-based.</h2>
+      </div>
+      <ul class="expectation-list">
+        {expectations.map((item) => <li>{item}</li>)}
       </ul>
     </div>
   </section>
@@ -63,15 +115,15 @@ const roles = [
   <section class="section-tight volunteer-cta">
     <div class="container split-grid">
       <div>
-        <p class="eyebrow">Keep learning</p>
-        <h2>See how volunteer training is structured.</h2>
+        <p class="eyebrow">Apply</p>
+        <h2>Start with the volunteer application.</h2>
       </div>
       <div class="prose">
         <p>
-          Training gives volunteers a shared baseline for consent-first support, practical escalation, and calm teamwork before stepping into an event environment.
+          The application helps SJS understand your experience, availability, training background, accommodations, and whether a leadership role may be appropriate.
         </p>
         <div class="button-row">
-          <Button variant="ghost" href="/training/">Learn about Training</Button>
+          <Button variant="primary" href={site.forms.volunteer}>Volunteer Application Form</Button>
           <Button variant="ghost" href="/faq/">Read FAQ</Button>
         </div>
       </div>
@@ -85,8 +137,25 @@ const roles = [
     border-top: 1px solid var(--line);
   }
 
-  .training-strip h2 {
-    margin: 8px 0 22px;
+  .training-flow-grid {
+    margin-bottom: 28px;
+  }
+
+  .training-flow-grid h3 {
+    font-size: 1.18rem;
+    margin: 0 0 8px;
+  }
+
+  .training-flow-grid p {
+    color: var(--muted);
+  }
+
+  .topic-heading {
+    font-family: "Source Sans 3", Aptos, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    margin: 0 0 14px;
+    text-transform: uppercase;
   }
 
   .topic-list {
@@ -154,6 +223,17 @@ const roles = [
   .roles-list span :global(svg) {
     height: 17px;
     width: 17px;
+  }
+
+  .expectation-list {
+    color: var(--muted);
+    line-height: 1.75;
+    margin: 0;
+    padding-left: 1.15rem;
+  }
+
+  .expectation-list li + li {
+    margin-top: 0.55rem;
   }
 
   @media (min-width: 640px) {

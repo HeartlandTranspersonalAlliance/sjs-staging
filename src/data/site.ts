@@ -29,17 +29,17 @@ export const site = {
 
 export const navItems = [
   { label: "About", href: "/about/" },
-  { label: "Model", href: "/model/" },
+  { label: "Why SJS", href: "/why-sjs/" },
+  { label: "For Organizers", href: "/organizers/" },
   { label: "Resources", href: "/resources/" },
-  { label: "Events", href: "/events/" },
   { label: "Volunteer", href: "/volunteer/" },
   { label: "News", href: "/news/" },
   { label: "Contact", href: "/contact/" }
 ];
 
 export const primaryCtas = [
-  { label: "Volunteer", href: site.forms.volunteer },
   { label: "Partner With SJS", href: site.forms.partnership },
+  { label: "Volunteer", href: site.forms.volunteer },
   { label: "Donate", href: "/donate/" }
 ];
 
@@ -62,7 +62,7 @@ export const carePrinciples = [
   {
     icon: "shield",
     title: "Evidence-based safety response",
-    text: "Training includes de-escalation, overdose awareness, Narcan administration, and clear escalation to medical or security teams."
+    text: "Training includes de-escalation, overdose awareness, Narcan response basics, and clear escalation to medical or security teams."
   }
 ];
 
@@ -100,25 +100,26 @@ export const supportOptions = [
 export const eventServices = [
   "Calm sanctuary space for guests in distress",
   "Peer support staffing and volunteer coordination",
-  "Narcan availability and overdose education",
+  "Overdose awareness and harm-reduction education",
   "Grounding materials, hydration reminders, and practical care",
   "Coordination pathways with medical, security, and production teams",
   "Post-event debriefs and improvement notes"
 ];
 
 export const trainingTopics = [
+  "Role, scope, and when to call for help",
   "Trauma-informed peer support",
   "Consent-first communication",
-  "De-escalation and grounding skills",
-  "Narcan administration and overdose response",
-  "CPR and emergency handoff basics",
-  "Volunteer boundaries and documentation"
+  "Non-touch grounding and de-escalation skills",
+  "Medical red flags and warm handoffs",
+  "Overdose awareness and event protocol",
+  "Volunteer boundaries, privacy, and documentation"
 ];
 
 export const resources = [
   {
     icon: "clipboard",
-    title: "Preparation Checklist",
+    title: "Before the Event",
     text: "Plan transport, hydration, food, buddy check-ins, rest, and where to find first aid or harm-reduction services before the event begins.",
     href: "/resources/#preparation"
   },
@@ -129,15 +130,21 @@ export const resources = [
     href: "/resources/#difficult-experiences"
   },
   {
-    icon: "book",
-    title: "Integration Afterward",
-    text: "Sleep, food, journaling, trusted conversation, and professional support can help people make sense of intense experiences over time.",
-    href: "/resources/#integration"
+    icon: "handshake",
+    title: "Consent and Privacy",
+    text: "Ask before touching, moving belongings, changing the environment, inviting others in, or sharing details after support.",
+    href: "/resources/#consent"
   },
   {
     icon: "cross",
     title: "Crisis and Overdose Support",
     text: "Know when to call emergency services. Carry Narcan when possible and learn the signs of opioid overdose.",
     href: "/resources/#support-lines"
+  },
+  {
+    icon: "book",
+    title: "Integration Afterward",
+    text: "Sleep, food, journaling, trusted conversation, and professional support can help people make sense of intense experiences over time.",
+    href: "/resources/#integration"
   }
 ];
