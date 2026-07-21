@@ -5,7 +5,7 @@ export const site = {
   url: "https://safejourneysanctum.org/",
   email: "info@safejourneysanctum.org",
   description:
-    "Compassionate, trauma-informed peer support for nonordinary states at Midwest events.",
+    "Comprehensive peer support and harm reduction for nonordinary states at Midwest events.",
   nonprofit:
     "Safe Journey Sanctum is a DBA of the Heartland Transpersonal Alliance, Inc., a registered 501(c)(3) nonprofit in the state of Missouri.",
   parentOrg: {
@@ -98,10 +98,10 @@ export const supportOptions = [
 ];
 
 export const eventServices = [
-  "Calm sanctuary space for guests in distress",
+  "Calm sanctuary space for nonordinary or overwhelming states",
   "Peer support staffing and volunteer coordination",
-  "Overdose awareness and harm-reduction education",
-  "Grounding materials, hydration reminders, and practical care",
+  "Harm-reduction education and practical supplies when stocked",
+  "Grounding materials, hydration reminders, and overdose awareness",
   "Coordination pathways with medical, security, and production teams",
   "Post-event debriefs and improvement notes"
 ];

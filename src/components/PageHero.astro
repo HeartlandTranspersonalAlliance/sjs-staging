@@ -14,26 +14,31 @@ interface Props {
 
 const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
 type Art = NonNullable<Props["art"]>;
-const placeholderByArt: Record<Art, string> = {
-  sanctuary: "/assets/placeholders/sanctuary-support.jpg",
-  training: "/assets/placeholders/sanctuary-support.jpg",
-  resources: "/assets/placeholders/sanctuary-resources.jpg",
-  support: "/assets/placeholders/sanctuary-support.jpg",
-  contact: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
-  events: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
-  organizers: "/assets/events/getter-safe-journey-sanctum-2025.jpg",
-  impact: "/assets/placeholders/sanctuary-impact.jpg",
-  news: "/assets/events/getter-safe-journey-sanctum-2025.jpg"
+const imageByArt: Record<Art, string> = {
+  sanctuary: "/assets/events/ck2026/inside-sanctuary-day.jpeg",
+  training: "/assets/events/ck2026/inside-sanctuary-handshake-night.jpeg",
+  resources: "/assets/events/ck2026/outside-fire-sanctuary-night.jpeg",
+  support: "/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg",
+  contact: "/assets/events/ck2026/team_portrait.jpeg",
+  events: "/assets/events/ck2026/wideshot-night-sanctuary.jpeg",
+  organizers: "/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg",
+  impact: "/assets/events/ck2026/inside-sanctuary-night.jpeg",
+  news: "/assets/events/ck2026/inside-sanctuary-night.jpeg"
 };
-const placeholderAltByArt: Partial<Record<Art, string>> = {
-  contact: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
-  events: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
-  organizers: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025",
-  news: "Safe Journey Sanctum volunteers standing behind a harm-reduction outreach table at Getter in 2025"
+const imageAltByArt: Record<Art, string> = {
+  sanctuary: "Guests resting inside the Safe Journey Sanctum tent during the day",
+  training: "Two people greeting each other inside the Safe Journey Sanctum tent",
+  resources: "A lit Safe Journey Sanctum tent with blankets and a fire outside at night",
+  support: "Safe Journey Sanctum volunteers welcoming guests at an outreach table",
+  contact: "Safe Journey Sanctum volunteers gathered together inside the sanctuary tent",
+  events: "A wide view of the Safe Journey Sanctum tent illuminated at night",
+  organizers: "Safe Journey Sanctum volunteers welcoming guests at an outreach table",
+  impact: "Blankets and a calm resting area inside the Safe Journey Sanctum tent at night",
+  news: "Blankets and a calm resting area inside the Safe Journey Sanctum tent at night"
 };
-const placeholderImage = art ? placeholderByArt[art] : undefined;
-const heroImage = image ? assetPath(image) : placeholderImage ? assetPath(placeholderImage) : undefined;
-const resolvedImageAlt = image ? imageAlt : art ? placeholderAltByArt[art] ?? "" : "";
+const artImage = art ? imageByArt[art] : undefined;
+const heroImage = image ? assetPath(image) : artImage ? assetPath(artImage) : undefined;
+const resolvedImageAlt = image ? imageAlt : art ? imageAltByArt[art] : "";
 const hasVisual = Boolean(heroImage || art);
 const artIcon = {
   sanctuary: "home",
@@ -128,8 +133,8 @@ const artIcon = {
   }
 
   .page-hero h1 {
-    font-size: clamp(2.45rem, 7vw, 4.4rem);
-    line-height: 1.04;
+    font-size: clamp(2.25rem, 5.6vw, 3.65rem);
+    line-height: 1.06;
     margin: 12px 0 18px;
     max-width: min(100%, 14em);
     text-wrap: balance;

@@ -22,21 +22,21 @@ const actionPaths = [
   {
     icon: "map",
     title: "Planning an Event",
-    text: "Bring a calm peer-support layer, harm-reduction education, and clear medical/security coordination to your care plan.",
+    text: "Add sanctuary peer support, practical harm reduction, and clear medical/security coordination to your care plan.",
     href: "/organizers/",
     label: "For Organizers"
   },
   {
     icon: "users",
     title: "Interested in Volunteering",
-    text: "Learn the role, training expectations, boundaries, and application path for joining SJS.",
+    text: "Learn the roles, training path, boundaries, and ways volunteers support sanctuary care and harm reduction.",
     href: "/volunteer/",
     label: "Volunteer With SJS"
   },
   {
     icon: "book",
     title: "Need Support or Resources",
-    text: "Understand peer support, preparation, difficult experiences, consent, crisis boundaries, and integration.",
+    text: "Find clear guidance for preparation, difficult experiences, consent, crisis support, and integration.",
     href: "/resources/",
     label: "Read Resources"
   }
@@ -50,13 +50,13 @@ const heroFacts = [
   },
   {
     icon: "clipboard",
-    title: "Volunteer training",
-    text: "Consent-first onboarding and practice."
+    title: "Trained volunteers",
+    text: "Consent-first support and scope-aware care."
   },
   {
     icon: "cross",
-    title: "Overdose awareness",
-    text: "Overdose response readiness."
+    title: "Harm reduction",
+    text: "Education and supplies when stocked."
   },
   {
     icon: "handshake",
@@ -73,9 +73,9 @@ const heroFacts = [
     <div class="wide-container hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">Midwest peer support and harm reduction</p>
-        <h1 id="home-title">Compassionate peer support for nonordinary states at Midwest events.</h1>
+        <h1 id="home-title">Peer support and harm reduction for nonordinary states.</h1>
         <p>
-          Safe Journey Sanctum helps event organizers add grounded, consent-first peer support to their safety plan, with trained volunteers, low-stimulation spaces, and clear handoffs to on-site medical or security teams when needed.
+          Safe Journey Sanctum helps Midwest events support people in nonordinary, intense, or overwhelming states with trained volunteers, low-stimulation spaces, practical harm-reduction education, and clear handoffs to medical or security teams when needed.
         </p>
         <div class="button-row hero-buttons" aria-label="Primary actions">
           <Button variant="amber" href={site.forms.partnership}>Partner With SJS</Button>
@@ -102,7 +102,7 @@ const heroFacts = [
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">Start here</p>
-        <h2>Choose the path that matches what you need.</h2>
+        <h2>Find the right path.</h2>
       </div>
       <div class="card-grid">
         {
@@ -122,9 +122,9 @@ const heroFacts = [
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Model of care</p>
-        <h2>Calm space, consent, and clear escalation.</h2>
+        <h2>Calm space. Clear roles.</h2>
         <p class="lede">
-          SJS volunteers are not therapists or medical providers and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, and know when professional medical support should take over.
+          SJS volunteers are not therapists or medical providers and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, offer harm-reduction resources, and know when professional support should take over.
         </p>
         <div class="button-row">
           <Button variant="ghost" href="/model/">Explore the Model</Button>
@@ -148,7 +148,7 @@ const heroFacts = [
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Donate / support</p>
-        <h2>Your gift turns intention into working sanctuary infrastructure.</h2>
+        <h2>Help stock and staff the sanctuary.</h2>
       </div>
       <div>
         <p>
@@ -166,7 +166,7 @@ const heroFacts = [
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">Practical resources</p>
-        <h2>Education that helps people plan, respond, and integrate.</h2>
+        <h2>Plan, respond, and integrate.</h2>
       </div>
       <div class="card-grid">
         {
@@ -227,7 +227,7 @@ const heroFacts = [
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Stay connected</p>
-        <h2>Bring questions, partnership ideas, or volunteer interest.</h2>
+        <h2>Questions, partnerships, or volunteer interest.</h2>
       </div>
       <div class="button-row">
         <Button variant="ghost" href="/contact/">Contact SJS</Button>
@@ -284,8 +284,8 @@ const heroFacts = [
     color: white;
     margin: 16px 0 22px;
     max-width: min(100%, 13.5em);
-    font-size: clamp(2.65rem, 10vw, 4.9rem);
-    line-height: 1.01;
+    font-size: clamp(2.45rem, 7.8vw, 4rem);
+    line-height: 1.04;
     text-wrap: balance;
   }
 
@@ -532,7 +532,7 @@ const heroFacts = [
     }
 
     .hero-copy h1 {
-      font-size: clamp(2.35rem, 13vw, 3rem);
+      font-size: clamp(2.2rem, 11vw, 2.8rem);
       line-height: 1.04;
     }
 
@@ -543,13 +543,13 @@ const heroFacts = [
 
   @media (min-width: 768px) {
     .hero-copy h1 {
-      font-size: clamp(3.5rem, 6.8vw, 4.55rem);
+      font-size: clamp(3rem, 5.4vw, 3.75rem);
     }
   }
 
   @media (min-width: 1024px) {
     .hero-copy h1 {
-      font-size: clamp(4rem, 5.2vw, 4.9rem);
+      font-size: clamp(3.35rem, 4.2vw, 4rem);
     }
 
     .action-section {
