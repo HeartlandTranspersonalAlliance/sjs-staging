@@ -1,6 +1,6 @@
 ---
-import { assetPath } from "../utils/paths";
 import Icon from "./Icon.astro";
+import FieldPhoto from "./FieldPhoto.astro";
 
 interface Props {
   eyebrow?: string;
@@ -37,9 +37,10 @@ const imageAltByArt: Record<Art, string> = {
   news: "Blankets and a calm resting area inside the Safe Journey Sanctum tent at night"
 };
 const artImage = art ? imageByArt[art] : undefined;
-const heroImage = image ? assetPath(image) : artImage ? assetPath(artImage) : undefined;
+const heroImage = image || artImage;
 const resolvedImageAlt = image ? imageAlt : art ? imageAltByArt[art] : "";
 const hasVisual = Boolean(heroImage || art);
+const compact = art === "resources";
 const artIcon = {
   sanctuary: "home",
   training: "clipboard",
@@ -53,7 +54,7 @@ const artIcon = {
 }[art ?? "resources"];
 ---
 
-<section class="page-hero">
+<section class:list={["page-hero", { compact, "portrait-hero": art === "contact" }]}>
   <div class="container page-hero-grid">
     <div>
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
@@ -61,18 +62,11 @@ const artIcon = {
       <p class="lede">{text}</p>
     </div>
     {
-      hasVisual && (
+      hasVisual && !compact && (
         <div class="page-hero-visual">
           {
             heroImage ? (
-              <img
-                class="page-hero-image"
-                src={heroImage}
-                alt={resolvedImageAlt}
-                loading="eager"
-                decoding="async"
-                style={`object-position: ${imagePosition};`}
-              />
+              <FieldPhoto src={heroImage} alt={resolvedImageAlt} eager class="page-hero-image" style={`object-position: ${imagePosition};`} />
             ) : (
               <div class="page-hero-art" data-art={art} aria-hidden="true">
                 <div class="art-mark">
@@ -99,13 +93,10 @@ const artIcon = {
 
 <style>
   .page-hero {
-    background:
-      radial-gradient(circle at 12% 12%, var(--body-halo-violet), transparent 30rem),
-      linear-gradient(135deg, var(--body-halo-amber), transparent 54%),
-      var(--linen);
+    background: var(--linen);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
-    padding: 80px 0;
+    padding: 48px 0;
     position: relative;
   }
 
@@ -148,18 +139,15 @@ const artIcon = {
     position: relative;
   }
 
-  .page-hero-image,
+  :global(.page-hero-image),
   .page-hero-art {
     aspect-ratio: 4 / 3;
     border: 1px solid var(--line);
     border-radius: 12px;
-    box-shadow:
-      0 20px 58px var(--shadow),
-      0 0 0 8px rgb(169 112 221 / 0.06);
     width: 100%;
   }
 
-  .page-hero-image {
+  :global(.page-hero-image) {
     display: block;
     object-fit: cover;
   }
@@ -285,13 +273,13 @@ const artIcon = {
 
   @media (min-width: 768px) {
     .page-hero {
-      padding: 96px 0;
+      padding: 56px 0;
     }
   }
 
   @media (min-width: 1024px) {
     .page-hero {
-      padding: 108px 0;
+      padding: 64px 0;
     }
   }
 
@@ -305,7 +293,12 @@ const artIcon = {
     }
 
     .page-hero {
-      padding: 72px 0;
+      padding: 40px 0;
     }
   }
+  .compact .page-hero-grid { grid-template-columns: 1fr; }
+  .compact h1 { max-width: 28ch; }
+  .compact .lede { max-width: 65ch; }
+  .portrait-hero :global(.page-hero-image) { aspect-ratio: auto; max-height: 480px; object-fit: contain; border: 0; }
+  .page-hero::before { display: none; }
 </style>

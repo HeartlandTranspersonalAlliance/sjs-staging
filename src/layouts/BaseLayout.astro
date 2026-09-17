@@ -13,11 +13,11 @@ interface Props {
   image?: string;
 }
 
-const { title, description = site.description, image = "/assets/sjs_home_background.png" } = Astro.props;
+const { title, description = site.description, image = "/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg" } = Astro.props;
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const siteRoot = Astro.site ?? new URL(site.url);
 const canonical = absoluteUrl(Astro.url.pathname, siteRoot);
-const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}"); --sjs-home-bg-url: url("${assetPath("/assets/sjs_home_background.png")}");`;
+const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");`;
 const pageTransition = {
   forwards: {
     old: {
@@ -80,69 +80,5 @@ const pageTransition = {
     </main>
     <Footer />
     <BackToTop />
-    <script is:inline>
-      (() => {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const selectors = [
-          "main > section",
-          ".page-hero-grid > *",
-          ".card-grid > *",
-          ".split-grid > *",
-          ".principle-stack > *",
-          ".post-card",
-          ".surface"
-        ];
-
-        const isInViewport = (target) => {
-          const rect = target.getBoundingClientRect();
-          return rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
-        };
-
-        const prepare = () => {
-          if (reduceMotion.matches) return;
-          document.querySelectorAll(selectors.join(",")).forEach((el, index) => {
-            el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 100}ms`);
-            if (isInViewport(el)) {
-              el.setAttribute("data-revealed", "");
-            } else {
-              el.removeAttribute("data-revealed");
-            }
-            el.setAttribute("data-reveal", "");
-          });
-        };
-
-        let observer;
-
-        const reveal = () => {
-          observer?.disconnect();
-          prepare();
-          const targets = document.querySelectorAll("[data-reveal]");
-          if (!("IntersectionObserver" in window)) {
-            targets.forEach((target) => target.removeAttribute("data-reveal"));
-            return;
-          }
-          observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.setAttribute("data-revealed", "");
-                observer.unobserve(entry.target);
-              });
-            },
-            { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
-          );
-          targets.forEach((target) => {
-            observer.observe(target);
-          });
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", reveal, { once: true });
-        } else {
-          reveal();
-        }
-        document.addEventListener("astro:page-load", reveal);
-      })();
-    </script>
   </body>
 </html>

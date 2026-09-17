@@ -29,18 +29,26 @@ export const site = {
 
 export const navItems = [
   { label: "About", href: "/about/" },
-  { label: "Why SJS", href: "/why-sjs/" },
   { label: "For Organizers", href: "/organizers/" },
-  { label: "Resources", href: "/resources/" },
   { label: "Volunteer", href: "/volunteer/" },
+  { label: "Resources", href: "/resources/" },
   { label: "News", href: "/news/" },
   { label: "Contact", href: "/contact/" }
 ];
 
+export const secondaryNavItems = [
+  { label: "Why SJS", href: "/why-sjs/" },
+  { label: "Our Model", href: "/model/" },
+  { label: "FAQ", href: "/faq/" },
+  { label: "Training", href: "/training/" },
+  { label: "Events", href: "/events/" },
+  { label: "Impact", href: "/impact/" }
+];
+
 export const primaryCtas = [
-  { label: "Partner With SJS", href: site.forms.partnership },
-  { label: "Volunteer", href: site.forms.volunteer },
-  { label: "Donate", href: "/donate/" }
+  { label: "For Organizers", href: "/organizers/" },
+  { label: "Donate", href: "/donate/" },
+  { label: "Volunteer", href: "/volunteer/" }
 ];
 
 export const carePrinciples = [
@@ -72,14 +80,14 @@ export const supportOptions = [
     title: "One-time gifts",
     text: "Help fund sanctuary supplies, outreach materials, volunteer meals, printing, and event readiness.",
     href: site.forms.donation,
-    label: "Give Through HTA"
+    label: "Donate through HTA"
   },
   {
     icon: "heart",
-    title: "Recurring support",
+    title: "Monthly support",
     text: "Sustain training, storage, replacement supplies, and a stable volunteer program between festival seasons.",
     href: site.forms.donation,
-    label: "Start Monthly Giving"
+    label: "Give monthly through HTA"
   },
   {
     icon: "package",
@@ -93,7 +101,7 @@ export const supportOptions = [
     title: "Sponsor or host",
     text: "Event partners can help bring peer support, education, and sanctuary infrastructure to their communities.",
     href: site.forms.partnership,
-    label: "Partner With SJS"
+    label: "Email Event Details"
   }
 ];
 
@@ -101,10 +109,20 @@ export const eventServices = [
   "Calm sanctuary space for nonordinary or overwhelming states",
   "Peer support staffing and volunteer coordination",
   "Harm-reduction education and practical supplies when stocked",
+  "Fentanyl reagent testing as an additional service, coordinated with event approval and local requirements",
   "Grounding materials, hydration reminders, and overdose awareness",
   "Coordination pathways with medical, security, and production teams",
   "Post-event debriefs and improvement notes"
 ];
+
+export const featuredEvent = {
+  title: "Cosmic Kinection 2026",
+  dateLabel: "June 4–7, 2026",
+  location: "Astral Valley",
+  summary:
+    "SJS provided 24/7 sanctuary, peer support, harm-reduction education, and event coordination from Thursday, June 4 through the morning of Sunday, June 7.",
+  href: "/news/cosmic-kinection-2026/"
+};
 
 export const trainingTopics = [
   "Role, scope, and when to call for help",
@@ -121,7 +139,7 @@ export const resources = [
     icon: "clipboard",
     title: "Before the Event",
     text: "Plan transport, hydration, food, buddy check-ins, rest, and where to find first aid or harm-reduction services before the event begins.",
-    href: "/resources/#preparation"
+    href: "/resources/#preparation-details"
   },
   {
     icon: "heart",

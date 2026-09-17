@@ -1,5 +1,5 @@
 ---
-import { navItems, primaryCtas, site } from "../data/site";
+import { navItems, secondaryNavItems, site } from "../data/site";
 import Icon from "./Icon.astro";
 import { assetPath, withBase, withoutBase } from "../utils/paths";
 
@@ -29,6 +29,18 @@ function isCurrentPage(href: string): boolean {
           </a>
         ))
       }
+      <details class="more-menu">
+        <summary class:list={{ "has-current": secondaryNavItems.some((item) => isCurrentPage(item.href)) }}>More</summary>
+        <div class="more-panel">
+          {
+            secondaryNavItems.map((item) => (
+              <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
     </div>
 
     <div class="nav-actions">
@@ -47,8 +59,16 @@ function isCurrentPage(href: string): boolean {
               </a>
             ))
           }
+          <details class="mobile-secondary">
+            <summary>More about SJS</summary>
+            {secondaryNavItems.map((item) => (
+              <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            ))}
+          </details>
           <div class="mobile-ctas">
-            {primaryCtas.map((cta) => <a href={withBase(cta.href)}>{cta.label}</a>)}
+            <a href={withBase("/donate/")}>Donate</a>
           </div>
         </div>
       </details>
@@ -57,13 +77,23 @@ function isCurrentPage(href: string): boolean {
 </header>
 
 <script>
-  const header = document.querySelector(".site-header");
   const syncScrolledState = () => {
-    header?.toggleAttribute("data-scrolled", window.scrollY > 12);
+    document.querySelector(".site-header")?.toggleAttribute("data-scrolled", window.scrollY > 12);
   };
 
   syncScrolledState();
   window.addEventListener("scroll", syncScrolledState, { passive: true });
+  document.addEventListener("astro:page-load", syncScrolledState);
+  const closeMenus = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => { menu.open = false; });
+  document.addEventListener("keydown", event => {
+    if (event.key !== "Escape") return;
+    const openMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu[open], .more-menu[open]");
+    openMenu?.querySelector<HTMLElement>("summary")?.focus();
+    closeMenus();
+  });
+  document.addEventListener("click", event => {
+    if (event.target instanceof Element && !event.target.closest(".mobile-menu, .more-menu")) closeMenus();
+  });
 </script>
 
 <style>
@@ -183,6 +213,8 @@ function isCurrentPage(href: string): boolean {
 
   .desktop-links a:focus-visible,
   .nav-donate:focus-visible,
+  .more-menu summary:focus-visible,
+  .more-panel a:focus-visible,
   .mobile-menu summary:focus-visible,
   .mobile-panel a:focus-visible {
     outline: none;
@@ -195,6 +227,68 @@ function isCurrentPage(href: string): boolean {
     background: var(--nav-active-bg);
     border-color: var(--nav-active-border);
     box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+    color: var(--nav-active-text);
+  }
+
+  .more-menu {
+    position: relative;
+  }
+
+  .more-menu > summary::after { content: "⌄"; margin-left: 8px; }
+
+  .more-menu summary {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 750;
+    list-style: none;
+    padding: 8px 13px;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .more-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .more-menu summary:hover,
+  .more-menu[open] summary,
+  .more-menu summary.has-current {
+    background: var(--nav-hover-bg);
+    border-color: var(--nav-hover-border);
+    color: var(--nav-hover-text);
+  }
+
+  .more-panel {
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 24px 80px var(--shadow);
+    display: grid;
+    gap: 4px;
+    min-width: 13rem;
+    padding: 12px;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 12px);
+    z-index: 2;
+  }
+
+  .more-panel a {
+    border-radius: 6px;
+    color: var(--ink);
+    font-weight: 800;
+    padding: 10px 12px;
+    text-decoration: none;
+  }
+
+  .more-panel a:hover,
+  .more-panel a[aria-current="page"] {
+    background: var(--nav-active-bg);
     color: var(--nav-active-text);
   }
 
@@ -259,7 +353,7 @@ function isCurrentPage(href: string): boolean {
   }
 
   .mobile-panel {
-    background: var(--surface-strong);
+    background: var(--linen);
     border: 1px solid var(--line);
     border-radius: 8px;
     box-shadow: 0 24px 80px var(--shadow);
@@ -270,7 +364,15 @@ function isCurrentPage(href: string): boolean {
     position: absolute;
     right: 0;
     top: calc(100% + 12px);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
   }
+
+  .mobile-secondary > summary { display: list-item; width: auto; border: 0; border-radius: 0; background: none; padding: 10px 12px; min-height: 0; list-style: disclosure-closed inside; }
+  .mobile-secondary[open] > summary { list-style-type: disclosure-open; }
+  .mobile-secondary a { display: block; padding-left: 24px; font-weight: 600; }
 
   .mobile-panel a {
     border-radius: 6px;
@@ -294,7 +396,7 @@ function isCurrentPage(href: string): boolean {
     padding-top: 8px;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 1120px) {
     .desktop-links {
       display: none;
     }

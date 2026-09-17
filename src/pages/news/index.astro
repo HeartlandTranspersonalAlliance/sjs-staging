@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import Icon from "../../components/Icon.astro";
-import { assetPath, withBase } from "../../utils/paths";
+import FieldPhoto from "../../components/FieldPhoto.astro";
+import { withBase } from "../../utils/paths";
+import { formatDate } from "../../utils/dates";
 
 const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
@@ -31,12 +33,12 @@ const usesPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
                   <Icon name="message" />
                 </div>
               ) : (
-                <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="lazy" decoding="async" />
+                <FieldPhoto src={post.data.image} alt={post.data.imageAlt} />
               )
             }
             <div class="post-card-body">
               <p class="post-meta">
-                {post.data.category} / {post.data.date.toLocaleDateString("en-US", {
+                {post.data.category} / {formatDate(post.data.date, {
                   month: "short",
                   day: "numeric",
                   year: "numeric"

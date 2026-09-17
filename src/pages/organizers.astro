@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import Icon from "../components/Icon.astro";
 import { eventServices, site } from "../data/site";
+import { withBase } from "../utils/paths";
 
 const setupNeeds = [
   "Quiet, visible location with clear access for medical/security teams",
@@ -17,11 +18,13 @@ const planningInputs = [
   "Existing medical, security, ranger, production, and venue contacts",
   "SJS operating hours, location, nearby water/bathrooms, and emergency access",
   "Known heat, weather, crowd, substance, accessibility, or venue-specific risks",
+  "Whether fentanyl reagent testing is requested, plus the event approval and local requirements that apply",
   "Preferred radio, phone, or runner process for sensitive handoffs"
 ];
 
 const boundaries = [
   "SJS offers peer support, grounding, harm-reduction education, practical supplies when stocked, and warm handoffs.",
+  "Fentanyl reagent testing is an additional SJS service; timing and operation are coordinated with event approval, local requirements, staffing, and supplies.",
   "SJS does not provide medical diagnosis, medical treatment, psychotherapy, security enforcement, or law-enforcement functions.",
   "If a guest may be medically unsafe, event medical or emergency response should be contacted first."
 ];
@@ -91,13 +94,13 @@ const boundaries = [
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Why SJS</p>
-        <h2>Compare the integrated model.</h2>
+        <h2>An integrated care model.</h2>
       </div>
       <div class="prose">
         <p>
-          The comparison shows how SJS combines sanctuary peer support, harm-reduction education, practical supplies, reagent testing when approved, and event coordination in one comprehensive model.
+          SJS combines sanctuary peer support, harm-reduction education, practical supplies, fentanyl reagent testing, and event coordination.
         </p>
-        <a class="button button-primary" href="/why-sjs/">Compare SJS</a>
+        <a href={withBase("/why-sjs/")}>Explore the SJS model</a>
       </div>
     </div>
   </section>

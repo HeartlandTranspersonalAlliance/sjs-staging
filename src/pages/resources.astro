@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EmergencyNotice from "../components/EmergencyNotice.astro";
 import PageHero from "../components/PageHero.astro";
+import PageContents from "../components/PageContents.astro";
 import Card from "../components/ui/Card.astro";
 import { resources } from "../data/site";
 import { withBase } from "../utils/paths";
@@ -47,6 +49,19 @@ const integrationLinks = [
     title="Prepare, get support, and integrate."
     text="These resources are designed for guests, friends, volunteers, and organizers who want clear peer-support and harm-reduction basics without judgment, hype, or unsafe promises."
     art="resources"
+  />
+
+  <EmergencyNotice />
+
+  <PageContents
+    items={[
+      { label: "Resource overview", href: "#preparation" },
+      { label: "During a difficult experience", href: "#difficult-experiences" },
+      { label: "Preparation", href: "#preparation-details" },
+      { label: "Consent and privacy", href: "#consent" },
+      { label: "Crisis and overdose support", href: "#support-lines" },
+      { label: "Integration", href: "#integration" }
+    ]}
   />
 
   <section class="section" id="preparation">

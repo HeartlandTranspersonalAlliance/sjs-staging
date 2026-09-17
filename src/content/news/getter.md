@@ -10,16 +10,16 @@ category: "field recap"
 Safe Journey Sanctum is growing. For our second event, we attended Getter at the Warehouse on Broadway in Kansas City with more than 500 people in attendance.
 
 <figure>
-  <img src="../../assets/blog/getter-group.jpg" alt="Five SJS members standing behind a booth at Getter" />
+  <img src="../../assets/blog/getter-group.jpg" alt="Five SJS members standing behind a booth at Getter" width="1024" height="768" loading="lazy" decoding="async" />
   <figcaption>Pictured left to right: Nate, Mooncat, Dale, Ah, and Liz.</figcaption>
 </figure>
 
-Special thanks to Production Manager Patrick Grantello and Katie Foster of [Sunshine DIY Studio](https://www.sunshinediystudio.com) for the incredible shirts.
+Special thanks to Production Manager Patrick Grantello and Katie Foster of Sunshine DIY Studio for the incredible shirts.
 
 Our next event will be Phantom Music Festival. Interested volunteers can [apply to join SJS](https://forms.gle/g38MyF11DWDqsCLU7).
 
 <figure>
-  <img src="../../assets/blog/dale-patrick.jpg" alt="An attendee stopped by the SJS table to learn more" />
+  <img src="../../assets/blog/dale-patrick.jpg" alt="An attendee stopped by the SJS table to learn more" width="699" height="701" loading="lazy" decoding="async" />
   <figcaption>An attendee, Patrick More, stopped by to learn more and thanked us for our work.</figcaption>
 </figure>
 

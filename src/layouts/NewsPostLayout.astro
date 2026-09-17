@@ -1,7 +1,9 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
-import { assetPath, withBase } from "../utils/paths";
+import FieldPhoto from "../components/FieldPhoto.astro";
+import { withBase } from "../utils/paths";
+import { formatDate } from "../utils/dates";
 
 interface Props {
   post: CollectionEntry<"news">;
@@ -19,14 +21,14 @@ const { Content } = await render(post);
         <h1>{post.data.title}</h1>
         <p class="lede">{post.data.description}</p>
         <p class="post-date">
-          {post.data.date.toLocaleDateString("en-US", {
+          {formatDate(post.data.date, {
             month: "long",
             day: "numeric",
             year: "numeric"
           })}
         </p>
       </div>
-      <img src={assetPath(post.data.image)} alt={post.data.imageAlt} loading="eager" decoding="async" />
+      <FieldPhoto src={post.data.image} alt={post.data.imageAlt} eager />
     </div>
   </article>
 
@@ -68,7 +70,7 @@ const { Content } = await render(post);
     margin-top: 18px;
   }
 
-  .post-hero img {
+  .post-hero :global(img) {
     aspect-ratio: 3 / 2;
     border: 1px solid var(--line);
     border-radius: 12px;

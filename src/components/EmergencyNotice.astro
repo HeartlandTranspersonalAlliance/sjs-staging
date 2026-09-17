@@ -1,0 +1,64 @@
+---
+import { withBase } from "../utils/paths";
+---
+
+<section class="emergency-notice" aria-labelledby="emergency-notice-title">
+  <div class="container emergency-notice-inner">
+    <div>
+      <p class="eyebrow">Need help right now?</p>
+      <h2 id="emergency-notice-title">Emergency care comes first.</h2>
+      <p>
+        If someone is unconscious, struggling to breathe, overheating, injured, overdosing, or in immediate danger, call 911 or contact on-site medical/security personnel first. SJS peer support is not emergency medical care.
+      </p>
+    </div>
+    <div class="emergency-actions">
+      <a class="button button-primary" href="tel:911">Call 911</a>
+      <a class="button button-ghost" href={withBase("/resources/#support-lines")}>Safety guidance</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .emergency-notice {
+    background: var(--linen);
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+  }
+
+  .emergency-notice-inner {
+    align-items: center;
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+  }
+
+  .emergency-notice h2 {
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    margin: 4px 0 8px;
+  }
+
+  .emergency-notice p:last-child {
+    color: var(--muted);
+    max-width: 58rem;
+  }
+
+  .emergency-actions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .emergency-notice-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .emergency-actions,
+    .emergency-actions .button {
+      width: 100%;
+    }
+  }
+</style>

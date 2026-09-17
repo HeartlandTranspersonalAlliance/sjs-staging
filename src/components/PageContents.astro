@@ -1,0 +1,54 @@
+---
+interface Props {
+  items: Array<{ label: string; href: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="page-contents" aria-label="On this page">
+  <p class="eyebrow">On this page</p>
+  <ul>
+    {items.map((item) => (
+      <li><a href={item.href}>{item.label}</a></li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .page-contents {
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin: 0 auto 36px;
+    max-width: 80rem;
+    width: calc(100% - 3rem);
+    box-sizing: border-box;
+    padding: 16px 18px;
+  }
+
+  .page-contents .eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .page-contents ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-contents a {
+    color: var(--link-strong);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .page-contents a:hover {
+    text-decoration: underline;
+  }
+  @media (min-width: 768px) { .page-contents { width: calc(100% - 4rem); } }
+  @media (min-width: 1024px) { .page-contents { width: calc(100% - 5rem); } }
+</style>

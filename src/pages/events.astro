@@ -4,13 +4,14 @@ import PageHero from "../components/PageHero.astro";
 import Button from "../components/ui/Button.astro";
 import Card from "../components/ui/Card.astro";
 import IconBadge from "../components/ui/IconBadge.astro";
-import { site } from "../data/site";
+import { featuredEvent, site } from "../data/site";
 import { withBase } from "../utils/paths";
 
 const eventTypes = [
   {
     icon: "message",
     title: "Integration circles",
+    status: "Inquiries welcome",
     text: "Small community gatherings for reflection, grounding skills, and peer connection after meaningful or difficult experiences.",
     href: "/contact/",
     label: "Ask about circles"
@@ -18,6 +19,7 @@ const eventTypes = [
   {
     icon: "clipboard",
     title: "Harm-reduction trainings",
+    status: "Inquiries welcome",
     text: "Volunteer and community sessions covering consent-first support, de-escalation, overdose awareness, and practical event care.",
     href: "/training/",
     label: "View training"
@@ -25,7 +27,8 @@ const eventTypes = [
   {
     icon: "home",
     title: "Festival outreach",
-    text: "Sanctuary support, education, and on-site coordination with organizers, medical teams, security, and production staff.",
+    status: "Active service / event coordination required",
+    text: "Sanctuary support, education, fentanyl reagent testing, and on-site coordination with organizers, medical teams, security, and production staff.",
     href: "/organizers/",
     label: "Plan outreach"
   }
@@ -45,18 +48,27 @@ const eventTypes = [
       <div class="notice empty-events">
         <IconBadge name="calendar" />
         <div>
-          <strong>Upcoming events will appear here.</strong>
+          <strong>No upcoming dates are confirmed yet.</strong>
           <p>
             Confirmed trainings, sanctuary deployments, and community circles will be posted as dates are finalized. Email SJS to be notified when new events open.
           </p>
           <Button variant="ghost" size="sm" href={site.forms.contact}>Email for updates</Button>
         </div>
       </div>
+      <article class="surface field-event-card" id="recent-work">
+        <div>
+          <p class="post-meta">Recent field work / {featuredEvent.dateLabel}</p>
+          <h2>{featuredEvent.title}</h2>
+          <p>{featuredEvent.location} · {featuredEvent.summary}</p>
+        </div>
+        <a class="button button-ghost" href={withBase(featuredEvent.href)}>Read the field recap</a>
+      </article>
       <div class="card-grid event-grid">
         {
           eventTypes.map((event) => (
             <Card icon={event.icon} class="service-card">
               <h2>{event.title}</h2>
+              <p class="service-status">{event.status}</p>
               <p>{event.text}</p>
               <a href={withBase(event.href)} aria-label={`${event.label}: ${event.title}`}>{event.label}</a>
             </Card>
@@ -90,6 +102,25 @@ const eventTypes = [
     margin-top: 24px;
   }
 
+  .field-event-card {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding: 24px;
+  }
+
+  .field-event-card h2 {
+    font-size: 1.35rem;
+    margin: 4px 0 8px;
+  }
+
+  .field-event-card p:last-child {
+    color: var(--muted);
+    max-width: 62ch;
+  }
+
   .empty-events {
     align-items: flex-start;
     display: flex;
@@ -120,6 +151,14 @@ const eventTypes = [
     color: var(--muted);
   }
 
+  .event-grid .service-status {
+    color: var(--moss);
+    font-size: 0.82rem;
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+
   .band .button-ghost {
     background: var(--button-ghost-bg);
     color: var(--band-text);
@@ -128,6 +167,15 @@ const eventTypes = [
   @media (max-width: 560px) {
     .empty-events {
       display: grid;
+    }
+
+    .field-event-card {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .field-event-card .button {
+      width: 100%;
     }
   }
 </style>

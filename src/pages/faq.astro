@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import PageContents from "../components/PageContents.astro";
 import Button from "../components/ui/Button.astro";
 import { site } from "../data/site";
 
@@ -42,6 +43,11 @@ const faqGroups = [
         question: "What can SJS not provide?",
         answer:
           "SJS does not provide medical diagnosis or treatment, psychotherapy, medical clearance, security enforcement, or law-enforcement functions."
+      },
+      {
+        question: "Does SJS offer fentanyl reagent testing?",
+        answer:
+          "Yes. Fentanyl reagent testing is an additional SJS service. Availability, timing, and process depend on event approval, local requirements, staffing, and supplies. Testing does not make substance use safe or replace medical care."
       },
       {
         question: "When will SJS involve medical support?",
@@ -161,6 +167,8 @@ const faqGroups = [
     ]
   }
 ];
+
+const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 ---
 
 <BaseLayout title="FAQ" description="Frequently asked questions about SJS peer support, safety boundaries, integration, volunteering, and event partnerships.">
@@ -169,6 +177,18 @@ const faqGroups = [
     title="Clear answers before support is needed."
     text="These answers explain what SJS offers, where our boundaries are, and how guests, organizers, and volunteers can connect with support safely."
     art="resources"
+  />
+
+  <PageContents
+    items={[
+      { label: "Start here", href: "#faq-note-title" },
+      { label: "Getting support", href: "#getting-support" },
+      { label: "Scope and safety", href: "#scope-and-safety" },
+      { label: "Privacy and boundaries", href: "#consent-privacy-and-boundaries" },
+      { label: "Integration", href: "#integration-and-aftercare" },
+      { label: "Organizers", href: "#event-organizers" },
+      { label: "Volunteering", href: "#volunteering-and-training" }
+    ]}
   />
 
   <section class="section faq-intro" aria-labelledby="faq-note-title">
@@ -187,8 +207,8 @@ const faqGroups = [
     <div class="container faq-shell">
       {
         faqGroups.map((group) => (
-          <section class="faq-group" aria-labelledby={group.title.toLowerCase().replaceAll(" ", "-")}>
-            <h2 id={group.title.toLowerCase().replaceAll(" ", "-")}>{group.title}</h2>
+          <section class="faq-group" aria-labelledby={groupId(group.title)}>
+            <h2 id={groupId(group.title)}>{group.title}</h2>
             <div class="faq-list">
               {
                 group.faqs.map((item) => (
@@ -212,8 +232,8 @@ const faqGroups = [
         <h2>Questions, event requests, or volunteer interest.</h2>
       </div>
       <div class="cta-actions">
-        <Button href={site.forms.partnership} variant="amber">Partner With SJS</Button>
-        <Button href={site.forms.volunteer} variant="ghost">Volunteer</Button>
+        <Button href={site.forms.partnership} variant="amber">Email Event Details</Button>
+        <Button href={site.forms.volunteer} variant="ghost">Apply to Volunteer</Button>
       </div>
     </div>
   </section>

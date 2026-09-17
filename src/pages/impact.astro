@@ -1,73 +1,34 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import Icon from "../components/Icon.astro";
+import { featuredEvent } from "../data/site";
 import { withBase } from "../utils/paths";
 
-const impactAreas = [
-  {
-    icon: "calendar",
-    title: "Events served",
-    text: "Public field notes currently include Getter at Warehouse on Broadway in Kansas City. Future recaps can show where SJS provided sanctuary and harm-reduction support."
-  },
-  {
-    icon: "users",
-    title: "Volunteers trained",
-    text: "Verified training counts can be added as SJS begins publishing seasonal or annual reporting."
-  },
-  {
-    icon: "package",
-    title: "Supplies distributed",
-    text: "Overdose education, printed materials, comfort supplies, and sanctuary gear can be tracked here as reporting becomes available."
-  }
-];
 ---
 
-<BaseLayout title="Impact" description="SJS impact storytelling, public field notes, and future reporting areas.">
+<BaseLayout title="Impact" description="Field recaps from SJS event deployments.">
   <PageHero
     eyebrow="Impact"
-    title="Field recaps and verified impact."
-    text="SJS is early in public reporting. This page shares available field notes and leaves room for verified metrics as the program grows."
+    title="SJS in the field."
+    text="Field notes from sanctuary support and harm-reduction outreach at Midwest events."
     art="impact"
   />
-
-  <section class="section">
-    <div class="container card-grid">
-      {
-        impactAreas.map((area) => (
-          <article class="surface metric-card">
-            <span class="card-icon" aria-hidden="true"><Icon name={area.icon} /></span>
-            <h2>{area.title}</h2>
-            <p>{area.text}</p>
-          </article>
-        ))
-      }
-    </div>
-  </section>
 
   <section class="section-tight band">
     <div class="container split-grid">
       <div>
         <p class="eyebrow">Field recap</p>
-        <h2>Getter showed the value of practical presence.</h2>
+        <h2>{featuredEvent.title}</h2>
       </div>
       <div class="prose">
         <p>
-          At SJS's second event, the team supported Getter at Warehouse on Broadway with more than 500 people in attendance. Read the recap for photos and acknowledgments.
+          SJS provided 24/7 support in {featuredEvent.location} from Thursday, June 4 through the morning of Sunday, June 7, 2026. Read the recap for the deployment details and field notes.
         </p>
-        <a class="button button-primary" href={withBase("/news/getter/")}>Read Getter Recap</a>
+        <div class="button-row">
+          <a class="button button-primary" href={withBase(featuredEvent.href)}>Read Cosmic Kinection Recap</a>
+          <a class="button button-ghost" href={withBase("/news/getter/")}>Earlier Getter Recap</a>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .metric-card h2 {
-    font-size: 1.22rem;
-    margin: 0 0 10px;
-  }
-
-  .metric-card p {
-    color: var(--muted);
-  }
-</style>

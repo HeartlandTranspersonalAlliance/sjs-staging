@@ -33,11 +33,6 @@ const footerGroups = [
   }
 ];
 
-const quickLinks = [
-  { label: "Volunteer Form", href: site.forms.volunteer },
-  { label: "Partnership Inquiry", href: site.forms.partnership },
-  { label: "Email SJS", href: `mailto:${site.email}` }
-];
 ---
 
 <footer class="site-footer">
@@ -54,13 +49,6 @@ const quickLinks = [
           </div>
         </div>
 
-        <div class="footer-quick" aria-label="Quick actions">
-          {quickLinks.map((link) => (
-            <a href={link.href} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>
-              {link.label}
-            </a>
-          ))}
-        </div>
       </div>
 
       <div class="footer-main">
@@ -108,21 +96,15 @@ const quickLinks = [
 
 <style>
   .site-footer {
-    background:
-      radial-gradient(circle at 12% 0%, var(--body-halo-violet), transparent 24rem),
-      var(--band-bg);
+    background: var(--band-bg);
     color: var(--band-text);
     border-top: 1px solid var(--line);
     padding: 56px 0 34px;
   }
 
   .footer-shell {
-    background: var(--surface-strong);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 22px 52px var(--shadow);
     overflow: hidden;
-    padding: 28px;
+    padding: 0;
   }
 
   .footer-top {
@@ -352,7 +334,7 @@ const quickLinks = [
     }
 
     .footer-shell {
-      padding: 20px;
+      padding: 0;
     }
 
     .footer-brand {
@@ -360,7 +342,7 @@ const quickLinks = [
     }
 
     .footer-link-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .footer-quick a,

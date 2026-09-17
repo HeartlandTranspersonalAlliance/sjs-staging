@@ -4,7 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import Card from "../components/ui/Card.astro";
 import IconBadge from "../components/ui/IconBadge.astro";
 import { carePrinciples, eventServices } from "../data/site";
-import { assetPath } from "../utils/paths";
+import FieldPhoto from "../components/FieldPhoto.astro";
 ---
 
 <BaseLayout
@@ -43,7 +43,7 @@ import { assetPath } from "../utils/paths";
           SJS sanctuaries are designed to be inviting and useful: soft floors, pillows, cushions, blankets, gentle light, books, art supplies, grounding objects, and harm-reduction supplies when stocked. The goal is to lower stimulation while protecting privacy, dignity, and access to help.
         </p>
       </div>
-      <img class="model-image" src={assetPath("/assets/sjs_home_background.png")} alt="Calm outdoor sanctuary space at dusk" loading="lazy" decoding="async" />
+      <FieldPhoto class="model-image" src="/assets/events/ck2026/inside-sanctuary-day.jpeg" alt="Blankets and resting spaces inside the SJS sanctuary during the day" />
     </div>
   </section>
 
@@ -82,7 +82,7 @@ import { assetPath } from "../utils/paths";
     min-height: 210px;
   }
 
-  .model-image {
+  :global(.model-image) {
     aspect-ratio: 4 / 3;
     border: 1px solid var(--line);
     border-radius: 12px;
