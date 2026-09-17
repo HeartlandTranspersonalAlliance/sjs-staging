@@ -53,6 +53,8 @@ assert(home.includes('srcset='), 'Responsive photography');
 assert(pages.get('/donate/').includes('Give monthly through HTA'), 'Monthly giving remains');
 assert(pages.get('/donate/').includes('https://heartlandta.org'), 'HTA donation destination remains');
 assert(pages.get('/events/').includes('Inquiries welcome'), 'Inquiry-only events');
+assert(pages.get('/events/').includes('Available by request'), 'Training by request');
+for (const option of ['Narcan / opioid overdose response', 'CPR', 'Peer support']) assert(pages.get('/training/').includes(option), `Training option: ${option}`);
 assert(pages.get('/why-sjs/').includes('Fentanyl reagent testing'), 'Testing service remains');
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
 console.log(`Validated ${pages.size} pages: links, anchors, image dimensions, responsive assets, headings, metadata, and agreed content.`);

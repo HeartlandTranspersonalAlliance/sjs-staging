@@ -24,17 +24,32 @@ const trainingFlow = [
 ];
 ---
 
-<BaseLayout title="Training" description="SJS volunteer onboarding, consent-first support, de-escalation, peer-support boundaries, and escalation readiness.">
+<BaseLayout title="Training" description="Narcan/opioid overdose response, CPR, and peer support training available by request for groups, organizations, and communities.">
   <PageHero
     eyebrow="Training"
     title="Training for clear, reliable support."
-    text="SJS prepares volunteers to offer compassionate presence, practical harm-reduction education, and scope-aware support while respecting consent and boundaries."
+    text="Training is available by request for groups, organizations, and communities."
     image="/assets/blog/dale-patrick.jpg"
     imageAlt="SJS outreach moment with harm-reduction education"
     imagePosition="center 35%"
   />
 
+  <section class="section-tight">
+    <div class="container split-grid">
+      <div>
+        <h2>Training options</h2>
+        <a class="button button-primary" href={`mailto:${site.email}?subject=SJS%20training%20inquiry`}>Request Training</a>
+      </div>
+      <ul class="training-options">
+        <li>Narcan / opioid overdose response</li>
+        <li>CPR</li>
+        <li>Peer support</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section">
+    <div class="container section-heading"><h2>Volunteer preparation</h2></div>
     <div class="container card-grid">
       {
         trainingFlow.map((step) => (
@@ -51,7 +66,7 @@ const trainingFlow = [
   <section class="section-tight training-band">
     <div class="container">
       <p class="eyebrow">Curriculum areas</p>
-      <h2>What training covers</h2>
+      <h2>Volunteer curriculum</h2>
       <div class="topic-grid">
         {trainingTopics.map((topic) => <span>{topic}</span>)}
       </div>
@@ -64,6 +79,8 @@ const trainingFlow = [
 </BaseLayout>
 
 <style>
+  .training-options { list-style: none; margin: 0; padding: 0; }
+  .training-options li { padding: 16px 0; border-top: 1px solid var(--line); font-weight: 700; }
   .service-card h2 {
     font-size: 1.22rem;
     margin: 0 0 10px;
