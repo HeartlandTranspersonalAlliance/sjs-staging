@@ -1,6 +1,6 @@
 # SJS launch checks
 
-The existing deployment workflow is manual and currently builds for the custom domain. Do not dispatch it to the staging URL without selecting the matching build command below. Publishing a branch alone does not deploy the site.
+The confirmed destination is https://heartlandtranspersonalalliance.github.io/sjs-staging/. The workflow deploys staging on pushes to `launch-root-domain-pages` and also supports manual dispatch. It does not change `safejourneysanctum.org`.
 
 ## Validate and preview
 
@@ -13,10 +13,10 @@ The staging command checks `/sjs-staging/` links and canonical URLs and removes 
 
 ## Publish
 
-1. Confirm whether the destination is the staging GitHub Pages URL or `safejourneysanctum.org`. Those currently host different sites.
+1. Run `npm run build:staging` and confirm all checks pass.
 2. Push via SSH: `git push git@github.com:HeartlandTranspersonalAlliance/sjs-staging.git HEAD:launch-root-domain-pages`.
-3. Configure the workflow build step for the confirmed destination: `npm run build:staging` for staging, or the existing `npm run build` plus `npm run validate` for the custom domain. For staging, remove the separate root-mode validation step; the staging command already validates with the correct base.
-4. Verify the repository's Pages settings match the intended destination, then manually run the workflow on the release branch. A custom-domain migration needs the correct Pages/DNS settings; this build does not change those settings.
+3. The push starts the staging workflow. The workflow uses `npm run build:staging`, including its subpath validation and generated CNAME removal.
+4. If deployment is blocked by environment protection, verify that the `github-pages` environment permits the release branch. Do not change custom-domain or DNS settings as part of this staging release.
 5. Wait for the deployment to succeed. Check the published homepage, organizer page, donation destination, volunteer form, training options, resource anchors, photos, and legacy article redirects at the actual public URL.
 
 ## Content constraints

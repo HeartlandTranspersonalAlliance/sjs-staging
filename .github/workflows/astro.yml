@@ -1,6 +1,8 @@
-name: Deploy Astro Site to GitHub Pages
+name: Deploy SJS staging to GitHub Pages
 
 on:
+  push:
+    branches: [launch-root-domain-pages]
   workflow_dispatch:
 
 permissions:
@@ -32,12 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Use the repo script so Astro check runs before static output is uploaded.
-      - name: Build site
-        run: npm run build
-
-      - name: Validate pages, links, images, and content
-        run: npm run validate
+      # The staging build validates subpath links and excludes the custom-domain CNAME.
+      - name: Build and validate staging site
+        run: npm run build:staging
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
