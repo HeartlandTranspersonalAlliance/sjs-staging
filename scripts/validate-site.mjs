@@ -66,6 +66,13 @@ assert(home.includes('nonordinary states'), 'Keep intentionally undefined termin
 assert(home.includes('/organizers/'), 'Organizer entry point');
 assert(home.includes('srcset='), 'Responsive photography');
 assert(home.includes('role="group" aria-label="Primary actions"'), 'Primary actions have group semantics');
+const homeNews = home.match(/<div class="news-list"[^>]*>([\s\S]*?)<\/section>/)?.[1] ?? '';
+for (const html of [homeNews, pages.get('/news/')]) {
+  const cosmic = html.indexOf('/news/cosmic-kinection-2026/');
+  const getter = html.indexOf('/news/getter/');
+  assert(cosmic >= 0 && getter > cosmic, 'Cosmic Kinection appears before Getter in both news lists');
+}
+assert(!home.includes('Recent field work'), 'Homepage field recap is unified with news');
 for (const path of ['/volunteer/', '/faq/', '/news/getter/', '/news/cosmic-kinection-2026/']) {
   assert(pages.get(path).includes('https://forms.gle/iZt6DJF9YRQfXHHx5'), `Current general volunteer application: ${path}`);
 }

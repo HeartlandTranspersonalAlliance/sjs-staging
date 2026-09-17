@@ -325,6 +325,29 @@ p {
   max-width: 62ch;
 }
 
+/* Short display copy is centered; long-form prose and lists keep their reading edge. */
+.centered-copy,
+.section-heading {
+  text-align: center;
+}
+
+.centered-copy > :is(h1, h2, h3, p),
+.section-heading > :is(h2, p) {
+  margin-inline: auto;
+}
+
+.centered-copy > .button-row {
+  justify-content: center;
+}
+
+.section-heading {
+  margin-bottom: 32px;
+}
+
+.section-heading > h2 {
+  max-width: 28ch;
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -489,6 +512,26 @@ p {
   padding: 26px;
 }
 
+.ui-card,
+.resource-card,
+.metric-card,
+.post-card-body {
+  text-align: center;
+}
+
+:is(.ui-card, .resource-card, .metric-card) > .card-icon {
+  align-self: center;
+}
+
+:is(.ui-card, .resource-card, .metric-card) :is(h2, h3) {
+  max-width: none;
+}
+
+:is(.ui-card, .resource-card, .metric-card, .post-card) > a,
+.post-card-body > a {
+  justify-content: center;
+}
+
 .ui-card:hover,
 .service-card:hover,
 .resource-card:hover,
@@ -536,6 +579,7 @@ p {
   line-height: 1.75;
   margin: 0;
   padding-left: 1.15rem;
+  text-align: left;
 }
 
 .service-card li + li,

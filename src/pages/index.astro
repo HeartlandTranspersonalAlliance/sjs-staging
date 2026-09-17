@@ -4,15 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import EmergencyNotice from "../components/EmergencyNotice.astro";
 import FieldPhoto from "../components/FieldPhoto.astro";
 import Button from "../components/ui/Button.astro";
-import { carePrinciples, featuredEvent, site } from "../data/site";
+import { carePrinciples, site } from "../data/site";
 import { withBase } from "../utils/paths";
 import { formatDate } from "../utils/dates";
-const posts = (await getCollection("news")).filter(post => !post.data.draft && post.id !== "cosmic-kinection-2026").sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0,2);
+const posts = (await getCollection("news"))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 <BaseLayout title={site.name} image="/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg">
   <section class="home-hero">
     <div class="site-container hero-grid">
-      <div>
+      <div class="centered-copy">
         <p class="eyebrow">Midwest peer support and harm reduction</p>
         <h1>Peer support and harm reduction for nonordinary states.</h1>
         <p class="lede">Safe Journey Sanctum helps Midwest events support people with trained volunteers, low-stimulation spaces, practical harm-reduction education, and clear handoffs to medical or security teams when needed.</p>
@@ -28,26 +31,20 @@ const posts = (await getCollection("news")).filter(post => !post.data.draft && p
       </figure>
     </div>
   </section>
-  <section class="section-tight field-work">
-    <div class="site-container split-grid">
-      <div><p class="eyebrow">Recent field work</p><h2>{featuredEvent.title}</h2></div>
-      <div class="prose"><p>{featuredEvent.summary}</p><a href={withBase(featuredEvent.href)}>Read the field recap</a></div>
-    </div>
-  </section>
   <section class="section">
     <div class="site-container split-grid">
-      <div>
+      <div class="centered-copy">
         <p class="eyebrow">Model of care</p><h2>Calm space. Clear roles.</h2>
         <p class="lede">SJS volunteers are not therapists or medical providers and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, offer harm-reduction resources, and know when professional support should take over.</p>
         <a href={withBase("/model/")}>Explore the model</a>
       </div>
-      <dl class="principles">{carePrinciples.map(principle => <div><dt>{principle.title}</dt><dd>{principle.text}</dd></div>)}</dl>
+      <dl class="principles centered-copy">{carePrinciples.map(principle => <div><dt>{principle.title}</dt><dd>{principle.text}</dd></div>)}</dl>
     </div>
   </section>
   <EmergencyNotice />
   {posts.length > 0 && <section class="section"><div class="site-container">
-    <div class="section-heading inline-heading"><h2>News and field notes</h2><a href={withBase("/news/")}>View all news</a></div>
-    <div class="news-list">{posts.map(post => <article>
+    <div class="section-heading"><h2>News and field notes</h2><a href={withBase("/news/")}>View all news</a></div>
+    <div class="news-list">{posts.map(post => <article class="centered-copy">
       <p class="post-meta">{formatDate(post.data.date, {month:"short", day:"numeric", year:"numeric"})}</p>
       <h3><a href={withBase("/news/" + post.id + "/")}>{post.data.title}</a></h3>
       <p>{post.data.description}</p>
@@ -57,19 +54,18 @@ const posts = (await getCollection("news")).filter(post => !post.data.draft && p
 <style>
   .home-hero { padding: clamp(40px, 6vw, 80px) 0; }
   .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(28px, 5vw, 72px); }
-  h1 { font-size: clamp(2.25rem, 4vw, 3.8rem); max-width: 18ch; margin: 18px 0; }
-  .lede { margin: 24px 0; max-width: 58ch; }
+  h1 { font-size: clamp(2.25rem, 4vw, 3.8rem); max-width: 18ch; margin: 18px auto; }
+  .lede { margin: 24px auto; max-width: 58ch; }
   figure { margin: 0; }
   figure :global(img) { display: block; width: 100%; height: auto; border-radius: 8px; }
-  figcaption { color: var(--muted); font-size: .85rem; margin-top: 12px; }
-  .field-work { background: var(--linen); border-block: 1px solid var(--line); }
+  figcaption { color: var(--muted); font-size: .85rem; margin-top: 12px; text-align: center; }
   .principles { margin: 0; }
   .principles div { padding: 20px 0; border-top: 1px solid var(--line); }
   dt { font-weight: 700; color: var(--ink); }
   dd { margin: 6px 0 0; color: var(--muted); }
-  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .news-list { display: grid; gap: 32px; max-width: 56rem; margin-inline: auto; }
   .news-list article { border-top: 1px solid var(--line); padding-top: 20px; }
   .news-list h3 { margin: 12px 0; }
   .news-list p { color: var(--muted); }
-  @media(max-width: 900px) { .hero-grid, .news-list { grid-template-columns: 1fr; } h1 { max-width: 22ch; } }
+  @media(max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } h1 { max-width: 22ch; } }
 </style>

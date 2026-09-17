@@ -17,7 +17,7 @@ const isLogo = post.data.image.endsWith("/sjslogo.png");
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.image}>
   <article class="post-hero">
     <div class="site-container post-hero-grid">
-      <div>
+      <div class="centered-copy">
         <p class="eyebrow">{post.data.category}</p>
         <h1>{post.data.title}</h1>
         <p class="lede">{post.data.description}</p>
@@ -38,7 +38,7 @@ const isLogo = post.data.image.endsWith("/sjslogo.png");
       <div class="prose">
         <Content />
       </div>
-      <aside class="surface post-aside">
+      <aside class="surface post-aside centered-copy">
         <h2>Connect with SJS</h2>
         <p>Interested in volunteering, event partnership, or bringing sanctuary support to a Midwest gathering?</p>
         <a class="button button-primary" href={withBase("/contact/")}>Contact SJS</a>
@@ -62,7 +62,7 @@ const isLogo = post.data.image.endsWith("/sjslogo.png");
   }
 
   .post-hero h1 {
-    margin: 10px 0 18px;
+    margin: 10px auto 18px;
   }
 
   .post-date {
@@ -103,7 +103,7 @@ const isLogo = post.data.image.endsWith("/sjslogo.png");
 
   .post-aside h2 {
     font-size: 1.22rem;
-    margin: 0 0 10px;
+    margin: 0 auto 10px;
   }
 
   .post-aside p {
