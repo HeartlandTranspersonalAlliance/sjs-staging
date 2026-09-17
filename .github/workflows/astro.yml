@@ -2,7 +2,7 @@ name: Deploy SJS staging to GitHub Pages
 
 on:
   push:
-    branches: [launch-root-domain-pages]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

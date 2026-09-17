@@ -1,6 +1,6 @@
 # SJS launch checks
 
-The confirmed destination is https://heartlandtranspersonalalliance.github.io/sjs-staging/. The workflow deploys staging on pushes to `launch-root-domain-pages` and also supports manual dispatch. It does not change `safejourneysanctum.org`.
+The confirmed destination is https://heartlandtranspersonalalliance.github.io/sjs-staging/. The workflow deploys staging on pushes to `main` and also supports manual dispatch. The Pages environment allows `main` only. It does not change `safejourneysanctum.org`.
 
 ## Validate and preview
 
@@ -14,9 +14,9 @@ The staging command checks `/sjs-staging/` links and canonical URLs and removes 
 ## Publish
 
 1. Run `npm run build:staging` and confirm all checks pass.
-2. Push via SSH: `git push git@github.com:HeartlandTranspersonalAlliance/sjs-staging.git HEAD:launch-root-domain-pages`.
+2. After verifying the release is a fast-forward from remote `main`, push via SSH: `git push git@github.com:HeartlandTranspersonalAlliance/sjs-staging.git HEAD:main`. Never force-push.
 3. The push starts the staging workflow. The workflow uses `npm run build:staging`, including its subpath validation and generated CNAME removal.
-4. If deployment is blocked by environment protection, verify that the `github-pages` environment permits the release branch. Do not change custom-domain or DNS settings as part of this staging release.
+4. Keep the `github-pages` environment's `main` branch protection intact. Do not change custom-domain or DNS settings as part of this staging release.
 5. Wait for the deployment to succeed. Check the published homepage, organizer page, donation destination, volunteer form, training options, resource anchors, photos, and legacy article redirects at the actual public URL.
 
 ## Content constraints
