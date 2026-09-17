@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 
 const root = new URL('../dist/', import.meta.url).pathname;
 const base = process.env.SITE_BASE || '/';
+const origin = process.env.SITE_ORIGIN || (base === '/' ? 'https://safejourneysanctum.org' : 'https://heartlandtranspersonalalliance.github.io');
 const errors = [];
 const pages = new Map();
 function walk(dir) {
@@ -31,9 +32,16 @@ function checkLink(value, from) {
 }
 for (const [path, html] of pages) {
   // Legacy article routes are intentionally redirect-only.
-  if (html.includes('http-equiv="refresh"')) continue;
+  if (html.includes('http-equiv="refresh"')) {
+    const target = html.match(/<a\b[^>]*href="([^"]+)"/);
+    if (!target) errors.push(`${path}: redirect missing fallback link`);
+    else checkLink(target[1], path);
+    continue;
+  }
   if ((html.match(/<h1\b/g) || []).length !== 1) errors.push(`${path}: expected one h1`);
   if (!html.includes('name="description"')) errors.push(`${path}: missing description`);
+  const canonicalTag = html.match(/<link\b[^>]*rel="canonical"[^>]*>/)?.[0];
+  if (!canonicalTag || attrs(canonicalTag).href !== origin + base.replace(/\/$/, '') + path) errors.push(`${path}: wrong canonical URL`);
   if (/assets\/placeholders|four days and nights|By request \/ dates to be announced|temporary donation destination|Not typically offered/.test(html)) errors.push(`${path}: stale copy/assets`);
   for (const match of html.matchAll(/<(?:a|img|script|link)\b[^>]*>/g)) {
     const a = attrs(match[0]);

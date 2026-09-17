@@ -13,4 +13,4 @@ The deployment brought a calm, lower-stimulation space, trained peer presence, h
 
 Cosmic Kinection 2026 is part of SJS's growing field experience. Future recaps will continue to share verified deployment details, volunteer learning, and improvements that strengthen the sanctuary model from one event to the next.
 
-If you are planning an event, [contact SJS about partnership support](/contact/). If you want to help staff future deployments, [apply to volunteer](https://forms.gle/g38MyF11DWDqsCLU7).
+If you are planning an event, [contact SJS about partnership support](../../contact/). If you want to help staff future deployments, [apply to volunteer](https://forms.gle/g38MyF11DWDqsCLU7).

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import NewsPostLayout from "../layouts/NewsPostLayout.astro";
+import { withBase } from "../utils/paths";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("news")).filter((post) => !post.data.draft);
@@ -11,6 +11,5 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+return Astro.redirect(withBase(`/news/${post.id}/`), 301);
 ---
-
-<NewsPostLayout post={post} />
