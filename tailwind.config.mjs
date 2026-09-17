@@ -4,35 +4,35 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#f8efe4",
+        ink: "var(--ink)",
         sjs: {
-          bg: "#08060c",
-          "bg-soft": "#0d0912",
-          surface: "#1b1424",
-          "surface-2": "#2a1f35",
-          border: "#4d405c",
-          cream: "#fff2dc",
-          text: "#fbf8ff",
-          muted: "#ded3e6",
-          purple: "#c7b7e0",
-          "purple-soft": "#251735",
-          "purple-dark": "#a985ce",
-          orange: "#f2a044",
-          green: "#b9d6a0"
+          bg: "var(--sjs-bg)",
+          "bg-soft": "var(--sjs-bg-soft)",
+          surface: "var(--sjs-surface)",
+          "surface-2": "var(--sjs-surface-2)",
+          border: "var(--sjs-border)",
+          cream: "var(--sjs-cream)",
+          text: "var(--sjs-text)",
+          muted: "var(--sjs-muted)",
+          purple: "var(--sjs-purple)",
+          "purple-soft": "var(--sjs-purple-soft)",
+          "purple-dark": "var(--sjs-purple-dark)",
+          orange: "var(--sjs-orange)",
+          green: "var(--sjs-green)"
         },
         violet: {
-          deep: "#6d3fa3",
-          dusk: "#a970dd",
-          mist: "#21182b"
+          deep: "var(--sjs-purple-dark)",
+          dusk: "var(--violet)",
+          mist: "var(--violet-soft)"
         },
         sanctuary: {
-          paper: "#08060c",
-          linen: "#17111f",
-          amber: "#f2a044",
-          sage: "#b9d6a0",
-          moss: "#b9d6a0",
-          rose: "#b76455",
-          charcoal: "#0b0810"
+          paper: "var(--paper)",
+          linen: "var(--linen)",
+          amber: "var(--amber)",
+          sage: "var(--sage)",
+          moss: "var(--moss)",
+          rose: "var(--rose)",
+          charcoal: "var(--sjs-bg-soft)"
         }
       },
       fontFamily: {

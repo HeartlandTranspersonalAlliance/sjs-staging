@@ -11,31 +11,31 @@ const posts = (await getCollection("news")).filter(post => !post.data.draft && p
 ---
 <BaseLayout title={site.name} image="/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg">
   <section class="home-hero">
-    <div class="container hero-grid">
+    <div class="site-container hero-grid">
       <div>
         <p class="eyebrow">Midwest peer support and harm reduction</p>
         <h1>Peer support and harm reduction for nonordinary states.</h1>
         <p class="lede">Safe Journey Sanctum helps Midwest events support people with trained volunteers, low-stimulation spaces, practical harm-reduction education, and clear handoffs to medical or security teams when needed.</p>
-        <div class="button-row" aria-label="Primary actions">
+        <div class="button-row" role="group" aria-label="Primary actions">
           <Button variant="amber" href="/organizers/">For Organizers</Button>
           <Button variant="ghost" href="/donate/">Support SJS</Button>
           <Button variant="ghost" href="/volunteer/">Volunteer</Button>
         </div>
       </div>
       <figure>
-        <FieldPhoto src="/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg" alt="Safe Journey Sanctum volunteers welcoming guests at the sanctuary" eager />
+        <FieldPhoto src="/assets/events/ck2026/outside-sanctuary-welcome-night.jpeg" alt="Safe Journey Sanctum volunteers welcoming guests at the sanctuary" eager sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 900px) calc(100vw - 4rem), (max-width: 1023px) calc((100vw - 4rem - 5vw) / 2.1), (max-width: 1360px) calc((100vw - 5rem - 5vw) / 2.1), 575px" />
         <figcaption>Cosmic Kinection 2026 · Astral Valley</figcaption>
       </figure>
     </div>
   </section>
   <section class="section-tight field-work">
-    <div class="container split-grid">
+    <div class="site-container split-grid">
       <div><p class="eyebrow">Recent field work</p><h2>{featuredEvent.title}</h2></div>
       <div class="prose"><p>{featuredEvent.summary}</p><a href={withBase(featuredEvent.href)}>Read the field recap</a></div>
     </div>
   </section>
   <section class="section">
-    <div class="container split-grid">
+    <div class="site-container split-grid">
       <div>
         <p class="eyebrow">Model of care</p><h2>Calm space. Clear roles.</h2>
         <p class="lede">SJS volunteers are not therapists or medical providers and do not direct anyone's experience. The work is practical: listen well, reduce overwhelm, protect dignity, offer harm-reduction resources, and know when professional support should take over.</p>
@@ -45,7 +45,7 @@ const posts = (await getCollection("news")).filter(post => !post.data.draft && p
     </div>
   </section>
   <EmergencyNotice />
-  {posts.length > 0 && <section class="section"><div class="container">
+  {posts.length > 0 && <section class="section"><div class="site-container">
     <div class="section-heading inline-heading"><h2>News and field notes</h2><a href={withBase("/news/")}>View all news</a></div>
     <div class="news-list">{posts.map(post => <article>
       <p class="post-meta">{formatDate(post.data.date, {month:"short", day:"numeric", year:"numeric"})}</p>

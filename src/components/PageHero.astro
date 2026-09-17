@@ -9,10 +9,11 @@ interface Props {
   image?: string;
   imageAlt?: string;
   imagePosition?: string;
+  compact?: boolean;
   art?: "sanctuary" | "training" | "resources" | "support" | "contact" | "events" | "organizers" | "impact" | "news";
 }
 
-const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art } = Astro.props;
+const { eyebrow, title, text, image, imageAlt = "", imagePosition = "center", art, compact = art === "resources" } = Astro.props;
 type Art = NonNullable<Props["art"]>;
 const imageByArt: Record<Art, string> = {
   sanctuary: "/assets/events/ck2026/inside-sanctuary-day.jpeg",
@@ -40,7 +41,6 @@ const artImage = art ? imageByArt[art] : undefined;
 const heroImage = image || artImage;
 const resolvedImageAlt = image ? imageAlt : art ? imageAltByArt[art] : "";
 const hasVisual = Boolean(heroImage || art);
-const compact = art === "resources";
 const artIcon = {
   sanctuary: "home",
   training: "clipboard",
@@ -55,7 +55,7 @@ const artIcon = {
 ---
 
 <section class:list={["page-hero", { compact, "portrait-hero": art === "contact" }]}>
-  <div class="container page-hero-grid">
+  <div class="site-container page-hero-grid">
     <div>
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1>{title}</h1>
@@ -66,7 +66,7 @@ const artIcon = {
         <div class="page-hero-visual">
           {
             heroImage ? (
-              <FieldPhoto src={heroImage} alt={resolvedImageAlt} eager class="page-hero-image" style={`object-position: ${imagePosition};`} />
+              <FieldPhoto src={heroImage} alt={resolvedImageAlt} eager class="page-hero-image" style={`object-position: ${imagePosition};`} sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 860px) calc(100vw - 4rem), (max-width: 1023px) calc((100vw - 4rem - 44px) * 0.432), (max-width: 1360px) calc((100vw - 5rem - 44px) * 0.432), 534px" />
             ) : (
               <div class="page-hero-art" data-art={art} aria-hidden="true">
                 <div class="art-mark">
@@ -112,7 +112,7 @@ const artIcon = {
     width: 30rem;
   }
 
-  .page-hero > .container {
+  .page-hero > .site-container {
     position: relative;
   }
 

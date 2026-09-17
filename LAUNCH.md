@@ -11,6 +11,10 @@ The confirmed destination is https://heartlandtranspersonalalliance.github.io/sj
 
 The staging command checks `/sjs-staging/` links and canonical URLs and removes only the generated `dist/CNAME`. It never changes the tracked `public/CNAME` or live domain settings. Rebuild for the intended destination before deployment; both commands use `dist`.
 
+Staging pages include `noindex, follow`; custom-domain builds do not. Fonts are self-hosted with their licenses in `src/assets/fonts/`. The validator checks indexing separation, font preloads, and the current volunteer application as well as existing content requirements.
+
+After layout or navigation changes, check 320px mobile, 900px tablet, 1200/1201px navigation boundaries, and 1280×320 short desktop windows. Verify menu scrolling, Tab leaving a menu, Escape returning focus, prose link underlines, contact actions before the portrait, and Back to top after client-side navigation. Confirm both direct loads and internal links.
+
 ## Publish
 
 1. Run `npm run build:staging` and confirm all checks pass.

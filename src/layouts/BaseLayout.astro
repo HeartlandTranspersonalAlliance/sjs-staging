@@ -6,6 +6,10 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import { site } from "../data/site";
 import { absoluteUrl, assetPath } from "../utils/paths";
+import frauncesUrl from "../assets/fonts/fraunces-latin.woff2?url";
+import sourceSansUrl from "../assets/fonts/source-sans-3-latin.woff2?url";
+import { getImage } from "astro:assets";
+import logo from "../../public/assets/sjslogo.png";
 
 interface Props {
   title: string;
@@ -17,6 +21,8 @@ const { title, description = site.description, image = "/assets/events/ck2026/ou
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 const siteRoot = Astro.site ?? new URL(site.url);
 const canonical = absoluteUrl(Astro.url.pathname, siteRoot);
+const isStaging = siteRoot.hostname === "heartlandtranspersonalalliance.github.io";
+const favicon = await getImage({ src: logo, width: 64, height: 64, format: "png" });
 const previewVars = `--sjs-logo-url: url("${assetPath("/assets/sjslogo.png")}");`;
 const pageTransition = {
   forwards: {
@@ -57,20 +63,17 @@ const pageTransition = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    {isStaging && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href={assetPath("/assets/sjslogo.png")} />
+    <link rel="icon" href={favicon.src} type="image/png" sizes="64x64" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={absoluteUrl(image, siteRoot)} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..800&family=Source+Sans+3:wght@400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href={frauncesUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sourceSansUrl} as="font" type="font/woff2" crossorigin />
     <ClientRouter fallback="animate" />
   </head>
   <body transition:animate={pageTransition} transition:name="page">

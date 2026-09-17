@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 600 800;
+  font-display: swap;
+  src: url("../assets/fonts/fraunces-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("../assets/fonts/source-sans-3-latin.woff2") format("woff2");
+}
+
 :root {
+  --site-width: 80rem;
+  --site-gutter: 1.5rem;
   color-scheme: dark;
   --sjs-bg: #08060c;
   --sjs-bg-soft: #0d0912;
@@ -279,13 +297,8 @@ p {
   }
 }
 
-.container {
-  width: min(80rem, calc(100% - 3rem));
-  margin-inline: auto;
-}
-
-.wide-container {
-  width: min(80rem, calc(100% - 3rem));
+.site-container {
+  width: min(var(--site-width), calc(100% - 2 * var(--site-gutter)));
   margin-inline: auto;
 }
 
@@ -569,30 +582,21 @@ p {
   width: 100%;
 }
 
-.post-card-placeholder {
-  align-items: center;
-  aspect-ratio: 3 / 2;
-  background:
-    linear-gradient(135deg, rgb(199 183 224 / 0.2), transparent 55%),
-    radial-gradient(circle at 70% 22%, rgb(242 160 68 / 0.22), transparent 32%),
-    var(--surface-strong);
-  border-bottom: 1px solid var(--line);
-  color: var(--icon-text);
-  display: grid;
-  justify-items: center;
-  width: 100%;
-}
-
-.post-card-placeholder svg {
-  height: 52px;
-  width: 52px;
-}
-
 .post-card-body {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 12px;
   padding: 22px;
 }
+
+.post-card img.logo-art {
+  object-fit: contain;
+  padding: 32px;
+  background: var(--linen);
+}
+
+.post-card h2 { max-width: none; }
 
 .band {
   background:
@@ -615,7 +619,7 @@ p {
   width: 34rem;
 }
 
-.band > .container {
+.band > .site-container {
   position: relative;
 }
 
@@ -642,6 +646,13 @@ p {
   color: var(--muted);
   max-width: 65ch;
 }
+
+.prose a:not(.button) {
+  color: var(--link-strong);
+  text-decoration-line: underline;
+}
+
+.prose a:not(.button):hover { color: var(--amber); }
 
 .break-avoid {
   break-inside: avoid;
@@ -689,10 +700,7 @@ p {
 }
 
 @media (min-width: 768px) {
-  .container,
-  .wide-container {
-    width: min(80rem, calc(100% - 4rem));
-  }
+  :root { --site-gutter: 2rem; }
 
   .section {
     padding: 72px 0;
@@ -704,10 +712,7 @@ p {
 }
 
 @media (min-width: 1024px) {
-  .container,
-  .wide-container {
-    width: min(80rem, calc(100% - 5rem));
-  }
+  :root { --site-gutter: 2.5rem; }
 
   .section {
     padding: 80px 0;

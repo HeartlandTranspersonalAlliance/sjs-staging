@@ -192,7 +192,7 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   />
 
   <section class="section faq-intro" aria-labelledby="faq-note-title">
-    <div class="container split-grid">
+    <div class="site-container split-grid">
       <div>
         <p class="eyebrow">Start here</p>
         <h2 id="faq-note-title">SJS is support, not emergency care.</h2>
@@ -204,7 +204,7 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   </section>
 
   <section class="section faq-section">
-    <div class="container faq-shell">
+    <div class="site-container faq-shell">
       {
         faqGroups.map((group) => (
           <section class="faq-group" aria-labelledby={groupId(group.title)}>
@@ -226,7 +226,7 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   </section>
 
   <section class="section-tight faq-cta">
-    <div class="container split-grid">
+    <div class="site-container split-grid">
       <div>
         <p class="eyebrow">Next step</p>
         <h2>Questions, event requests, or volunteer interest.</h2>

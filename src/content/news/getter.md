@@ -16,7 +16,7 @@ Safe Journey Sanctum is growing. For our second event, we attended Getter at the
 
 Special thanks to Production Manager Patrick Grantello and Katie Foster of Sunshine DIY Studio for the incredible shirts.
 
-Our next event will be Phantom Music Festival. Interested volunteers can [apply to join SJS](https://forms.gle/g38MyF11DWDqsCLU7).
+Our next event will be Phantom Music Festival. Interested volunteers can [apply to join SJS](https://forms.gle/iZt6DJF9YRQfXHHx5).
 
 <figure>
   <img src="../../assets/blog/dale-patrick.jpg" alt="An attendee stopped by the SJS table to learn more" width="699" height="701" loading="lazy" decoding="async" />

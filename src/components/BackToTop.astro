@@ -7,14 +7,13 @@ import Icon from "./Icon.astro";
 </a>
 
 <script>
-  const backToTop = document.querySelector("[data-back-to-top]");
-
   function updateBackToTop() {
-    backToTop?.classList.toggle("is-visible", window.scrollY > 520);
+    document.querySelector("[data-back-to-top]")?.classList.toggle("is-visible", window.scrollY > 520);
   }
 
   updateBackToTop();
   window.addEventListener("scroll", updateBackToTop, { passive: true });
+  document.addEventListener("astro:page-load", updateBackToTop);
 </script>
 
 <style>

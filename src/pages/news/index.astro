@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import Icon from "../../components/Icon.astro";
 import FieldPhoto from "../../components/FieldPhoto.astro";
 import { withBase } from "../../utils/paths";
 import { formatDate } from "../../utils/dates";
@@ -11,7 +10,7 @@ const posts = (await getCollection("news"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const usesPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
+const isLogo = (image: string) => image.endsWith("/sjslogo.png");
 ---
 
 <BaseLayout title="News" description="News, field notes, event recaps, and educational updates from Safe Journey Sanctum.">
@@ -23,19 +22,11 @@ const usesPlaceholder = (image: string) => image.endsWith("/sjslogo.png");
   />
 
   <section class="section">
-    <div class="container card-grid news-grid">
+    <div class="site-container card-grid news-grid">
       {
         posts.map((post) => (
           <article class="surface post-card">
-            {
-              usesPlaceholder(post.data.image) ? (
-                <div class="post-card-placeholder" aria-hidden="true">
-                  <Icon name="message" />
-                </div>
-              ) : (
-                <FieldPhoto src={post.data.image} alt={post.data.imageAlt} />
-              )
-            }
+            <FieldPhoto src={post.data.image} alt={post.data.imageAlt} class={isLogo(post.data.image) ? "logo-art" : undefined} sizes="(max-width: 760px) calc(100vw - 3rem), (max-width: 960px) calc((100vw - 4rem - 24px) / 2), 436px" />
             <div class="post-card-body">
               <p class="post-meta">
                 {post.data.category} / {formatDate(post.data.date, {

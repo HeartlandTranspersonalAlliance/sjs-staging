@@ -13,7 +13,7 @@ export const site = {
     url: "https://heartlandta.org"
   },
   forms: {
-    volunteer: "https://forms.gle/g38MyF11DWDqsCLU7",
+    volunteer: "https://forms.gle/iZt6DJF9YRQfXHHx5",
     contact: "mailto:info@safejourneysanctum.org?subject=SJS%20general%20inquiry",
     partnership: "mailto:info@safejourneysanctum.org?subject=SJS%20event%20partnership%20inquiry",
     donation: "https://heartlandta.org",

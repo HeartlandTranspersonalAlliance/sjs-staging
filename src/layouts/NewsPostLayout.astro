@@ -11,11 +11,12 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const isLogo = post.data.image.endsWith("/sjslogo.png");
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.image}>
   <article class="post-hero">
-    <div class="container post-hero-grid">
+    <div class="site-container post-hero-grid">
       <div>
         <p class="eyebrow">{post.data.category}</p>
         <h1>{post.data.title}</h1>
@@ -28,12 +29,12 @@ const { Content } = await render(post);
           })}
         </p>
       </div>
-      <FieldPhoto src={post.data.image} alt={post.data.imageAlt} eager />
+      <FieldPhoto src={post.data.image} alt={post.data.imageAlt} eager class={isLogo ? "logo-art" : undefined} sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 880px) calc(100vw - 4rem), (max-width: 1023px) calc((100vw - 4rem - 42px) * 0.438), (max-width: 1360px) calc((100vw - 5rem - 42px) * 0.438), 543px" />
     </div>
   </article>
 
   <section class="section">
-    <div class="container post-shell">
+    <div class="site-container post-shell">
       <div class="prose">
         <Content />
       </div>
@@ -86,6 +87,12 @@ const { Content } = await render(post);
     display: grid;
     gap: 48px;
     grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
+  .post-hero :global(img.logo-art) {
+    object-fit: contain;
+    padding: 32px;
+    background: var(--surface-strong);
   }
 
   .post-aside {

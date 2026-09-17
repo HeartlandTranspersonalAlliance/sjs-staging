@@ -1,7 +1,9 @@
 ---
 import { navItems, secondaryNavItems, site } from "../data/site";
 import Icon from "./Icon.astro";
-import { assetPath, withBase, withoutBase } from "../utils/paths";
+import { withBase, withoutBase } from "../utils/paths";
+import { Image } from "astro:assets";
+import logo from "../../public/assets/sjslogo.png";
 
 const currentPath = withoutBase(Astro.url.pathname);
 
@@ -15,13 +17,13 @@ function isCurrentPage(href: string): boolean {
 
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to content</a>
-  <nav class="wide-container nav-shell" aria-label="Primary navigation">
+  <nav class="site-container nav-shell" aria-label="Primary navigation">
     <a class="brand" href={withBase("/")} aria-label={`${site.name} home`}>
-      <img src={assetPath("/assets/sjslogo.png")} alt="" width="42" height="42" />
+      <Image src={logo} alt="" width={42} height={42} widths={[42, 84, 126]} sizes="42px" format="webp" />
       <span>{site.name}</span>
     </a>
 
-    <div class="desktop-links" aria-label="Main pages">
+    <div class="desktop-links" role="group" aria-label="Main pages">
       {
         navItems.map((item) => (
           <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
@@ -47,7 +49,7 @@ function isCurrentPage(href: string): boolean {
       <a class="nav-donate" href={withBase("/donate/")}>Donate</a>
 
       <details class="mobile-menu">
-        <summary aria-label="Open navigation">
+        <summary aria-label="Navigation menu">
           <Icon name="menu" />
           <span class="sr-only">Menu</span>
         </summary>
@@ -94,6 +96,12 @@ function isCurrentPage(href: string): boolean {
   document.addEventListener("click", event => {
     if (event.target instanceof Element && !event.target.closest(".mobile-menu, .more-menu")) closeMenus();
   });
+  document.addEventListener("focusin", event => {
+    document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => {
+      if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    });
+  });
+  window.matchMedia("(max-width: 1200px)").addEventListener("change", closeMenus);
 </script>
 
 <style>
@@ -192,6 +200,7 @@ function isCurrentPage(href: string): boolean {
   }
 
   .desktop-links a {
+    white-space: nowrap;
     border: 1px solid transparent;
     border-radius: 999px;
     color: var(--muted);
@@ -271,6 +280,9 @@ function isCurrentPage(href: string): boolean {
     display: grid;
     gap: 4px;
     min-width: 13rem;
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 12px;
     position: absolute;
     right: 0;
@@ -396,7 +408,7 @@ function isCurrentPage(href: string): boolean {
     padding-top: 8px;
   }
 
-  @media (max-width: 1120px) {
+  @media (max-width: 1200px) {
     .desktop-links {
       display: none;
     }
