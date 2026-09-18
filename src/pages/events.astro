@@ -70,7 +70,7 @@ const eventTypes = [
               <h2>{event.title}</h2>
               <p class="service-status">{event.status}</p>
               <p>{event.text}</p>
-              <a href={withBase(event.href)} aria-label={`${event.label}: ${event.title}`}>{event.label}</a>
+              <a class="button button-ghost card-action" href={withBase(event.href)} aria-label={`${event.label}: ${event.title}`}>{event.label}</a>
             </Card>
           ))
         }

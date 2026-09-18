@@ -37,7 +37,7 @@ const isLogo = (image: string) => image.endsWith("/sjslogo.png");
               </p>
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
-              <a href={withBase(`/news/${post.id}/`)} aria-label={`Read update: ${post.data.title}`}>Read update</a>
+              <a class="button button-ghost card-action" href={withBase(`/news/${post.id}/`)} aria-label={`Read update: ${post.data.title}`}>Read update</a>
             </div>
           </article>
         ))

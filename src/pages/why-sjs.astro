@@ -12,7 +12,7 @@ import { eventServices, site } from "../data/site";
         <h2>Built for the live-event care environment.</h2>
         <p>SJS service details depend on event approval, inventory, and local requirements.</p>
       </div>
-      <ul class="capabilities">{eventServices.map(service => <li>{service}</li>)}</ul>
+      <ul class="content-list">{eventServices.map(service => <li>{service}</li>)}</ul>
     </div>
   </section>
   <section class="section-tight band">
@@ -27,6 +27,4 @@ import { eventServices, site } from "../data/site";
 </BaseLayout>
 <style>
   p { color: var(--muted); max-width: 50ch; }
-  .capabilities { list-style: none; margin: 0; padding: 0; }
-  .capabilities li { border-top: 1px solid var(--line); padding: 16px 0; }
 </style>

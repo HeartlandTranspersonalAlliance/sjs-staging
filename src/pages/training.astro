@@ -40,7 +40,7 @@ const trainingFlow = [
         <h2>Training options</h2>
         <a class="button button-primary" href={`mailto:${site.email}?subject=SJS%20training%20inquiry`}>Request Training</a>
       </div>
-      <ul class="training-options">
+      <ul class="content-list training-options">
         <li>Narcan / opioid overdose response</li>
         <li>CPR</li>
         <li>Peer support</li>
@@ -67,9 +67,9 @@ const trainingFlow = [
     <div class="site-container">
       <p class="eyebrow">Curriculum areas</p>
       <h2>Volunteer curriculum</h2>
-      <div class="topic-grid">
-        {trainingTopics.map((topic) => <span>{topic}</span>)}
-      </div>
+      <ul class="topic-grid" role="list">
+        {trainingTopics.map((topic) => <li>{topic}</li>)}
+      </ul>
       <div class="button-row">
         <a class="button button-primary" href={site.forms.volunteer}>Apply to Volunteer</a>
         <a class="button button-ghost" href={withBase("/volunteer/")}>Volunteer Details</a>
@@ -79,8 +79,7 @@ const trainingFlow = [
 </BaseLayout>
 
 <style>
-  .training-options { list-style: none; margin: 0; padding: 0; }
-  .training-options li { padding: 16px 0; border-top: 1px solid var(--line); font-weight: 700; }
+  .training-options li { font-weight: 700; }
   .service-card h2 {
     font-size: 1.22rem;
     margin: 0 0 10px;
@@ -104,10 +103,12 @@ const trainingFlow = [
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-bottom: 24px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
   }
 
-  .topic-grid span {
+  .topic-grid li {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;

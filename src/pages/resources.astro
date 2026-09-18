@@ -71,7 +71,7 @@ const integrationLinks = [
           <Card icon={resource.icon} class="resource-card">
             <h2>{resource.title}</h2>
             <p>{resource.text}</p>
-            <a href={withBase(resource.href)} aria-label={`Read more: ${resource.title}`}>Read more</a>
+            <a class="button button-ghost card-action" href={withBase(resource.href)} aria-label={`Read more: ${resource.title}`}>Read more</a>
           </Card>
         ))
       }
@@ -101,7 +101,7 @@ const integrationLinks = [
       <div class="prose">
         <p class="eyebrow">Preparation</p>
         <h2>Know where help is.</h2>
-        <ul>
+        <ul class="content-list">
           {preparationTips.map((tip) => <li>{tip}</li>)}
         </ul>
       </div>
@@ -134,13 +134,13 @@ const integrationLinks = [
         <p>
           SJS peer support should not hold a possibly medical situation internally. If someone may be medically unsafe, contact on-site medical/security personnel or emergency services first.
         </p>
-        <ul>
+        <ul class="content-list">
           {supportLines.map((line) => <li>{line}</li>)}
         </ul>
       </div>
       <Card icon="cross" class="service-card break-avoid">
         <h3>Immediate red flags</h3>
-        <ul>
+        <ul class="content-list">
           {medicalRedFlags.map((flag) => <li>{flag}</li>)}
         </ul>
       </Card>
@@ -161,9 +161,9 @@ const integrationLinks = [
         <p>
           Integration can include rest, journaling, art, time in nature, gentle movement, trusted conversation, integration circles, or therapy with an integration-informed clinician.
         </p>
-        <div class="resource-links">
-          {integrationLinks.map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}
-        </div>
+        <ul class="link-list" role="list">
+          {integrationLinks.map((link) => <li><a class="resource-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} (opens in a new tab)`}><span>{link.label}</span><span aria-hidden="true">↗</span></a></li>)}
+        </ul>
       </div>
     </div>
   </section>
@@ -188,37 +188,6 @@ const integrationLinks = [
     background: var(--linen);
     border-bottom: 1px solid var(--line);
     border-top: 1px solid var(--line);
-  }
-
-  .prose ul,
-  #support-lines ul {
-    color: var(--muted);
-    line-height: 1.75;
-    padding-left: 1.15rem;
-  }
-
-  .prose li + li,
-  #support-lines li + li {
-    margin-top: 0.55rem;
-  }
-
-  .resource-links {
-    display: grid;
-    gap: 10px;
-  }
-
-  .resource-links a {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    color: var(--link-strong);
-    font-weight: 850;
-    padding: 12px 14px;
-    text-decoration: none;
-  }
-
-  .resource-links a:hover {
-    border-color: var(--control-border-hover);
   }
 
   @media (max-width: 760px) {

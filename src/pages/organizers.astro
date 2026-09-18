@@ -57,14 +57,14 @@ const boundaries = [
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="home" /></span>
         <h2>What SJS can provide</h2>
-        <ul>
+        <ul class="content-list">
           {eventServices.map((service) => <li>{service}</li>)}
         </ul>
       </div>
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="shield" /></span>
         <h2>Scope boundaries</h2>
-        <ul>
+        <ul class="content-list">
           {boundaries.map((boundary) => <li>{boundary}</li>)}
         </ul>
       </div>
@@ -76,14 +76,14 @@ const boundaries = [
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="clipboard" /></span>
         <h2>Setup needs</h2>
-        <ul>
+        <ul class="content-list">
           {setupNeeds.map((need) => <li>{need}</li>)}
         </ul>
       </div>
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="map" /></span>
         <h2>Planning inputs</h2>
-        <ul>
+        <ul class="content-list">
           {planningInputs.map((input) => <li>{input}</li>)}
         </ul>
       </div>
@@ -100,7 +100,7 @@ const boundaries = [
         <p>
           SJS combines sanctuary peer support, harm-reduction education, practical supplies, fentanyl reagent testing, and event coordination.
         </p>
-        <a href={withBase("/why-sjs/")}>Explore the SJS model</a>
+        <a class="button button-ghost" href={withBase("/why-sjs/")}>Explore the SJS model</a>
       </div>
     </div>
   </section>
@@ -148,10 +148,6 @@ const boundaries = [
     background: var(--linen);
     border-bottom: 1px solid var(--line);
     border-top: 1px solid var(--line);
-  }
-
-  .service-card li + li {
-    margin-top: 8px;
   }
 
   @media (max-width: 760px) {

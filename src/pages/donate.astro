@@ -25,7 +25,7 @@ import { supportOptions } from "../data/site";
               <span class="card-icon" aria-hidden="true"><Icon name={option.icon} /></span>
               <h2>{option.title}</h2>
               <p>{option.text}</p>
-              <a href={option.href}>{option.label}</a>
+              <a class="button button-ghost card-action" href={option.href}>{option.label}</a>
             </article>
           ))
         }
@@ -39,7 +39,7 @@ import { supportOptions } from "../data/site";
         <p class="eyebrow">What gifts fund</p>
         <h2>Supplies, training, and outreach.</h2>
       </div>
-      <ul class="funding-list">
+      <ul class="content-list">
         <li>Soft flooring, blankets, cushions, lighting, and signage</li>
         <li>Overdose education materials and response readiness</li>
         <li>Volunteer training, meals, documentation, and debriefs</li>
@@ -63,15 +63,6 @@ import { supportOptions } from "../data/site";
   .service-card p {
     color: var(--muted);
     margin-bottom: 16px;
-  }
-
-  .funding-list {
-    margin: 0;
-    padding-left: 1.2rem;
-  }
-
-  .funding-list li + li {
-    margin-top: 10px;
   }
 
   @media (max-width: 760px) {

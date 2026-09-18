@@ -94,7 +94,7 @@ const trainingFlow = [
         }
       </div>
       <h3 class="topic-heading">Core topics</h3>
-      <ul class="topic-list">
+      <ul class="topic-list" role="list">
         {trainingTopics.map((topic) => <li>{topic}</li>)}
       </ul>
     </div>
@@ -106,7 +106,7 @@ const trainingFlow = [
         <p class="eyebrow">Shift expectations</p>
         <h2>Calm, bounded, and team-based.</h2>
       </div>
-      <ul class="expectation-list">
+      <ul class="content-list">
         {expectations.map((item) => <li>{item}</li>)}
       </ul>
     </div>
@@ -174,7 +174,7 @@ const trainingFlow = [
     border-radius: 8px;
     color: var(--ink);
     display: flex;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 800;
     gap: 10px;
     min-height: 52px;
@@ -223,17 +223,6 @@ const trainingFlow = [
   .roles-list span :global(svg) {
     height: 17px;
     width: 17px;
-  }
-
-  .expectation-list {
-    color: var(--muted);
-    line-height: 1.75;
-    margin: 0;
-    padding-left: 1.15rem;
-  }
-
-  .expectation-list li + li {
-    margin-top: 0.55rem;
   }
 
   @media (min-width: 640px) {
