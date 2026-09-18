@@ -110,17 +110,16 @@ const footerGroups = [
   }
 
   .footer-top {
-    align-items: flex-start;
     display: grid;
-    gap: 24px;
-    grid-template-columns: minmax(0, 1fr) auto;
+    justify-items: center;
   }
 
   .footer-brand {
-    align-items: flex-start;
-    display: flex;
+    display: grid;
+    justify-items: center;
     gap: 16px;
-    max-width: 42rem;
+    width: min(100%, 42rem);
+    text-align: center;
   }
 
   .footer-logo-link {
@@ -159,6 +158,11 @@ const footerGroups = [
   .footer-brand p,
   .footer-bottom p {
     color: var(--muted);
+  }
+
+  .footer-brand p {
+    max-width: 54ch;
+    margin-inline: auto;
   }
 
   .footer-quick {
@@ -337,10 +341,6 @@ const footerGroups = [
 
     .footer-shell {
       padding: 0;
-    }
-
-    .footer-brand {
-      display: grid;
     }
 
     .footer-link-grid {

@@ -19,6 +19,9 @@
 }
 
 :root {
+  --type-page-title: clamp(2rem, 1.4rem + 1.6vw, 2.75rem);
+  --type-section-title: clamp(1.625rem, 1.25rem + 1vw, 2.125rem);
+  --type-eyebrow: clamp(1rem, 0.94rem + 0.2vw, 1.125rem);
   --site-width: 80rem;
   --site-gutter: 1.5rem;
   color-scheme: dark;
@@ -235,12 +238,14 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 8vw, 3.55rem);
+  font-size: var(--type-page-title);
+  line-height: 1.15;
   max-width: 15ch;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 5.5vw, 2.65rem);
+  font-size: var(--type-section-title);
+  line-height: 1.2;
   max-width: 18ch;
 }
 
@@ -257,33 +262,6 @@ p {
     font-size: 17px;
   }
 
-  h1 {
-    font-size: clamp(2.1rem, 10vw, 2.75rem);
-  }
-
-  h2 {
-    font-size: clamp(1.65rem, 8vw, 2.2rem);
-  }
-}
-
-@media (min-width: 768px) {
-  h1 {
-    font-size: clamp(2.65rem, 4.8vw, 3.25rem);
-  }
-
-  h2 {
-    font-size: clamp(2rem, 3.8vw, 2.45rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: clamp(3rem, 3.8vw, 3.55rem);
-  }
-
-  h2 {
-    font-size: clamp(2.25rem, 3vw, 2.65rem);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -312,11 +290,14 @@ p {
 
 .eyebrow {
   color: var(--moss);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  font-size: var(--type-eyebrow);
+  font-weight: 750;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
+.eyebrow + :is(h1, h2, h3) { margin-top: 12px; }
 
 .lede {
   color: var(--muted);
