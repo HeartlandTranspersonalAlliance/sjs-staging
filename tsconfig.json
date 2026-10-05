@@ -2,5 +2,11 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "playwright-report",
+    "test-results"
+  ]
 }
