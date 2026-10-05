@@ -6,3 +6,6 @@ npm-debug.log*
 .codex
 .direnv/
 .devenv/
+
+playwright-report/
+test-results/
