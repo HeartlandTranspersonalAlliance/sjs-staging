@@ -32,8 +32,13 @@ function isCurrentPage(href: string): boolean {
         ))
       }
       <details class="more-menu">
-        <summary class:list={{ "has-current": secondaryNavItems.some((item) => isCurrentPage(item.href)) }}>More</summary>
-        <div class="more-panel">
+        <summary
+          role="button"
+          aria-controls="more-navigation"
+          aria-expanded="false"
+          class:list={{ "has-current": secondaryNavItems.some((item) => isCurrentPage(item.href)) }}
+        >More</summary>
+        <div class="more-panel" id="more-navigation">
           {
             secondaryNavItems.map((item) => (
               <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
@@ -49,11 +54,11 @@ function isCurrentPage(href: string): boolean {
       <a class="nav-donate" href={withBase("/donate/")}>Donate</a>
 
       <details class="mobile-menu">
-        <summary aria-label="Navigation menu">
+        <summary role="button" aria-label="Navigation menu" aria-controls="mobile-navigation" aria-expanded="false">
           <Icon name="menu" />
           <span class="sr-only">Menu</span>
         </summary>
-        <div class="mobile-panel">
+        <div class="mobile-panel" id="mobile-navigation">
           {
             navItems.map((item) => (
               <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
@@ -62,12 +67,14 @@ function isCurrentPage(href: string): boolean {
             ))
           }
           <details class="mobile-secondary">
-            <summary>More about SJS</summary>
-            {secondaryNavItems.map((item) => (
-              <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
-                {item.label}
-              </a>
-            ))}
+            <summary role="button" aria-controls="mobile-secondary-navigation" aria-expanded="false">More about SJS</summary>
+            <div id="mobile-secondary-navigation">
+              {secondaryNavItems.map((item) => (
+                <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </details>
           <div class="mobile-ctas">
             <a href={withBase("/donate/")}>Donate</a>
@@ -87,6 +94,13 @@ function isCurrentPage(href: string): boolean {
   window.addEventListener("scroll", syncScrolledState, { passive: true });
   document.addEventListener("astro:page-load", syncScrolledState);
   const closeMenus = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => { menu.open = false; });
+  const syncDisclosureState = (menu: HTMLDetailsElement) => {
+    menu.querySelector<HTMLElement>(":scope > summary")?.setAttribute("aria-expanded", String(menu.open));
+  };
+  document.querySelectorAll<HTMLDetailsElement>(".site-header details").forEach(menu => {
+    syncDisclosureState(menu);
+    menu.addEventListener("toggle", () => syncDisclosureState(menu));
+  });
   document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;
     const openMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu[open], .more-menu[open]");
