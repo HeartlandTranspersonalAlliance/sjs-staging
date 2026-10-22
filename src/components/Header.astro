@@ -34,6 +34,7 @@ function isCurrentPage(href: string): boolean {
       <details class="more-menu">
         <summary
           role="button"
+          aria-label="More pages"
           aria-controls="more-navigation"
           aria-expanded="false"
           class:list={{ "has-current": secondaryNavItems.some((item) => isCurrentPage(item.href)) }}
