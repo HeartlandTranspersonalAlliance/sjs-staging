@@ -91,17 +91,24 @@ function isCurrentPage(href: string): boolean {
     document.querySelector(".site-header")?.toggleAttribute("data-scrolled", window.scrollY > 12);
   };
 
-  syncScrolledState();
-  window.addEventListener("scroll", syncScrolledState, { passive: true });
-  document.addEventListener("astro:page-load", syncScrolledState);
   const closeMenus = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => { menu.open = false; });
   const syncDisclosureState = (menu: HTMLDetailsElement) => {
     menu.querySelector<HTMLElement>(":scope > summary")?.setAttribute("aria-expanded", String(menu.open));
   };
-  document.querySelectorAll<HTMLDetailsElement>(".site-header details").forEach(menu => {
+  const boundMenus = new WeakSet<HTMLDetailsElement>();
+  const syncDisclosureStates = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details").forEach(menu => {
+    if (boundMenus.has(menu)) return;
+    boundMenus.add(menu);
     syncDisclosureState(menu);
     menu.addEventListener("toggle", () => syncDisclosureState(menu));
   });
+  const handlePageLoad = () => {
+    syncScrolledState();
+    syncDisclosureStates();
+  };
+  handlePageLoad();
+  window.addEventListener("scroll", syncScrolledState, { passive: true });
+  document.addEventListener("astro:page-load", handlePageLoad);
   document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;
     const openMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu[open], .more-menu[open]");
