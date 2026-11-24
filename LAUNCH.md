@@ -32,13 +32,13 @@ Staging pages have `noindex, follow`. Production pages must not inherit it. The 
 ## Finish before launch
 
 - [ ] Review the homepage, volunteer flow, organizer information and gallery with the SJS owner.
-- [ ] Confirm minimum volunteer age, typical shifts, training commitment and application follow-up owner. Publish confirmed details on `/volunteer/`.
+- [x] Publish the confirmed volunteer details on `/volunteer/` and the FAQ: age 21 or older, typical six-to-eight-hour shifts, a two-hour structured training course, and follow-up by HTA’s application review committee.
 - [ ] Verify a real application reaches the intended HTA workflow and receives the expected follow-up. The review only opened the form; it submitted no application.
 - [ ] Confirm `info@safejourneysanctum.org` receives general and partnership inquiries. Agree who monitors it; do not promise a response time until confirmed.
 - [ ] Check donation and monthly-giving instructions with HTA. The agreed destination remains HTA’s homepage. Confirm how donors designate SJS and receive receipts.
 - [ ] Have the service lead review testing, consent, privacy, emergency-escalation and resource information. Confirm external resource destinations and current availability.
 - [ ] Confirm upcoming dates or keep the explicit “No upcoming dates are confirmed” notice.
-- [ ] Record photo permission and photographer credit details. Approved Cosmic images are included. Select Nocturnal photos only after reviewing an accessible album and confirmed recap facts.
+- [ ] Record photo permission and photographer credit details. Approved Cosmic images are included. No Nocturnal album is available for this update; those photos are an optional later addition.
 - [ ] Inventory published URLs using the old site, its sitemap/feed and any campaign/download links. Keep `/about/`, `/model/`, `/faq/`, `/volunteer/`, `/news/`, `/contact/` and `/events/`. The current `/getter/` and `/welcome-to-safe-journey-sanctum/` aliases already redirect to the corresponding news pages. Decide what to do with the old feed and any other published routes or assets. A future-dated 2050 post exists in the old source; determine whether it was ever public before adding a redirect.
 - [ ] Add and validate a useful custom 404 page; decide whether to preserve `/feed.xml` as RSS or retire it deliberately.
 - [ ] Check public preview on an actual phone and keyboard, including reduced motion, menu scrolling, menu focus/Escape behavior, direct URLs, internal navigation and photo crops. Review the Chromium accessibility evidence; include a Safari/Firefox spot check before launch.
