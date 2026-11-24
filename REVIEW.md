@@ -30,7 +30,7 @@ The shared Cosmic Kinection Google Photos album was inspected. The strongest web
 
 The new selection uses existing repository files, so the website does not depend on Google Photos sharing links. The album also has broader festival scenes and resting attendees. Those add less to the volunteer journey; keep the public gallery focused on the team and the space. Album contributor names do not by themselves establish photographer credit.
 
-Drive search found `Cosmic Kinection 2026` and its `CK 2026 Media` subfolder, but returned no accessible files inside the media folder. No Nocturnal Valley photos were returned by the event-name image search or the event operations folder listing. No guest logs or volunteer response sheets were read. A Nocturnal Valley album link is still needed for photo selection.
+Drive search found `Cosmic Kinection 2026` and its `CK 2026 Media` subfolder, but returned no accessible files inside the media folder. No Nocturnal Valley photos were returned by the event-name image search or the event operations folder listing. No guest logs or volunteer response sheets were read. The owner confirmed that no Nocturnal Valley album link is available, so this update uses the approved Cosmic Kinection images.
 
 For a later addition, choose a Nocturnal exterior with legible SJS signage and one approved team/setup image. A short recap should give confirmed dates, location, actual coverage and what volunteers learned. Do not infer coverage or attendance from album dates. Keep the Cosmic service dates at June 4 through the morning of June 7 even though the album includes June 8 uploads.
 
@@ -38,7 +38,7 @@ For a later addition, choose a Nocturnal exterior with legible SJS signage and o
 
 | Priority | Work | Reason |
 | --- | --- | --- |
-| Before launch | Confirm volunteer age requirements, typical shifts, training commitment and application follow-up owner | Helps applicants decide and prevents unanswered applications |
+| Completed | Published age 21+, typical six-to-eight-hour shifts, a two-hour structured training course and HTA application review committee follow-up | Gives applicants the confirmed commitment and follow-up owner |
 | Before launch | Confirm donation steps on HTA and check a real receipt with the donation owner | Current links intentionally go to HTA’s homepage, which adds a step |
 | Before launch | Review resource, testing and escalation copy with the service lead | Editorial review does not validate operational or clinical protocols |
 | Before launch | Inventory published legacy URLs, feeds, downloads and campaign links | Two existing article aliases are covered; the full legacy surface needs a deliberate decision |
