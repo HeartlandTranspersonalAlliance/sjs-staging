@@ -7,12 +7,8 @@ imageAlt: "Safe Journey Sanctum lotus logo"
 category: "news"
 ---
 
-Welcome to the online home of **Safe Journey Sanctum**.
+Safe Journey Sanctum is a peer-led initiative offering trauma-informed support at festivals, concerts and other live events. We support people in nonordinary states of consciousness.
 
-We are honored to introduce a peer-led initiative designed to provide compassionate, trauma-informed support for individuals navigating nonordinary states of consciousness at festivals, concerts, and other live events.
+We offer a quiet place and someone to listen. Guests choose whether to accept support. Our approach draws on evidence-informed harm reduction practices and respect for each person’s experience.
 
-Our mission is to offer safe, supportive spaces based on consent-first principles, evidence-informed harm reduction practices, and a deep respect for personal journeys.
-
-This site will share updates, event announcements, volunteer opportunities, and educational resources as SJS grows.
-
-Together, we create sanctuary.
+You’ll find event announcements, volunteer opportunities, educational resources and updates from our team here.

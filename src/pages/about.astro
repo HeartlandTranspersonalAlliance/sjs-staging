@@ -8,13 +8,12 @@ import { site } from "../data/site";
 
 <BaseLayout
   title="About"
-  description="Safe Journey Sanctum's mission, vision, and nonprofit relationship."
+  description="How Safe Journey Sanctum provides peer support at Midwest events and works with Heartland Transpersonal Alliance."
   image="/assets/events/ck2026/inside-sanctuary-day.jpeg"
 >
   <PageHero
-    eyebrow="About SJS"
-    title="Peer-led sanctuary care with practical harm reduction."
-    text="Safe Journey Sanctum provides trauma-informed, consent-based support to people navigating nonordinary, intense, or overwhelming states at festivals, concerts, and community events."
+    title="About Safe Journey Sanctum"
+    text="We provide consent-based peer support and harm reduction at festivals, concerts and community events. Our volunteers are trained to support people in nonordinary states or who feel overwhelmed."
     art="sanctuary"
   />
 
@@ -23,16 +22,16 @@ import { site } from "../data/site";
       <div class="prose">
         <h2>Mission</h2>
         <p>
-          SJS was founded to create supportive spaces where challenging experiences can become safer, more grounded, and less isolating. Volunteers offer presence rather than advice, and every interaction begins with consent.
+          We started SJS so people going through a difficult experience at an event would have somewhere quiet to go and someone to listen. Volunteers start by asking what support the guest wants.
         </p>
         <p>
-          Our work draws from established peer-support and harm-reduction models while adapting the approach to Midwest event culture and local community needs.
+          We draw on peer support and harm reduction practices and adapt the space and staffing to each event.
         </p>
       </div>
       <Card icon="home" class="service-card">
-        <h3>What sanctuary looks like</h3>
+        <h3>Inside the sanctuary</h3>
         <p>
-          Comfortable lighting, soft seating, blankets, grounding materials, art supplies, harm-reduction education, and volunteers who can listen without judgment. SJS also coordinates with medical, security, and production teams so guests can receive the right level of care.
+          Inside you’ll find soft lighting, seating, blankets and art supplies. Our volunteers can listen or share harm reduction information. We coordinate with the event’s medical, security and production teams when a guest needs more support.
         </p>
       </Card>
     </div>
@@ -41,17 +40,16 @@ import { site } from "../data/site";
   <section class="section-tight band">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Nonprofit relationship</p>
-        <h2 class="nonprofit-heading">Organized through Heartland Transpersonal Alliance.</h2>
+        <h2 class="nonprofit-heading">Heartland Transpersonal Alliance</h2>
       </div>
       <div class="prose">
         <p>
           {site.nonprofit}
         </p>
         <p>
-          This relationship helps SJS receive support, develop training, and collaborate with organizers while keeping the work accountable to a nonprofit mission.
+          Through HTA, we accept donations, develop training and work with event organizers.
         </p>
-        <Button variant="ghost" href={site.parentOrg.url} target="_blank">Visit HTA</Button>
+        <Button variant="ghost" href={site.parentOrg.url} target="_blank">Visit Heartland Transpersonal Alliance</Button>
       </div>
     </div>
   </section>
@@ -59,15 +57,15 @@ import { site } from "../data/site";
   <section class="section">
     <div class="site-container two-grid">
       <Card icon="compass" class="resource-card">
-        <h3>Vision</h3>
+        <h3>What we’re working toward</h3>
         <p>
-          A Midwest event culture where peer support, harm-reduction education, and practical supplies are easy to find, emotionally grounded, and trusted by guests, organizers, artists, and care teams.
+          We want peer support and harm reduction supplies to be easy to find at Midwest events.
         </p>
       </Card>
       <Card icon="sparkles" class="resource-card">
-        <h3>How we grow</h3>
+        <h3>How we work with events</h3>
         <p>
-          SJS offers volunteer training, event partnerships, educational resources, and post-event reflection so each deployment strengthens the next one.
+          We train volunteers, plan with organizers and talk through what worked after each event.
         </p>
       </Card>
     </div>
@@ -76,15 +74,14 @@ import { site } from "../data/site";
   <section class="section-tight about-cta">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Take the next step</p>
-        <h2>Help staff and supply sanctuary spaces.</h2>
+        <h2>Support the sanctuary</h2>
       </div>
       <div class="prose">
         <p>
-          SJS grows through trained volunteers, event partnerships, and practical material support for calm, low-stimulation care spaces.
+          Volunteer at an event or help us cover the cost of supplies.
         </p>
         <div class="button-row">
-          <Button variant="primary" href={site.forms.volunteer}>Apply to Volunteer</Button>
+          <Button variant="primary" href={site.forms.volunteer}>Apply to volunteer</Button>
           <Button variant="amber" href="/donate/">Donate</Button>
         </div>
       </div>

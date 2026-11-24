@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 
 export default defineConfig({
@@ -9,9 +8,6 @@ export default defineConfig({
       include: {
         tabler: ["*"]
       }
-    }),
-    tailwind({
-      applyBaseStyles: false
     })
   ]
 });

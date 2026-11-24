@@ -1,8 +1,9 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
 
-const root = new URL('../dist/', import.meta.url).pathname;
+const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const base = process.env.SITE_BASE || '/';
 const origin = process.env.SITE_ORIGIN || (base === '/' ? 'https://safejourneysanctum.org' : 'https://heartlandtranspersonalalliance.github.io');
 const errors = [];
@@ -62,6 +63,22 @@ for (const [path, html] of pages) {
   }
 }
 const home = pages.get('/');
+const sitemap = readFileSync(join(root, 'sitemap.xml'), 'utf8');
+const robots = readFileSync(join(root, 'robots.txt'), 'utf8');
+const sitemapPaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => {
+  const url = new URL(match[1]);
+  assert.equal(url.origin, origin, 'Sitemap uses the intended origin');
+  if (base !== '/') assert(url.pathname.startsWith(base), 'Sitemap keeps the staging base');
+  return '/' + url.pathname.slice(base.length);
+});
+const publicPaths = [...pages].filter(([, html]) => !html.includes('http-equiv="refresh"')).map(([path]) => path);
+assert.deepEqual(sitemapPaths.sort(), publicPaths.sort(), 'Sitemap contains every public page once and excludes legacy redirects');
+if (new URL(origin).hostname === 'heartlandtranspersonalalliance.github.io') {
+  assert(!robots.includes('Sitemap:'), 'Do not advertise the staging sitemap');
+} else {
+  assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`), 'Production robots advertises the sitemap');
+}
+assert(home.indexOf('Volunteer with SJS') < home.indexOf('Bring SJS to your event'), 'Volunteering leads the homepage');
 assert(home.includes('nonordinary states'), 'Keep intentionally undefined terminology');
 assert(home.includes('/organizers/'), 'Organizer entry point');
 assert(home.includes('srcset='), 'Responsive photography');

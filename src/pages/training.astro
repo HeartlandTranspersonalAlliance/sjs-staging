@@ -9,26 +9,25 @@ const trainingFlow = [
   {
     icon: "clipboard",
     title: "Onboarding",
-    text: "Mission, role boundaries, confidentiality limits, volunteer expectations, and how SJS works with event teams."
+    text: "Learn what the role covers, where confidentiality ends and how we work with event teams."
   },
   {
     icon: "message",
     title: "Practice",
-    text: "Role plays for consent-first communication, non-touch grounding, de-escalation, documentation, and warm handoff."
+    text: "Practice asking for consent, grounding without touch, de-escalation, incident notes and handoffs."
   },
   {
     icon: "map",
-    title: "Deployment",
-    text: "Event briefing, shift expectations, supplies, escalation pathways, and post-event debrief."
+    title: "At the event",
+    text: "Review shift duties, supplies and how to call for help. Meet afterward to talk through what happened."
   }
 ];
 ---
 
 <BaseLayout title="Training" description="Narcan/opioid overdose response, CPR, and peer support training available by request for groups, organizations, and communities.">
   <PageHero
-    eyebrow="Training"
-    title="Training for clear, reliable support."
-    text="Training is available by request for groups, organizations, and communities."
+    title="Harm reduction and peer-support training"
+    text="Groups, organizations and communities can request training from Safe Journey Sanctum."
     image="/assets/blog/dale-patrick.jpg"
     imageAlt="SJS outreach moment with harm-reduction education"
     imagePosition="center 35%"
@@ -38,7 +37,7 @@ const trainingFlow = [
     <div class="site-container split-grid">
       <div>
         <h2>Training options</h2>
-        <a class="button button-primary" href={`mailto:${site.email}?subject=SJS%20training%20inquiry`}>Request Training</a>
+        <a class="button button-primary" href={`mailto:${site.email}?subject=SJS%20training%20inquiry`}>Request training</a>
       </div>
       <ul class="content-list training-options">
         <li>Narcan / opioid overdose response</li>
@@ -55,7 +54,7 @@ const trainingFlow = [
         trainingFlow.map((step) => (
           <article class="surface service-card">
             <span class="card-icon" aria-hidden="true"><Icon name={step.icon} /></span>
-            <h2>{step.title}</h2>
+            <h3>{step.title}</h3>
             <p>{step.text}</p>
           </article>
         ))
@@ -65,14 +64,13 @@ const trainingFlow = [
 
   <section class="section-tight training-band">
     <div class="site-container">
-      <p class="eyebrow">Curriculum areas</p>
-      <h2>Volunteer curriculum</h2>
+      <h2>What volunteers learn</h2>
       <ul class="topic-grid" role="list">
         {trainingTopics.map((topic) => <li>{topic}</li>)}
       </ul>
       <div class="button-row">
-        <a class="button button-primary" href={site.forms.volunteer}>Apply to Volunteer</a>
-        <a class="button button-ghost" href={withBase("/volunteer/")}>Volunteer Details</a>
+        <a class="button button-primary" href={site.forms.volunteer}>Apply to volunteer</a>
+        <a class="button button-ghost" href={withBase("/volunteer/")}>See volunteer roles</a>
       </div>
     </div>
   </section>
@@ -80,7 +78,7 @@ const trainingFlow = [
 
 <style>
   .training-options li { font-weight: 700; }
-  .service-card h2 {
+  .service-card h3 {
     font-size: 1.22rem;
     margin: 0 0 10px;
   }

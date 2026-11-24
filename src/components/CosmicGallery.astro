@@ -1,0 +1,33 @@
+---
+import FieldPhoto from "./FieldPhoto.astro";
+const photos = [
+  {
+    src: "/assets/events/ck2026/inside-sanctuary-day.jpeg",
+    alt: "Daylight inside the SJS tent, with blankets, cushions and an open entrance",
+    caption: "The sanctuary during the day"
+  },
+  {
+    src: "/assets/events/ck2026/inside-sanctuary-night.jpeg",
+    alt: "The same sanctuary at night, with string lights over blankets and cushions",
+    caption: "A place to take a break at night"
+  }
+];
+---
+<section class="field-gallery" aria-labelledby="sanctuary-photos-title">
+  <h2 id="sanctuary-photos-title">Inside the sanctuary</h2>
+  <div class="photo-pair">
+    {photos.map(photo => <figure>
+      <FieldPhoto src={photo.src} alt={photo.alt} sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 880px) calc((100vw - 4rem - 20px) / 2), (max-width: 1360px) calc((100vw - 5rem - 388px) / 2), 446px" />
+      <figcaption>{photo.caption} · Cosmic Kinection 2026</figcaption>
+    </figure>)}
+  </div>
+</section>
+<style>
+  .field-gallery { margin-top: 36px; }
+  h2 { font-size: var(--type-section-title); }
+  .photo-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  figure { margin: 0; }
+  figure :global(img) { display: block; width: 100%; height: auto; border-radius: 8px; }
+  figcaption { font-size: .9rem; color: var(--muted); margin-top: 10px; }
+  @media (max-width: 767px) { .photo-pair { grid-template-columns: 1fr; } }
+</style>

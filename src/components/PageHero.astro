@@ -119,15 +119,15 @@ const artIcon = {
   .page-hero-grid {
     align-items: center;
     display: grid;
-    gap: 44px;
+    gap: clamp(22px, 3.4vw, 44px);
     grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.72fr);
   }
 
   .page-hero h1 {
     font-size: var(--type-page-title);
     line-height: 1.15;
-    margin: 12px auto 18px;
-    max-width: min(100%, 14em);
+    margin: 8px 0 12px;
+    max-width: min(100%, 24ch);
     text-wrap: balance;
   }
 
@@ -293,7 +293,7 @@ const artIcon = {
     }
 
     .page-hero {
-      padding: 40px 0;
+      padding: 34px 0;
     }
   }
   .compact .page-hero-grid { grid-template-columns: 1fr; }

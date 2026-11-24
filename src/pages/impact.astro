@@ -8,9 +8,8 @@ import { withBase } from "../utils/paths";
 
 <BaseLayout title="Impact" description="Field recaps from SJS event deployments.">
   <PageHero
-    eyebrow="Impact"
-    title="SJS in the field."
-    text="Field notes from sanctuary support and harm-reduction outreach at Midwest events."
+    title="SJS event recaps"
+    text="Read about our sanctuary support and harm reduction outreach at Midwest events."
     art="impact"
   />
 
@@ -22,11 +21,11 @@ import { withBase } from "../utils/paths";
       </div>
       <div class="prose">
         <p>
-          SJS provided 24/7 support in {featuredEvent.location} from Thursday, June 4 through the morning of Sunday, June 7, 2026. Read the recap for the deployment details and field notes.
+          SJS provided 24/7 support in {featuredEvent.location} from Thursday, June 4 through the morning of Sunday, June 7, 2026.
         </p>
         <div class="button-row">
-          <a class="button button-primary" href={withBase(featuredEvent.href)}>Read Cosmic Kinection Recap</a>
-          <a class="button button-ghost" href={withBase("/news/getter/")}>Earlier Getter Recap</a>
+          <a class="button button-primary" href={withBase(featuredEvent.href)}>Read the Cosmic Kinection recap</a>
+          <a class="button button-ghost" href={withBase("/news/getter/")}>Read the Getter recap</a>
         </div>
       </div>
     </div>

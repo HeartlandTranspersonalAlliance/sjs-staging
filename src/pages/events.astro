@@ -12,7 +12,7 @@ const eventTypes = [
     icon: "message",
     title: "Integration circles",
     status: "Inquiries welcome",
-    text: "Small community gatherings for reflection, grounding skills, and peer connection after meaningful or difficult experiences.",
+    text: "Small gatherings to reflect with others and practice grounding after a meaningful or difficult experience.",
     href: "/contact/",
     label: "Ask about circles"
   },
@@ -27,7 +27,7 @@ const eventTypes = [
   {
     icon: "home",
     title: "Festival outreach",
-    status: "Active service / event coordination required",
+    status: "Requires event coordination",
     text: "Sanctuary support, education, fentanyl reagent testing, and on-site coordination with organizers, medical teams, security, and production staff.",
     href: "/organizers/",
     label: "Plan outreach"
@@ -37,9 +37,8 @@ const eventTypes = [
 
 <BaseLayout title="Events" description="SJS event formats, recent field work, trainings, and ways to get involved.">
   <PageHero
-    eyebrow="Events"
-    title="Sanctuary support, trainings, and community spaces."
-    text="SJS supports festivals, concerts, and community gatherings while building volunteer education and integration opportunities between event deployments."
+    title="Events and training"
+    text="We support festivals, concerts and community gatherings. Between events, you can ask about training or integration circles."
     art="events"
   />
 
@@ -48,16 +47,16 @@ const eventTypes = [
       <div class="notice empty-events">
         <IconBadge name="calendar" />
         <div>
-          <strong>No upcoming dates are confirmed yet.</strong>
+          <strong>No upcoming dates are confirmed</strong>
           <p>
-            Confirmed trainings, sanctuary deployments, and community circles will be posted as dates are finalized. Email SJS to be notified when new events open.
+            We’ll post training, event support and community circle dates here once they are confirmed. Email us if you’d like updates.
           </p>
           <Button variant="ghost" size="sm" href={site.forms.contact}>Email for updates</Button>
         </div>
       </div>
       <article class="surface field-event-card" id="recent-work">
         <div>
-          <p class="post-meta">Recent field work / {featuredEvent.dateLabel}</p>
+          <p class="post-meta">Recent event / {featuredEvent.dateLabel}</p>
           <h2>{featuredEvent.title}</h2>
           <p>{featuredEvent.location} · {featuredEvent.summary}</p>
         </div>
@@ -81,16 +80,15 @@ const eventTypes = [
   <section class="section-tight band">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Bring SJS to an event</p>
-        <h2>Want SJS at an event?</h2>
+        <h2>Request event support</h2>
       </div>
       <div class="prose">
         <p>
-          Event organizers can request sanctuary support, harm-reduction education, supplies, and coordination planning. Volunteers can apply now so they are ready when new events are confirmed.
+          Organizers can ask about sanctuary support, education, supplies and coordination. If you’d like to help at future events, you can apply now.
         </p>
         <div class="button-row">
-          <Button variant="primary" href="/volunteer/">Volunteer for Events</Button>
-          <Button variant="ghost" href="/organizers/">Bring SJS to an Event</Button>
+          <Button variant="primary" href="/volunteer/">Apply to volunteer</Button>
+          <Button variant="ghost" href="/organizers/">Ask about event support</Button>
         </div>
       </div>
     </div>
