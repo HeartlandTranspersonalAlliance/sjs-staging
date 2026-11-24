@@ -93,7 +93,10 @@ const artIcon = {
 
 <style>
   .page-hero {
-    background: var(--linen);
+    background:
+      radial-gradient(circle at 12% 12%, var(--body-halo-violet), transparent 30rem),
+      linear-gradient(135deg, var(--body-halo-amber), transparent 54%),
+      var(--linen);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
     padding: 48px 0;
@@ -300,5 +303,4 @@ const artIcon = {
   .compact h1 { max-width: 28ch; }
   .compact .lede { max-width: 65ch; }
   .portrait-hero :global(.page-hero-image) { aspect-ratio: auto; max-height: 480px; object-fit: contain; border: 0; }
-  .page-hero::before { display: none; }
 </style>
