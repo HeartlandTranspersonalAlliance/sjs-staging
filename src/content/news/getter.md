@@ -7,7 +7,7 @@ imageAlt: "Five SJS volunteers standing behind a booth at Getter"
 category: "field recap"
 ---
 
-Safe Journey Sanctum is growing. For our second event, we attended Getter at the Warehouse on Broadway in Kansas City with more than 500 people in attendance.
+For our second event, we attended Getter at the Warehouse on Broadway in Kansas City with more than 500 people in attendance.
 
 <figure>
   <img src="../../assets/blog/getter-group.jpg" alt="Five SJS members standing behind a booth at Getter" width="1024" height="768" loading="lazy" decoding="async" />
@@ -16,11 +16,9 @@ Safe Journey Sanctum is growing. For our second event, we attended Getter at the
 
 Special thanks to Production Manager Patrick Grantello and Katie Foster of Sunshine DIY Studio for the incredible shirts.
 
-Our next event will be Phantom Music Festival. Interested volunteers can [apply to join SJS](https://forms.gle/iZt6DJF9YRQfXHHx5).
+At the time of this recap, our next planned event was Phantom Music Festival. Interested volunteers can [apply to join SJS](https://forms.gle/iZt6DJF9YRQfXHHx5).
 
 <figure>
   <img src="../../assets/blog/dale-patrick.jpg" alt="An attendee stopped by the SJS table to learn more" width="699" height="701" loading="lazy" decoding="async" />
   <figcaption>An attendee, Patrick More, stopped by to learn more and thanked us for our work.</figcaption>
 </figure>
-
-Stay tuned for more updates, and thank you for being part of our community.

@@ -10,14 +10,14 @@ const contactPaths = [
   {
     icon: "handshake",
     title: "Event partnership",
-    text: "Share the event date, location, expected attendance, venue setup, medical/security plan, and support requested.",
+    text: "Tell us your event date, location, expected attendance, venue setup and the support you need. Include your medical and security plan.",
     href: site.forms.partnership,
-    label: "Email Partnership Details"
+    label: "Email about an event"
   },
   {
     icon: "message",
     title: "General questions",
-    text: "Ask about SJS, volunteering, education, donations, resources, or community collaboration.",
+    text: "Email us about volunteering, education, donations, resources or working together.",
     href: site.forms.contact,
     label: "Email SJS"
   }
@@ -26,9 +26,8 @@ const contactPaths = [
 
 <BaseLayout title="Contact" description="Contact SJS for event partnership, volunteer, donation, and general inquiries.">
   <PageHero
-    eyebrow="Contact"
-    title="Contact SJS."
-    text="For on-site emergencies, contact venue medical or security personnel immediately. For planning and non-urgent questions, use the paths below."
+    title="Contact Safe Journey Sanctum"
+    text="For an on-site emergency, contact venue medical or security staff immediately. For planning and other non-urgent questions, use the email links below."
     art="contact"
     compact
   />
@@ -36,6 +35,7 @@ const contactPaths = [
   <section class="section">
     <div class="site-container contact-layout">
       <div class="contact-paths">
+        <p class="contact-email">You can also write directly to <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
         {
           contactPaths.map((path) => (
             <Card icon={path.icon} class="service-card">
@@ -62,6 +62,8 @@ const contactPaths = [
   .contact-paths { display: grid; gap: 24px; }
   :global(.contact-photo) { width: 100%; height: auto; border-radius: 12px; }
   @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; } }
+
+  .contact-email { overflow-wrap: anywhere; }
 
   .service-card h2 {
     font-size: 1.22rem;

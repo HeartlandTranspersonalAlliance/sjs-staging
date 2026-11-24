@@ -5,7 +5,7 @@ export const site = {
   url: "https://safejourneysanctum.org/",
   email: "info@safejourneysanctum.org",
   description:
-    "Comprehensive peer support and harm reduction for nonordinary states at Midwest events.",
+    "Peer support and harm reduction for nonordinary states at Midwest events.",
   nonprofit:
     "Safe Journey Sanctum is a DBA of the Heartland Transpersonal Alliance, Inc., a registered 501(c)(3) nonprofit in the state of Missouri.",
   parentOrg: {
@@ -29,8 +29,7 @@ export const site = {
 
 export const navItems = [
   { label: "About", href: "/about/" },
-  { label: "For Organizers", href: "/organizers/" },
-  { label: "Volunteer", href: "/volunteer/" },
+  { label: "For organizers", href: "/organizers/" },
   { label: "Resources", href: "/resources/" },
   { label: "News", href: "/news/" },
   { label: "Contact", href: "/contact/" }
@@ -42,20 +41,20 @@ export const secondaryNavItems = [
   { label: "FAQ", href: "/faq/" },
   { label: "Training", href: "/training/" },
   { label: "Events", href: "/events/" },
-  { label: "Impact", href: "/impact/" }
+  { label: "Impact", href: "/impact/" },
+  { label: "Donate", href: "/donate/" }
 ];
 
 export const primaryCtas = [
-  { label: "For Organizers", href: "/organizers/" },
-  { label: "Donate", href: "/donate/" },
-  { label: "Volunteer", href: "/volunteer/" }
+  { label: "Volunteer with SJS", href: "/volunteer/" },
+  { label: "For organizers", href: "/organizers/" }
 ];
 
 export const carePrinciples = [
   {
     icon: "heart",
     title: "Trauma-informed",
-    text: "We prioritize predictability, choice, and emotional safety while recognizing that guests may arrive with different histories and thresholds."
+    text: "We explain what to expect and give guests choices about the support they receive."
   },
   {
     icon: "handshake",
@@ -64,12 +63,12 @@ export const carePrinciples = [
   },
   {
     icon: "ear",
-    title: "Non-directive presence",
+    title: "Listen without directing",
     text: "SJS volunteers listen without judgment and do not guide, interpret, or steer a guest's experience."
   },
   {
     icon: "shield",
-    title: "Evidence-based safety response",
+    title: "Know when to get help",
     text: "Training includes de-escalation, overdose awareness, Narcan response basics, and clear escalation to medical or security teams."
   }
 ];

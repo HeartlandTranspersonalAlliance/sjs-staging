@@ -11,21 +11,24 @@
     "build:staging": "node scripts/build-staging.mjs",
     "preview": "astro preview",
     "test:browser": "playwright test --workers=1",
-    "test:ci": "npm run build && npm run validate && npm run test:browser && npm run build:staging && SITE_BASE=/sjs-staging/ npm run test:browser"
+    "test:ci": "node scripts/test-site.mjs"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.5",
     "@iconify-json/tabler": "^1.2.35",
-    "astro": "^5.13.8",
+    "astro": "^7.4.13",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.12",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
+    "@types/node": "^24.19.2",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=24.13.0 <25"
   }
 }

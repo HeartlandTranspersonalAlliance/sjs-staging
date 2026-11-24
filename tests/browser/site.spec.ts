@@ -50,3 +50,40 @@ test('keyboard navigation and volunteer journey', async ({ page }, testInfo) => 
   await page.goto(base + 'donate/');
   await expect(page.locator('main a[href*="heartlandta.org"]').first()).toBeVisible();
 });
+
+test('homepage volunteer journey and navigation at layout boundaries', async ({ page }) => {
+  for (const viewport of [
+    { width: 320, height: 640 }, { width: 900, height: 800 },
+    { width: 1200, height: 800 }, { width: 1201, height: 800 },
+    { width: 1280, height: 320 }
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto(base);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
+    if (viewport.width > 480) await expect(page.locator('.nav-volunteer')).toBeVisible();
+    else await expect(page.locator('.home-hero').getByRole('link', { name: 'Volunteer with SJS', exact: true })).toBeVisible();
+    const disclosure = page.locator(viewport.width <= 1200 ? '.mobile-menu > summary' : '.more-menu > summary');
+    await disclosure.click();
+    const panel = page.locator(viewport.width <= 1200 ? '.mobile-panel' : '.more-panel');
+    await expect(panel).toBeVisible();
+    const donate = panel.getByRole('link', { name: 'Donate', exact: true });
+    if (viewport.width <= 1200) await panel.locator('.mobile-secondary > summary').click();
+    await donate.scrollIntoViewIfNeeded();
+    await expect(donate).toBeInViewport();
+    await page.keyboard.press('Escape');
+    await expect(disclosure).toBeFocused();
+    await page.locator('.home-hero').getByRole('link', { name: 'Volunteer with SJS', exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`${base}volunteer/`));
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Volunteer with Safe Journey Sanctum');
+    await expect(page.locator('a[href="https://forms.gle/iZt6DJF9YRQfXHHx5"]').first()).toBeVisible();
+  }
+});
+
+test('volunteer entry point works without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(`http://127.0.0.1:4343${base}`);
+  await page.locator('.home-hero').getByRole('link', { name: 'Volunteer with SJS', exact: true }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Volunteer with Safe Journey Sanctum');
+  await context.close();
+});

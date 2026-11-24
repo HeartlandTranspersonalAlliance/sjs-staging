@@ -12,17 +12,17 @@ const faqGroups = [
       {
         question: "What is Safe Journey Sanctum?",
         answer:
-          "Safe Journey Sanctum provides calm, consent-based peer support for people who feel overwhelmed, distressed, overstimulated, emotionally activated, or disoriented at festivals, concerts, and community events."
+          "At festivals, concerts and community events, Safe Journey Sanctum offers peer support to people who feel overwhelmed, distressed or disoriented. You choose whether to accept support."
       },
       {
         question: "What is peer support?",
         answer:
-          "Peer support means a grounded, nonjudgmental person can sit with you, listen, reduce stimulation, help you reconnect with trusted friends, or walk with you to another support resource when needed."
+          "A peer support volunteer can sit with you and listen without judgment. They can help reduce stimulation, find trusted friends or walk with you to another source of support."
       },
       {
         question: "Do I have to be on psychedelics or other substances to ask for support?",
         answer:
-          "No. SJS is for anyone who needs a quieter place, steady presence, grounding, or help getting oriented. Substance use is not required, assumed, or judged."
+          "No. You can ask for a quieter place, someone to sit with you, or help getting oriented. Volunteers won’t assume you’ve taken anything."
       },
       {
         question: "What might support look like at an event?",
@@ -62,7 +62,7 @@ const faqGroups = [
       {
         question: "Does SJS work with event medical, security, and operations teams?",
         answer:
-          "Yes. SJS is designed to integrate with event medical, security, ranger, venue, and operations teams so guests can receive the right help quickly and with less confusion."
+          "Yes. SJS coordinates with event medics, security, rangers, venue staff and operations teams so guests can reach the right people quickly."
       }
     ]
   },
@@ -107,7 +107,7 @@ const faqGroups = [
       {
         question: "What is the goal of integration?",
         answer:
-          "The goal is not to force meaning, make major decisions right away, or treat every insight as automatically true. It is to slow down and ask what is helpful, safe, and sustainable in real life."
+          "Take time to ask what feels helpful, safe and sustainable in everyday life. You don’t need to force a meaning or make major decisions right away. Question an insight before treating it as true."
       },
       {
         question: "Where can I find ongoing integration support?",
@@ -132,12 +132,12 @@ const faqGroups = [
       {
         question: "What kind of space works best?",
         answer:
-          "A useful SJS space is lower-stimulation, visible enough to find, private without being isolated, close to water and bathrooms when possible, and accessible to medical responders if escalation is needed."
+          "Choose a quieter place that guests can find easily. It should provide privacy without leaving guests or volunteers isolated. Nearby water and bathrooms help; medical responders must be able to reach it."
       },
       {
         question: "How does SJS reduce role confusion at events?",
         answer:
-          "Before a deployment, SJS works best with a written event-specific plan that clarifies contacts, radio or phone channels, escalation pathways, handoff expectations, and the boundary between peer support, medical care, security, and operations."
+          "Before an event, a written plan helps everyone know whom to call, which radio or phone channels to use, when to ask for help, and which team takes over."
       }
     ]
   },
@@ -147,12 +147,12 @@ const faqGroups = [
       {
         question: "Can anyone volunteer with SJS?",
         answer:
-          "People who align with the mission are welcome to apply. Volunteers complete onboarding and are expected to practice consent, confidentiality, grounded communication, clear boundaries, and scope-aware support."
+          "If you share our approach to peer support, you’re welcome to apply. Volunteers complete onboarding, ask for consent, protect confidentiality and communicate calmly. They respect boundaries and stay within their role."
       },
       {
         question: "Do volunteers need to be therapists or medical professionals?",
         answer:
-          "No. Those backgrounds can be helpful, but SJS peer support is not therapy or medical care. The core requirements are steadiness, humility, nonjudgmental presence, willingness to follow protocol, and knowing when to call for help."
+          "No. Those backgrounds can help. SJS provides peer support, which does not include therapy or medical care. Volunteers need to stay calm, listen without judgment, be willing to learn, follow procedures and know when to call for help."
       },
       {
         question: "What does SJS training emphasize?",
@@ -173,9 +173,8 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
 
 <BaseLayout title="FAQ" description="Frequently asked questions about SJS peer support, safety boundaries, integration, volunteering, and event partnerships.">
   <PageHero
-    eyebrow="FAQ"
-    title="Clear answers before support is needed."
-    text="These answers explain what SJS offers, where our boundaries are, and how guests, organizers, and volunteers can connect with support safely."
+    title="Frequently asked questions"
+    text="Find out what to expect if you ask for support, invite SJS to an event, or apply to volunteer."
     art="resources"
   />
 
@@ -194,8 +193,7 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   <section class="section faq-intro" aria-labelledby="faq-note-title">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Start here</p>
-        <h2 id="faq-note-title">SJS is support, not emergency care.</h2>
+        <h2 id="faq-note-title">Peer support and emergency care</h2>
       </div>
       <p>
         If there is immediate danger or a medical emergency, contact on-site medical/security personnel or call 911 first. SJS can help with grounding and warm handoffs, but emergency care comes first when safety is at risk.
@@ -228,12 +226,11 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   <section class="section-tight faq-cta">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Next step</p>
-        <h2>Questions, event requests, or volunteer interest.</h2>
+        <h2>Request event support or volunteer</h2>
       </div>
       <div class="cta-actions">
-        <Button href={site.forms.partnership} variant="amber">Email Event Details</Button>
-        <Button href={site.forms.volunteer} variant="ghost">Apply to Volunteer</Button>
+        <Button href={site.forms.partnership} variant="amber">Email event details</Button>
+        <Button href={site.forms.volunteer} variant="ghost">Apply to volunteer</Button>
       </div>
     </div>
   </section>
@@ -269,7 +266,7 @@ const groupId = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-
   }
 
   .faq-group h2 {
-    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    font-size: var(--type-section-title);
     margin: 0 0 18px;
   }
 

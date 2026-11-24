@@ -6,26 +6,26 @@ import { eventServices, site } from "../data/site";
 import { withBase } from "../utils/paths";
 
 const setupNeeds = [
-  "Quiet, visible location with clear access for medical/security teams",
-  "Power or battery plan for gentle lighting and operations",
-  "Shade, weather protection, and practical flooring",
-  "Production contact, radio/channel plan, and escalation protocol",
-  "Privacy-aware guest flow that does not isolate volunteers"
+  "A quiet, visible location that medical and security teams can reach",
+  "Power or batteries for lighting and equipment",
+  "Shade, weather protection and suitable flooring",
+  "A production contact, a radio channel and a plan for calling for help",
+  "A layout that gives guests privacy without isolating volunteers"
 ];
 
 const planningInputs = [
   "Event date, venue, expected attendance, age policy, and event type",
   "Existing medical, security, ranger, production, and venue contacts",
-  "SJS operating hours, location, nearby water/bathrooms, and emergency access",
+  "Sanctuary hours and location, nearby water and bathrooms, and emergency access",
   "Known heat, weather, crowd, substance, accessibility, or venue-specific risks",
   "Whether fentanyl reagent testing is requested, plus the event approval and local requirements that apply",
-  "Preferred radio, phone, or runner process for sensitive handoffs"
+  "How teams should communicate about sensitive handoffs: radio, phone or in person"
 ];
 
 const boundaries = [
-  "SJS offers peer support, grounding, harm-reduction education, practical supplies when stocked, and warm handoffs.",
-  "Fentanyl reagent testing is an additional SJS service; timing and operation are coordinated with event approval, local requirements, staffing, and supplies.",
-  "SJS does not provide medical diagnosis, medical treatment, psychotherapy, security enforcement, or law-enforcement functions.",
+  "We offer peer support, grounding and harm-reduction education. We share supplies when stocked and connect guests with other event teams when needed.",
+  "Fentanyl reagent testing is an additional service. We plan it with organizers based on event approval, local requirements, staffing and supplies.",
+  "We do not diagnose or treat medical conditions, provide psychotherapy, or act as security or law enforcement.",
   "If a guest may be medically unsafe, event medical or emergency response should be contacted first."
 ];
 
@@ -33,22 +33,20 @@ const boundaries = [
 
 <BaseLayout title="For Event Organizers" description="SJS services, staffing model, setup needs, coordination, and partnership inquiry information for event organizers.">
   <PageHero
-    eyebrow="For event organizers"
-    title="Add peer support and harm reduction to your safety plan."
-    text="SJS helps organizers create calm sanctuary spaces, provide practical harm-reduction support, and coordinate clearly with medical, security, ranger, venue, and operations teams."
+    title="Peer support for your event"
+    text="We run a quiet sanctuary and provide peer support and harm-reduction education. We plan our work with your medical, security, ranger, venue and operations teams."
     art="organizers"
   />
 
   <section class="section">
     <div class="site-container organizer-intro">
       <div class="prose">
-        <p class="eyebrow">Why organizers bring in SJS</p>
-        <h2>One team, clear roles.</h2>
+        <h2>Plan with us before doors open</h2>
         <p>
-          SJS works best when it is part of the event care system before doors open. A simple integration plan helps avoid delayed escalation, duplicated response, unclear communication, and confusion about what peer support or harm-reduction services can and cannot do.
+          Before the event, agree on who handles each kind of request, how teams contact each other and when to call for help. That makes it easier to respond promptly and avoid sending two teams to the same call.
         </p>
       </div>
-      <a class="button button-primary" href={site.forms.partnership}>Partnership Inquiry</a>
+      <a class="button button-primary" href={site.forms.partnership}>Email about your event</a>
     </div>
   </section>
 
@@ -56,14 +54,14 @@ const boundaries = [
     <div class="site-container two-grid">
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="home" /></span>
-        <h2>What SJS can provide</h2>
+        <h2>What we provide</h2>
         <ul class="content-list">
           {eventServices.map((service) => <li>{service}</li>)}
         </ul>
       </div>
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="shield" /></span>
-        <h2>Scope boundaries</h2>
+        <h2>Where our role ends</h2>
         <ul class="content-list">
           {boundaries.map((boundary) => <li>{boundary}</li>)}
         </ul>
@@ -75,14 +73,14 @@ const boundaries = [
     <div class="site-container two-grid">
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="clipboard" /></span>
-        <h2>Setup needs</h2>
+        <h2>What the sanctuary needs</h2>
         <ul class="content-list">
           {setupNeeds.map((need) => <li>{need}</li>)}
         </ul>
       </div>
       <div class="surface service-card">
         <span class="card-icon" aria-hidden="true"><Icon name="map" /></span>
-        <h2>Planning inputs</h2>
+        <h2>What to share with us</h2>
         <ul class="content-list">
           {planningInputs.map((input) => <li>{input}</li>)}
         </ul>
@@ -93,14 +91,13 @@ const boundaries = [
   <section class="section-tight battle-card">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Why SJS</p>
-        <h2>An integrated care model.</h2>
+        <h2>How the services fit together</h2>
       </div>
       <div class="prose">
         <p>
-          SJS combines sanctuary peer support, harm-reduction education, practical supplies, fentanyl reagent testing, and event coordination.
+          See what it takes to run a sanctuary alongside your event’s other services.
         </p>
-        <a class="button button-ghost" href={withBase("/why-sjs/")}>Explore the SJS model</a>
+        <a class="button button-ghost" href={withBase("/why-sjs/")}>Why bring in SJS?</a>
       </div>
     </div>
   </section>
@@ -108,14 +105,13 @@ const boundaries = [
   <section class="section-tight band">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Integration model</p>
-        <h2>SJS fits into the care system.</h2>
+        <h2>Working with professional responders</h2>
       </div>
       <div class="prose">
         <p>
-          SJS scopes each deployment around event size, hours, risk profile, available space, and existing medical/security staffing. Volunteers complement professional responders; they do not replace them. When there is injury, abnormal breathing, overdose concern, heat illness, severe agitation, violence, suicidality, or uncertainty about medical risk, SJS escalates rather than trying to hold the situation internally.
+          We plan staffing and hours around event size, operating hours, risks, available space and existing medical and security coverage. Volunteers work alongside professional responders and do not replace them. When there is injury, abnormal breathing, overdose concern, heat illness, severe agitation, violence, suicidality, or uncertainty about medical risk, SJS escalates rather than trying to hold the situation internally.
         </p>
-        <a class="button button-primary" href={site.forms.partnership}>Partnership Inquiry</a>
+        <a class="button button-primary" href={site.forms.partnership}>Email about your event</a>
       </div>
     </div>
   </section>

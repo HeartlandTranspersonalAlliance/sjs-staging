@@ -52,7 +52,7 @@ function isCurrentPage(href: string): boolean {
     </div>
 
     <div class="nav-actions">
-      <a class="nav-donate" href={withBase("/donate/")}>Donate</a>
+      <a class="nav-volunteer" href={withBase("/volunteer/")} aria-current={isCurrentPage("/volunteer/") ? "page" : undefined}>Volunteer</a>
 
       <details class="mobile-menu">
         <summary role="button" aria-label="Navigation menu" aria-controls="mobile-navigation" aria-expanded="false">
@@ -78,7 +78,7 @@ function isCurrentPage(href: string): boolean {
             </div>
           </details>
           <div class="mobile-ctas">
-            <a href={withBase("/donate/")}>Donate</a>
+            <a href={withBase("/volunteer/")}>Volunteer with SJS</a>
           </div>
         </div>
       </details>
@@ -243,7 +243,7 @@ function isCurrentPage(href: string): boolean {
   }
 
   .desktop-links a:focus-visible,
-  .nav-donate:focus-visible,
+  .nav-volunteer:focus-visible,
   .more-menu summary:focus-visible,
   .more-panel a:focus-visible,
   .mobile-menu summary:focus-visible,
@@ -332,7 +332,7 @@ function isCurrentPage(href: string): boolean {
     gap: 10px;
   }
 
-  .nav-donate {
+  .nav-volunteer {
     background: var(--amber);
     border: 1px solid var(--button-border);
     border-radius: 999px;
@@ -346,12 +346,12 @@ function isCurrentPage(href: string): boolean {
       transform 180ms ease;
   }
 
-  .site-header[data-scrolled] .nav-donate {
+  .site-header[data-scrolled] .nav-volunteer {
     min-height: 40px;
     padding: 7px 1.35rem;
   }
 
-  .nav-donate:hover {
+  .nav-volunteer:hover {
     background: var(--amber-strong);
     transform: translateY(-1px);
   }
@@ -451,7 +451,7 @@ function isCurrentPage(href: string): boolean {
       overflow-wrap: anywhere;
     }
 
-    .nav-donate {
+    .nav-volunteer {
       display: none;
     }
   }

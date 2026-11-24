@@ -2,6 +2,7 @@
 import { render, type CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FieldPhoto from "../components/FieldPhoto.astro";
+import CosmicGallery from "../components/CosmicGallery.astro";
 import { withBase } from "../utils/paths";
 import { formatDate } from "../utils/dates";
 
@@ -35,8 +36,9 @@ const isLogo = post.data.image.endsWith("/sjslogo.png");
 
   <section class="section">
     <div class="site-container post-shell">
-      <div class="prose">
-        <Content />
+      <div>
+        <div class="prose"><Content /></div>
+        {post.id === "cosmic-kinection-2026" && <CosmicGallery />}
       </div>
       <aside class="surface post-aside centered-copy">
         <h2>Connect with SJS</h2>

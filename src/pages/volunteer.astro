@@ -7,7 +7,7 @@ import Card from "../components/ui/Card.astro";
 import { site, trainingTopics } from "../data/site";
 
 const roles = [
-  { icon: "heart", title: "Peer counselors" },
+  { icon: "heart", title: "Peer support volunteers" },
   { icon: "book", title: "Harm-reduction educators" },
   { icon: "handshake", title: "Event liaisons" },
   { icon: "package", title: "Logistics coordinators" },
@@ -18,35 +18,34 @@ const roles = [
 const expectations = [
   "Be sober and fit for duty during SJS shifts.",
   "Know who the shift lead is and ask for backup early.",
-  "Use consent-first support and default to no touch.",
-  "Stay within peer-support scope and escalate medical or safety concerns promptly.",
-  "Protect privacy and document significant incidents factually after the situation is stable."
+  "Ask for consent before offering support and default to no touch.",
+  "Stay within your peer-support role. Bring in the appropriate team promptly for medical or safety concerns.",
+  "Protect guests’ privacy. Once a situation is stable, record significant incidents and stick to what happened."
 ];
 
 const trainingFlow = [
   {
     icon: "clipboard",
     title: "Onboarding",
-    text: "Mission, role boundaries, confidentiality limits, volunteer expectations, and how SJS integrates with event care teams."
+    text: "Learn your role, what you’re expected to do, the limits of confidentiality and how we work with event teams."
   },
   {
     icon: "message",
     title: "Practice",
-    text: "Scenario practice for consent-first communication, non-touch grounding, de-escalation, documentation, and warm handoffs."
+    text: "Practice asking for consent, grounding without touch, de-escalation, documenting incidents and handing off to another team."
   },
   {
     icon: "map",
-    title: "Deployment",
-    text: "Event briefing, shift expectations, supplies, escalation pathways, breaks, and post-event debrief."
+    title: "At the event",
+    text: "At the briefing, review shift duties, supplies, breaks and how to call for help. After the event, meet to review how it went."
   }
 ];
 ---
 
 <BaseLayout title="Volunteer" description="Volunteer roles, expectations, training topics, and application information for SJS.">
   <PageHero
-    eyebrow="Volunteer"
-    title="Help provide sanctuary and harm reduction."
-    text="You do not need to be a therapist or medical professional to get involved. SJS needs steady people who can listen, follow protocol, support practical harm reduction, respect boundaries, and ask for help early."
+    title="Volunteer with Safe Journey Sanctum"
+    text="You don’t need to be a therapist or medical professional. We’re looking for people who listen, respect boundaries, follow the team’s procedures and ask for backup early."
     art="training"
   />
 
@@ -55,15 +54,15 @@ const trainingFlow = [
       <div class="prose">
         <h2>What volunteers do</h2>
         <p>
-          Volunteers staff comfortable, low-stimulation sanctuary spaces where guests can rest, talk, hydrate, draw, breathe, or sit quietly. Depending on role and training, volunteers may also support education, supplies, logistics, and event coordination.
+          Volunteers staff a quiet sanctuary where guests can rest, have water, talk or draw. Depending on your role and training, you might also help with education, supplies or event logistics.
         </p>
         <p>
-          SJS volunteers offer calm presence rather than advice and know when to involve medical personnel or security. Between events, volunteers help with outreach, fundraising, training facilitation, supply prep, documentation, and logistics.
+          During shifts, volunteers listen without giving advice and bring in medical or security staff when needed. Between events, volunteers can help with outreach, fundraising, training, supplies, documentation or logistics.
         </p>
-        <Button variant="primary" href={site.forms.volunteer}>Volunteer Application Form</Button>
+        <Button variant="primary" href={site.forms.volunteer}>Open volunteer application</Button>
       </div>
       <Card icon="users" class="service-card">
-        <h3>Roles include</h3>
+        <h2>Volunteer roles</h2>
         <ul class="roles-list">
           {roles.map((role) => (
             <li>
@@ -79,8 +78,7 @@ const trainingFlow = [
   <section class="section-tight training-strip">
     <div class="site-container">
       <div class="section-heading">
-        <p class="eyebrow">Training expectations</p>
-        <h2>Training keeps roles clear.</h2>
+        <h2>How we prepare volunteers</h2>
       </div>
       <div class="card-grid training-flow-grid">
         {
@@ -103,8 +101,7 @@ const trainingFlow = [
   <section class="section">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Shift expectations</p>
-        <h2>Calm, bounded, and team-based.</h2>
+        <h2>What we expect on a shift</h2>
       </div>
       <ul class="content-list">
         {expectations.map((item) => <li>{item}</li>)}
@@ -115,16 +112,15 @@ const trainingFlow = [
   <section class="section-tight volunteer-cta">
     <div class="site-container split-grid">
       <div>
-        <p class="eyebrow">Apply</p>
-        <h2>Start with the volunteer application.</h2>
+        <h2>How to apply</h2>
       </div>
       <div class="prose">
         <p>
-          The application helps HTA understand your volunteer interests and relevant experience. Select Safe Journey Sanctum among the initiatives you want to support.
+          In the Heartland Transpersonal Alliance application, select Safe Journey Sanctum. Tell us what you’d like to do and about any relevant experience.
         </p>
         <div class="button-row">
-          <Button variant="primary" href={site.forms.volunteer}>Volunteer Application Form</Button>
-          <Button variant="ghost" href="/faq/">Read FAQ</Button>
+          <Button variant="primary" href={site.forms.volunteer}>Open volunteer application</Button>
+          <Button variant="ghost" href="/faq/">Read the FAQ</Button>
         </div>
       </div>
     </div>
@@ -155,7 +151,6 @@ const trainingFlow = [
     font-size: 1rem;
     font-weight: 900;
     margin: 0 0 14px;
-    text-transform: uppercase;
   }
 
   .topic-list {

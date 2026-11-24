@@ -45,9 +45,8 @@ const integrationLinks = [
 
 <BaseLayout title="Resources" description="Practical harm-reduction resources for preparation, difficult experiences, integration, crisis support, and consent.">
   <PageHero
-    eyebrow="Resources"
-    title="Prepare, get support, and integrate."
-    text="These resources are designed for guests, friends, volunteers, and organizers who want clear peer-support and harm-reduction basics without judgment, hype, or unsafe promises."
+    title="Harm reduction resources"
+    text="Find help planning for an event, supporting someone through a difficult experience, or reflecting afterward."
     art="resources"
   />
 
@@ -71,7 +70,7 @@ const integrationLinks = [
           <Card icon={resource.icon} class="resource-card">
             <h2>{resource.title}</h2>
             <p>{resource.text}</p>
-            <a class="button button-ghost card-action" href={withBase(resource.href)} aria-label={`Read more: ${resource.title}`}>Read more</a>
+            <a class="button button-ghost card-action" href={withBase(resource.href)} aria-label={`View resource: ${resource.title}`}>View resource</a>
           </Card>
         ))
       }
@@ -82,7 +81,7 @@ const integrationLinks = [
     <div class="site-container two-grid">
       <div class="prose break-avoid">
         <p class="eyebrow">During a difficult experience</p>
-        <h2>Lower stimulation first.</h2>
+        <h2>Help someone find a quieter space</h2>
         <p>
           Speak calmly, introduce yourself, ask what would feel supportive, and avoid crowding the person. Help them find water, shade, a quieter place, or a trusted friend when appropriate.
         </p>
@@ -100,15 +99,15 @@ const integrationLinks = [
     <div class="site-container two-grid">
       <div class="prose">
         <p class="eyebrow">Preparation</p>
-        <h2>Know where help is.</h2>
+        <h2>Before you go</h2>
         <ul class="content-list">
           {preparationTips.map((tip) => <li>{tip}</li>)}
         </ul>
       </div>
       <Card icon="heart" class="service-card">
-        <h3>Peer support is not punishment</h3>
+        <h3>What peer support can do</h3>
         <p>
-          SJS is not there to judge, shame, or get people in trouble. The goal is to help people feel safer, more oriented, and more supported while connecting them to the right help when needed.
+          SJS volunteers listen without judgment, help people get oriented, and connect them with other support when needed.
         </p>
       </Card>
     </div>
@@ -118,7 +117,7 @@ const integrationLinks = [
     <div class="site-container split-grid">
       <div>
         <p class="eyebrow">Consent and privacy</p>
-        <h2>Protect agency and privacy.</h2>
+        <h2>Ask permission first</h2>
       </div>
       <p>
         Ask before touching, moving belongings, changing music or lighting, inviting another person into the interaction, or sharing details afterward. SJS protects privacy where possible, but safety concerns, legal obligations, mandatory reporting, or medical/security needs can limit confidentiality.
@@ -130,16 +129,16 @@ const integrationLinks = [
     <div class="site-container two-grid">
       <div class="prose break-avoid">
         <p class="eyebrow">Crisis and overdose support</p>
-        <h2>When in doubt, bring in medical support.</h2>
+        <h2>When to involve medical support</h2>
         <p>
-          SJS peer support should not hold a possibly medical situation internally. If someone may be medically unsafe, contact on-site medical/security personnel or emergency services first.
+          If a situation may need medical care, contact on-site medical or security staff or emergency services first.
         </p>
         <ul class="content-list">
           {supportLines.map((line) => <li>{line}</li>)}
         </ul>
       </div>
       <Card icon="cross" class="service-card break-avoid">
-        <h3>Immediate red flags</h3>
+        <h3>Signs that need immediate attention</h3>
         <ul class="content-list">
           {medicalRedFlags.map((flag) => <li>{flag}</li>)}
         </ul>
@@ -151,13 +150,13 @@ const integrationLinks = [
     <div class="site-container two-grid">
       <div class="prose break-avoid">
         <p class="eyebrow">Integration</p>
-        <h2>Slow down afterward.</h2>
+        <h2>Making sense of an experience</h2>
         <p>
           Integration is the process of making sense of a psychedelic, emotional, spiritual, or other nonordinary experience and bringing useful lessons into everyday life in a grounded way. The goal is not to force a meaning, make big decisions right away, or treat every insight as automatically true.
         </p>
       </div>
       <div class="prose break-avoid">
-        <p class="eyebrow">Ongoing support</p>
+        <h3>Find ongoing support</h3>
         <p>
           Integration can include rest, journaling, art, time in nature, gentle movement, trusted conversation, integration circles, or therapy with an integration-informed clinician.
         </p>

@@ -15,9 +15,8 @@ const isLogo = (image: string) => image.endsWith("/sjslogo.png");
 
 <BaseLayout title="News" description="News, field notes, event recaps, and educational updates from Safe Journey Sanctum.">
   <PageHero
-    eyebrow="News and updates"
-    title="Field notes, launch updates, and educational writing."
-    text="Follow SJS as the volunteer community, training program, and event partnerships develop across the Midwest."
+    title="News and field notes"
+    text="Read event recaps and updates on training and volunteering across the Midwest."
     art="news"
   />
 
@@ -37,7 +36,7 @@ const isLogo = (image: string) => image.endsWith("/sjslogo.png");
               </p>
               <h2>{post.data.title}</h2>
               <p>{post.data.description}</p>
-              <a class="button button-ghost card-action" href={withBase(`/news/${post.id}/`)} aria-label={`Read update: ${post.data.title}`}>Read update</a>
+              <a class="button button-ghost card-action" href={withBase(`/news/${post.id}/`)} aria-label={`Read article: ${post.data.title}`}>Read article</a>
             </div>
           </article>
         ))
@@ -51,7 +50,6 @@ const isLogo = (image: string) => image.endsWith("/sjslogo.png");
     color: var(--moss);
     font-size: 1rem;
     font-weight: 750;
-    text-transform: uppercase;
   }
 
   .post-card h2 {
