@@ -91,10 +91,13 @@ function isCurrentPage(href: string): boolean {
     document.querySelector(".site-header")?.toggleAttribute("data-scrolled", window.scrollY > 12);
   };
 
-  const closeMenus = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => { menu.open = false; });
   const syncDisclosureState = (menu: HTMLDetailsElement) => {
     menu.querySelector<HTMLElement>(":scope > summary")?.setAttribute("aria-expanded", String(menu.open));
   };
+  const closeMenus = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => {
+    menu.open = false;
+    syncDisclosureState(menu);
+  });
   const boundMenus = new WeakSet<HTMLDetailsElement>();
   const syncDisclosureStates = () => document.querySelectorAll<HTMLDetailsElement>(".site-header details").forEach(menu => {
     if (boundMenus.has(menu)) return;
@@ -120,7 +123,10 @@ function isCurrentPage(href: string): boolean {
   });
   document.addEventListener("focusin", event => {
     document.querySelectorAll<HTMLDetailsElement>(".site-header details[open]").forEach(menu => {
-      if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+      if (event.target instanceof Node && !menu.contains(event.target)) {
+        menu.open = false;
+        syncDisclosureState(menu);
+      }
     });
   });
   window.matchMedia("(max-width: 1200px)").addEventListener("change", closeMenus);
