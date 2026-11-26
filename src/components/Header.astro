@@ -36,7 +36,6 @@ function isCurrentPage(href: string): boolean {
           role="button"
           aria-label="More pages"
           aria-controls="more-navigation"
-          aria-expanded="false"
           class:list={{ "has-current": secondaryNavItems.some((item) => isCurrentPage(item.href)) }}
         >More</summary>
         <div class="more-panel" id="more-navigation">
@@ -55,7 +54,7 @@ function isCurrentPage(href: string): boolean {
       <a class="nav-volunteer" href={withBase("/volunteer/")} aria-current={isCurrentPage("/volunteer/") ? "page" : undefined}>Volunteer</a>
 
       <details class="mobile-menu">
-        <summary role="button" aria-label="Navigation menu" aria-controls="mobile-navigation" aria-expanded="false">
+        <summary role="button" aria-label="Navigation menu" aria-controls="mobile-navigation">
           <Icon name="menu" />
           <span class="sr-only">Menu</span>
         </summary>
@@ -68,7 +67,7 @@ function isCurrentPage(href: string): boolean {
             ))
           }
           <details class="mobile-secondary">
-            <summary role="button" aria-controls="mobile-secondary-navigation" aria-expanded="false">More about SJS</summary>
+            <summary role="button" aria-controls="mobile-secondary-navigation">More about SJS</summary>
             <div id="mobile-secondary-navigation">
               {secondaryNavItems.map((item) => (
                 <a href={withBase(item.href)} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
